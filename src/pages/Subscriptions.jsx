@@ -12,7 +12,7 @@ const Subscriptions = () => {
 
 
     return (
-        <div className='mb-10'>
+        <div className='my-10 max-w-7xl mx-auto'>
 
                 <div className='space-y-4'>
                 <h1 className='text-4xl font-bold text-center'>Subscriptions</h1>
@@ -27,7 +27,7 @@ const Subscriptions = () => {
             <div>
                 
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16 gap-10 lg:gap-0 '>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-16 gap-10 '>
                 <SubscriptionCard Monthly={Monthly} price={50} type={'Personal'} contents={
                     <><div className='flex items-center text-xl gap-2'>
                         <IoDocumentsOutline className='text-3xl' />
