@@ -9,7 +9,7 @@ import { FaSignature } from "react-icons/fa6";
 const Features = () => {
     return (
         <div className='my-14'>
-            <h1 className='font-playfair text-3xl font-bold text-center'>All your PDFs Tool in One Spot</h1>
+            <h1 className='font-playfair text-xl md:text-3xl font-bold text-center'>All your PDFs Tool in One Spot</h1>
             <div className="flex justify-center">
             <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 my-7 text-center">
                 <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg">

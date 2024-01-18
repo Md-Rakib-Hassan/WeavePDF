@@ -3,7 +3,7 @@ import React from 'react';
 const FAQ = () => {
     return (
         <div>
-            <h1 className='font-playfair text-3xl font-bold text-center'>Frequently Asked Question</h1>
+            <h1 className='font-playfair text-xl md:text-3xl font-bold text-center'>Frequently Asked Question</h1>
             <br /><br />
             <div tabIndex={0} className="collapse collapse-plus border border-base-300 bg-base-200">
             <div className="collapse-title text-xl font-medium">
