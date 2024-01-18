@@ -4,6 +4,7 @@ import {
 import Root from "../layout/Root";
 import Home from "../Pages/Home";
 import Subscriptions from "../pages/Subscriptions";
+import Contact from './../pages/Contact';
 
 
 
@@ -21,6 +22,10 @@ import Subscriptions from "../pages/Subscriptions";
             {
               path:'subscriptions',
               element:<Subscriptions></Subscriptions>
+            },
+            {
+              path:'/contact',
+              element:<Contact></Contact>,
             }
         
           ]
