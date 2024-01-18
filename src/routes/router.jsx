@@ -3,6 +3,7 @@ import {
   } from "react-router-dom";
 import Root from "../layout/Root";
 import Subscriptions from "../pages/Subscriptions";
+import Contact from './../pages/Contact';
 
 
   const router = createBrowserRouter([
@@ -17,8 +18,11 @@ import Subscriptions from "../pages/Subscriptions";
     {
       path:'/subscriptions',
       element:<Subscriptions></Subscriptions>,
+    },
+    {
+      path:'/contact',
+      element:<Contact></Contact>,
     }
-    
   ]);
 
   export default router;
