@@ -2,7 +2,8 @@ import {
     createBrowserRouter,
   } from "react-router-dom";
 import Root from "../layout/Root";
-import Subscriptions from "../pages/Subscriptions";
+import Home from "../Pages/Home";
+
 
 
   const router = createBrowserRouter([
@@ -10,15 +11,12 @@ import Subscriptions from "../pages/Subscriptions";
         path:'/',
         element:<Root></Root>,
         children: [
-          
-            
-        ]
-    },
-    {
-      path:'/subscriptions',
-      element:<Subscriptions></Subscriptions>,
-    }
-    
+
+            {
+              path: '/',
+              element: <Home></Home>
+            }
+
   ]);
 
   export default router;
