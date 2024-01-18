@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -8,12 +8,13 @@ const Navbar = () => {
             <div className="navbar bg-base-100 flex justify-between">
                 <div className="">
                     
-                    <a className="btn btn-ghost text-xl">WeavePDF</a>
+                    <Link to={'/'} className="btn btn-ghost text-xl">WeavePDF</Link>
                     <div className="hidden md:flex">
                     <ul className="menu menu-horizontal px-1">
                     <li><Link to=''>Tools</Link></li>
                     <li><Link to=''>Compress</Link></li>
                     <li><Link to=''>Convert</Link></li>
+                    <li><Link to='/subscriptions'>Subscriptions</Link></li>
                     </ul>
                 </div>
                 </div>

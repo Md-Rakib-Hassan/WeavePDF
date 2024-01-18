@@ -3,6 +3,7 @@ import {
   } from "react-router-dom";
 import Root from "../layout/Root";
 import Home from "../Pages/Home";
+import Subscriptions from "../pages/Subscriptions";
 
 
 
@@ -15,7 +16,15 @@ import Home from "../Pages/Home";
             {
               path: '/',
               element: <Home></Home>
+            },
+
+            {
+              path:'subscriptions',
+              element:<Subscriptions></Subscriptions>
             }
+        
+          ]
+        }
 
   ]);
 

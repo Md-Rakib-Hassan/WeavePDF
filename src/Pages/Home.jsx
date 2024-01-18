@@ -7,13 +7,18 @@ import Newsletter from "../Components/Newsletter";
 
 const Home = () => {
     return (
-        <div>
-            <FileDropper></FileDropper> 
-            <Brands></Brands>  
-            <Features></Features> 
-            <FAQ></FAQ>    
-            <Newsletter></Newsletter>    
-        </div>
+        <>
+            <div className="max-w-7xl mx-auto">
+                <FileDropper></FileDropper>
+                <Brands></Brands>
+                <Features></Features>
+                <FAQ></FAQ>
+
+            </div>
+            <Newsletter></Newsletter>
+
+        </>
+
     );
 };
 
