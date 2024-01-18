@@ -15,6 +15,7 @@ const Navbar = () => {
                     <li><Link to=''>Compress</Link></li>
                     <li><Link to=''>Convert</Link></li>
                     <li><Link to='/subscriptions'>Subscriptions</Link></li>
+                    <li><Link to='/contact'>Contact Us</Link></li>
                     </ul>
                 </div>
                 </div>
