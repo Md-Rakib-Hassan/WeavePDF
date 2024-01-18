@@ -21,7 +21,7 @@ const Navbar = () => {
                 
                 <div className="flex gap-3">
                     <div className="flex gap-3">
-                        <button className='btn'>Login</button>
+                         <button className='btn'>Login</button> {/* this will show avatar when signed in */}
                         <button className='btn hidden md:flex'>Free Trial</button>
                     </div>
                 
