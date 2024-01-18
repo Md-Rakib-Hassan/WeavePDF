@@ -1,10 +1,10 @@
+import FileDropper from "../Components/FileDropper";
 
 
 const Home = () => {
     return (
         <div>
-            <h1 className='text-red-500'>This is home</h1>
-            
+            <FileDropper></FileDropper>            
         </div>
     );
 };
