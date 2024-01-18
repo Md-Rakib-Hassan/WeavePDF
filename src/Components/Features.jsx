@@ -10,37 +10,38 @@ const Features = () => {
     return (
         <div className='my-14'>
             <h1 className='font-playfair text-3xl font-bold text-center'>All your PDFs Tool in One Spot</h1>
+            <div className="flex justify-center">
             <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 my-7 text-center">
-                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[150px] h-[150px] rounded-lg">
+                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg">
                     <FaCodeMerge className="text-6xl"></FaCodeMerge>
                     <h1 className="font-bold text-xl">Merge PDF</h1>
                 </div>
-                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[150px] h-[150px] rounded-lg">
+                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg">
                     <FaArrowsSplitUpAndLeft className="text-6xl"></FaArrowsSplitUpAndLeft>
                     <h1 className="font-bold text-xl">Split PDF</h1>
                 </div>
-                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[150px] h-[150px] rounded-lg">
+                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg">
                     <FaFileWord className="text-6xl"></FaFileWord>
                     <h1 className="font-bold text-xl">PDF to Word</h1>
                 </div>
-                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[150px] h-[150px] rounded-lg">
+                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg">
                     <FaFilePdf className="text-6xl"></FaFilePdf>
                     <h1 className="font-bold text-xl">Word to PDF</h1>
                 </div>
-                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[150px] h-[150px] rounded-lg">
+                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg">
                     <FaMarkdown className="text-6xl"></FaMarkdown>
                     <h1 className="font-bold text-xl">Markdown to PDF</h1>
                 </div>
-                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[150px] h-[150px] rounded-lg">
+                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg">
                     <FaHtml5 className="text-6xl"></FaHtml5>
                     <h1 className="font-bold text-xl">HTML to PDF</h1>
                 </div>
-                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[150px] h-[150px] rounded-lg">
+                <div className="flex flex-col items-center justify-center bg-slate-700 py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg">
                     <FaSignature className="text-6xl"></FaSignature>
-                    <h1 className="font-bold text-xl">Add Sinature</h1>
+                    <h1 className="font-bold text-xl">Add Signature</h1>
                 </div>
                 
-            </div>
+            </div></div>
         </div>
     );
 };
