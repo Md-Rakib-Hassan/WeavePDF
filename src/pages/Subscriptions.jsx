@@ -24,7 +24,10 @@ const Subscriptions = () => {
             </div>
                 </div>
 
-            <div className='flex justify-around mt-16'>
+            <div>
+                
+            </div>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16 gap-10 lg:gap-0 '>
                 <SubscriptionCard Monthly={Monthly} price={50} type={'Personal'} contents={
                     <><div className='flex items-center text-xl gap-2'>
                         <IoDocumentsOutline className='text-3xl' />
@@ -48,7 +51,7 @@ const Subscriptions = () => {
 
                 }/>
 
-                <SubscriptionCard Monthly={Monthly} price={80} type={'Business'} contents={
+                <SubscriptionCard Monthly={Monthly} price={70} type={'Business'} contents={
                     <><div className='flex items-center text-xl gap-2'>
                         <IoDocumentsOutline className='text-3xl' />
                         <p>Unlimited documents</p>
@@ -70,7 +73,7 @@ const Subscriptions = () => {
                         </div></>
 
                 }/>
-                <SubscriptionCard Monthly={Monthly} btn_text={'Contact Us'} price={80} type={'Customize'} contents={
+                <SubscriptionCard Monthly={Monthly} btn_text={'Contact Us'} price={90} type={'Customize'} contents={
                     <><div className='flex items-center text-xl gap-2'>
                         <IoDocumentsOutline className='text-3xl' />
                         <p>Unlimited documents</p>
