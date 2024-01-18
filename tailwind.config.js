@@ -5,6 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      playfair : ['Playfair Display', 'serif']
+    },
     extend: {},
   },
   plugins: [require("daisyui")],

@@ -12,7 +12,7 @@ const Subscriptions = () => {
 
 
     return (
-        <div >
+        <div className='mb-10'>
 
                 <div className='space-y-4'>
                 <h1 className='text-4xl font-bold text-center'>Subscriptions</h1>
