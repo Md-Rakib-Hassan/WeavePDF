@@ -24,7 +24,7 @@ const SubscriptionCard = ({price,contents,type,btn_text, Monthly}) => {
             </div>
            
 
-            <button className='bg-black text-white font-medium hover:bg-gray-950'>{btn_text? btn_text:'Select'}</button>
+            <button className='bg-black text-white font-medium py-2 hover:bg-gray-950'>{btn_text? btn_text:'Select'}</button>
           
        
 </div>
