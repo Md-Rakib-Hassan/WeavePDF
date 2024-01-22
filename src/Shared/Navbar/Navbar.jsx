@@ -1,13 +1,12 @@
-import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     const menu = <>
-        <li><Link to=''>Tools</Link></li>
-        <li><Link to=''>Compress</Link></li>
-        <li><Link to=''>Convert</Link></li>
-        <li><Link to='/subscriptions'>Subscriptions</Link></li>
-        <li><Link to='/contact'>Contact Us</Link></li>
+        <li><NavLink to=''>Tools</NavLink></li>
+        <li><NavLink to=''>Compress</NavLink></li>
+        <li><NavLink to=''>Convert</NavLink></li>
+        <li><NavLink to='/subscriptions'>Subscriptions</NavLink></li>
+        <li><NavLink to='/contact'>Contact Us</NavLink></li>
     </>
     return (
         <div>
@@ -27,7 +26,7 @@ const Navbar = () => {
 
                 <div className="flex gap-3">
                     <div className="flex gap-3">
-                        <button className='btn'>Login</button> {/* this will show avatar when signed in */}
+                        <button className='btn'><Link to='/login'>Login</Link></button> 
                         <button className='btn hidden md:flex'>Free Trial</button>
                     </div>
                     <div className="drawer drawer-end">
