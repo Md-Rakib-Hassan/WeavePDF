@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 
@@ -5,10 +6,10 @@ import { FcGoogle } from "react-icons/fc";
 const SocialLogin = () => {
 
     const {googleSignIn} = useAuth()
-    // const navigate = useNavigate();
-    // const location = useLocation();
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    // const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || "/";
     
     const handleGoogleSignIn = () => {
         googleSignIn().then((result) => {
@@ -18,7 +19,7 @@ const SocialLogin = () => {
             name: result.user?.displayName,
           };
           console.log(userInfo);
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
         });
       };
 
