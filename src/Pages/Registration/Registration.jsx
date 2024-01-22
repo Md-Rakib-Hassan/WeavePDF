@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 
 const Registration = () => {
@@ -116,11 +117,11 @@ const Registration = () => {
           </div>
         </div>
       </form>
-      {/* <SocialLogin></SocialLogin> */}
+      <SocialLogin></SocialLogin>
       <div className="flex justify-center items-center gap-1">
         <p className="font-medium">Already have an account?</p>
         <Link to="/login">
-          <button>Login</button>
+          <button className="btn btn-link">Login</button>
         </Link>
       </div>
     </div>
