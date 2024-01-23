@@ -29,7 +29,23 @@ const MergePdf = () => {
                 <span className='font-bold text-xl text-white'>Select PDF files</span>
             </label>}
             <br /><br />
-            
+            <DragDropContext>
+                <Droppable droppableId='pdfcontainer'>
+            {(provided)=>(
+                <div className='pdfcontainer grid grid-cols-4 gap-10' {...provided.droppableProps} ref={provided.innerRef}>
+            {   
+                pdfs && pdfs.map((pdf,index,key)=>{
+                return(
+                <Draggable key={index} draggableId='pdf-draggable' index={index}>
+                    {(provided)=>( 
+                    <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} 
+                    ><MergeCard pdf={pdf} index={index}></MergeCard></li>)}
+                </Draggable>)})
+            }
+            {provided.placeholder}
+            </div>)}
+                </Droppable>
+            </DragDropContext>
         </div>
     );
 };
