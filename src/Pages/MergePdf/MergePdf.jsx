@@ -35,7 +35,14 @@ const MergePdf = () => {
         setmerged(null);
         try{const mergedDoc = await PDFDocument.create();
 
-        
+        for(const pdf of sortedpdfs){
+
+            const PDFBytes = await pdf.arrayBuffer()
+            const PDFDoc = await PDFDocument.load(PDFBytes)
+
+            const copypages = await mergedDoc.copyPages(PDFDoc, PDFDoc.getPageIndices());
+            copypages.map(page=>mergedDoc.addPage(page));
+        }
 
         const mergedPdfBytes = await mergedDoc.save();
         const mergedPdfBlob = new Blob([mergedPdfBytes], { type : 'application/pdf' });
