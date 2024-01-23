@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 const MergePdf = () => {
 
     const [pdfs, setPdfs] = useState([]);
-    const [sortedpdfs, setsortedPdfs] = (pdfs)
+    const [sortedpdfs, setsortedPdfs] = useState([])
     const [merged, setMerged] = useState(null);
     const handleInput  = e =>{
         e.preventDefault();
@@ -15,15 +15,18 @@ const MergePdf = () => {
             filesArray.push(files[i]);
         }
         setPdfs(filesArray)
+        setsortedPdfs(filesArray)
     }
-
+    // console.log(sortedpdfs);
     const handleDragEnd = result =>{
+        if(!result.destination) return;
         const items = Array.from(sortedpdfs);
         const [reordereditems] = items.splice(result.source.index,1);
         items.splice(result.destination.index,0, reordereditems)
-        // setsortedPdfs(items)
+        setsortedPdfs(items)
+        console.log(sortedpdfs);
     }
-    // console.log(pdfs);
+    
 
     return (
         <div className='flex flex-col items-center py-10'>
@@ -41,7 +44,7 @@ const MergePdf = () => {
             {(provided)=>(
                 <div className='flex flex-col' {...provided.droppableProps} ref={provided.innerRef}>
             {   
-                pdfs && pdfs.map((pdf,index,key)=>{
+                sortedpdfs && sortedpdfs.map((pdf,index,key)=>{
                 return(
                 <Draggable key= {pdf.name} draggableId={pdf.name} index={index}>
                     {(provided)=>( 
