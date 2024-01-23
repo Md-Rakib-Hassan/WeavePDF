@@ -5,8 +5,7 @@ import Root from "../layout/Root";
 import Home from "../Pages/Home";
 import Subscriptions from "../pages/Subscriptions";
 import Contact from './../pages/Contact';
-import MergePdf from "../Pages/MergePdf";
-
+import MergePdf from "../Pages/MergePdf/MergePdf";
 
 
   const router = createBrowserRouter([
