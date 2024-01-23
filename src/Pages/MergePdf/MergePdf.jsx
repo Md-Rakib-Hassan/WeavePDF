@@ -4,6 +4,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 const MergePdf = () => {
 
     const [pdfs, setPdfs] = useState([]);
+    const [sortedpdfs, setsortedPdfs] = (pdfs)
     const [merged, setMerged] = useState(null);
     const handleInput  = e =>{
         e.preventDefault();
@@ -16,6 +17,12 @@ const MergePdf = () => {
         setPdfs(filesArray)
     }
 
+    const handleDragEnd = result =>{
+        const items = Array.from(sortedpdfs);
+        const [reordereditems] = items.splice(result.source.index,1);
+        items.splice(result.destination.index,0, reordereditems)
+        // setsortedPdfs(items)
+    }
     // console.log(pdfs);
 
     return (
@@ -29,16 +36,16 @@ const MergePdf = () => {
                 <span className='font-bold text-xl text-white'>Select PDF files</span>
             </label>}
             <br /><br />
-            <DragDropContext>
+            <DragDropContext onDragEnd={handleDragEnd}>
                 <Droppable droppableId='pdfcontainer'>
             {(provided)=>(
-                <div className='pdfcontainer grid grid-cols-4 gap-10' {...provided.droppableProps} ref={provided.innerRef}>
+                <div className='flex flex-col' {...provided.droppableProps} ref={provided.innerRef}>
             {   
                 pdfs && pdfs.map((pdf,index,key)=>{
                 return(
-                <Draggable key={index} draggableId='pdf-draggable' index={index}>
+                <Draggable key= {pdf.name} draggableId={pdf.name} index={index}>
                     {(provided)=>( 
-                    <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} 
+                    <li type='1' {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} 
                     ><MergeCard pdf={pdf} index={index}></MergeCard></li>)}
                 </Draggable>)})
             }
