@@ -4,10 +4,10 @@ const SubscriptionCard = ({price,contents,type,btn_text, Monthly}) => {
     const final_price=Monthly?parseInt(price):parseInt(price)-(parseInt(price)*0.1);
     
     return (
-        <div className="card lg:w-96 bg-base-100 shadow-xl space-y-2 mx-2">
+        <div className="card lg:w-96 bg-grey shadow-xl shadow-teal space-y-2 mx-2">
 
             <div className='px-2 space-y-2'>
-            <div className='text-center bg-black text-white font-medium py-2 rounded-lg'>{type}</div>
+            <div className='text-center bg-black text-teal font-medium py-2 rounded-lg'>{type}</div>
             <p className='font-medium text-base lg:text-xl text-center'>Monthly</p>
             <p className='font-medium text-xl text-center'>${final_price}</p>
             <hr />
@@ -24,7 +24,7 @@ const SubscriptionCard = ({price,contents,type,btn_text, Monthly}) => {
             </div>
            
 
-            <button className='bg-black text-white font-medium py-2 hover:bg-gray-950'>{btn_text? btn_text:'Select'}</button>
+            <button className='bg-blue text-white font-medium py-2 hover:bg-gray-950'>{btn_text? btn_text:'Select'}</button>
           
        
 </div>
