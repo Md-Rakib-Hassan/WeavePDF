@@ -1,15 +1,20 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 import "./Registration.css";
 import signature_img from '../../images/signature-img.png'
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const Registration = () => {
   const { createUser, updateUserProfile } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -21,8 +26,21 @@ const Registration = () => {
 
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          const userInfo = { name: data.name, email: data.email };
+          const userInfo = { user_Name: data.name, user_Email: data.email, user_Profile_Picture:data.photoURL };
           console.log(userInfo);
+          axiosPublic.post('/users', userInfo)
+          .then(res => {
+            if(res.data.insertedId){
+              console.log('User added: ',res.data);
+              reset();
+              Swal.fire({
+                title: "Registration Completed",
+                text: "thanks For registering",
+                icon: "success"
+              });
+              navigate('/')
+            } 
+          })
         })
         .catch((error) => console.log(error));
     });

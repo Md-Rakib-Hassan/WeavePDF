@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const SocialLogin = () => {
@@ -8,6 +9,7 @@ const SocialLogin = () => {
     const {googleSignIn} = useAuth()
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic()
 
     const from = location.state?.from?.pathname || "/";
     
@@ -15,10 +17,15 @@ const SocialLogin = () => {
         googleSignIn().then((result) => {
           console.log(result.user);
           const userInfo = {
-            email: result.user?.email,
-            name: result.user?.displayName,
+            user_Name: result.user?.displayName,
+            user_Email: result.user?.email,
+            user_Profile_Picture: result.user?.photoURL
           };
           console.log(userInfo);
+          axiosPublic.post("/users", userInfo).then((res) => {
+            console.log(res.data);
+            navigate("/");
+          });
         navigate(from, { replace: true });
         });
       };
