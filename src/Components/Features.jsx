@@ -46,7 +46,6 @@ const Features = () => {
                         <FaPaintbrush className="text-6xl"></FaPaintbrush>
                         <h1 className="font-bold text-xl">Draw Signature</h1>
                     </div></Link>
-
                 </div></div>
         </div>
     );
