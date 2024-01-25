@@ -19,15 +19,15 @@ const Subscriptions = () => {
             <h3 className='text-2xl text-center'>Get ahead with subscription access to premium features!</h3>
 
             <div className='flex justify-center'>
-                <button onClick={()=>setMonthly(true)} className={`px-5 py-2  rounded-l-xl hover:bg-slate-400 border-r-2 border-black ${Monthly? 'bg-black text-white':'bg-slate-200'}`}>Monthly</button>
-                <button onClick={()=>setMonthly(false)} className={`px-5 py-2  rounded-r-xl hover:bg-slate-400 border-black ${Monthly? 'bg-slate-200':'bg-black text-white'}`}>Yearly</button>
+                <button onClick={()=>setMonthly(true)} className={`px-5 py-2  rounded-l-xl hover:bg-slate-400 font-bold border-r-2 border-black ${Monthly? 'bg-black text-teal':'bg-grey'}`}>Monthly</button>
+                <button onClick={()=>setMonthly(false)} className={`px-5 py-2  rounded-r-xl hover:bg-slate-400 font-bold border-black ${Monthly? 'bg-grey':'bg-black text-teal'}`}>Yearly</button>
             </div>
                 </div>
 
             <div>
                 
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-16 gap-10 '>
+            <div className='grid grid-cols-1 md:grid-cols-2 l:grid-cols-3 mt-16 gap-10 '>
                 <SubscriptionCard Monthly={Monthly} price={50} type={'Personal'} contents={
                     <><div className='flex items-center text-xl gap-2'>
                         <IoDocumentsOutline className='text-3xl' />
