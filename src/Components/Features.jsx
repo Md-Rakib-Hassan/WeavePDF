@@ -38,9 +38,13 @@ const Features = () => {
                     <FaHtml5 className="text-6xl"></FaHtml5>
                     <h1 className="font-bold text-xl">HTML to PDF</h1>
                 </div></Link>
-                <Link><div className="flex flex-col items-center justify-center bg-blue py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg hover:scale-110 ease-in-out">
+                <Link to={'/add-signature'}><div className="flex flex-col items-center justify-center bg-blue py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg hover:scale-110 ease-in-out">
                     <FaSignature className="text-6xl"></FaSignature>
                     <h1 className="font-bold text-xl">Add Signature</h1>
+                </div></Link>
+                <Link to={'/draw-signature'}><div className="flex flex-col items-center justify-center bg-blue py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg hover:scale-110 ease-in-out">
+                    <FaPaintbrush className="text-6xl"></FaPaintbrush>
+                    <h1 className="font-bold text-xl">Draw Signature</h1>
                 </div></Link>
                 
             </div></div>
