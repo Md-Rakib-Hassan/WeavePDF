@@ -2,6 +2,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
+import signature_img from "../../images/signature-img.png";
+import './Login.css'
 
 const Login = () => {
   const { loggedIn } = useAuth();
@@ -34,51 +36,71 @@ const Login = () => {
   };
 
   return (
-    <div className="mb-24 mt-10 w-1/3 mx-auto p-4 rounded-xl border-2 border-[#172734] shadow-md shadow-[#172734]">
-      <h1 className="text-center text-5xl font-bold my-10 text-[#172734]">
-        Log In
-      </h1>
-      <form className="mb-6 px-4" onSubmit={handleLogin}>
-        <div className="flex flex-col gap-10 ">
-          <div className="flex flex-col gap-1">
-            <label htmlFor="" className="font-semibold text-lg">
-              Enter Email
-            </label>
-            <input
-              type="text"
-              name="email"
-              className="border-2 border-[#172734] p-3 rounded-lg"
-              placeholder="example@example.com"
-            />
-          </div>
+    <div className="grid grid-cols-5 min-h-screen">
+      <div className="w-2/3 mx-auto p-4 col-span-3">
+        <h1 className="text-center text-xl font-bold mt-8 mb-2 text-[#172734]">
+          Log In to your Account
+        </h1>
+        <div className="mb-6 p-10 w-96 mx-auto rounded-sm  login-form">
+          <form onSubmit={handleLogin}>
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-1">
+                <label htmlFor="" className="pb-1 ">
+                  Enter Email
+                </label>
+                <input
+                  type="text"
+                  name="email"
+                  className="border-2 border-[#172734] p-3 rounded-lg form-input"
+                  placeholder="example@example.com"
+                />
+              </div>
 
-          <div className="flex flex-col gap-1">
-            <label htmlFor="" className="font-semibold text-lg">
-              Enter Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              className="border-2 border-[#172734] p-3 rounded-lg"
-              placeholder="password@123"
-            />
-          </div>
+              <div className="flex flex-col gap-1">
+                <label htmlFor="" className="pb-1">
+                  Enter Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  className="border-2 border-[#172734] p-3 rounded-lg form-input"
+                  placeholder="password@123"
+                />
+              </div>
 
-          <div className="w-1/3 mx-auto text-center">
-            <button className="px-6 py-2  rounded-md text-white text-lg bg-[#172734]">
-              Login
-            </button>
+              <div className="w-2/3 mx-auto text-center">
+                <button className="px-6 py-2  rounded-md text-white w-full bg-[#52ab98]">
+                  Login
+                </button>
+              </div>
+            </div>
+          </form>
+          {/* social log in  */}
+
+          <SocialLogin></SocialLogin>
+          <div className="flex justify-center items-center gap-1">
+            <p className="font-medium">New Here?</p>
+            <Link to="/register">
+              <button className="btn btn-link">Register</button>
+            </Link>
           </div>
         </div>
-      </form>
-      {/* social log in  */}
-
-      <SocialLogin></SocialLogin>
-      <div className="flex justify-center items-center gap-1">
-        <p className="font-medium">New Here?</p>
-        <Link to="/register">
-          <button className="btn btn-link">Register</button>
-        </Link>
+      </div>
+      <div className="pl-10 flex flex-col justify-center border bg-[#deebf5] col-span-2">
+        <div className="card  ">
+        <img
+              src={signature_img}
+              alt="signature image"
+              className="w-[360px] h-[320px]"
+            />
+          <div className="card-body  text-left pt-0">
+            <h2 className="text-left text-3xl font-bold text-[#1e4651]">Login to sign with ease.</h2>
+            <p className="my-2 w-96">Enter your email and password to access your WeavePDF account. You are one step closer to boosting your document productivity.</p>
+            <div className="card-actions">
+              <button className="btn btn-link text-[#184138] font-semibold text-lg pl-0 pt-0"><Link to='/'>Explore Features</Link></button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

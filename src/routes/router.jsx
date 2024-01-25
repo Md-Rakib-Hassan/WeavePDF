@@ -10,6 +10,7 @@ import Registration from "../Pages/Registration/Registration";
 
 
 
+
   const router = createBrowserRouter([
     {
         path:'/',
@@ -36,7 +37,7 @@ import Registration from "../Pages/Registration/Registration";
             {
               path:'/register',
               element:<Registration></Registration>,
-            }
+            },
         
           ]
         }
