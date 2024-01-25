@@ -5,6 +5,7 @@ import { FaFilePdf } from "react-icons/fa6";
 import { FaMarkdown } from "react-icons/fa6";
 import { FaHtml5 } from "react-icons/fa6";
 import { FaSignature } from "react-icons/fa6";
+import { FaPaintbrush } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const Features = () => {
