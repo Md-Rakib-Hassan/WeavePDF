@@ -12,7 +12,7 @@ const Navbar = () => {
     return (
         <div>
 
-            <div className="navbar bg-base-100 flex justify-between">
+            <div className="navbar flex justify-between bg-teal text-grey">
                 <div className="">
 
                     <Link to={'/'} className="btn btn-ghost text-xl">WeavePDF</Link>
