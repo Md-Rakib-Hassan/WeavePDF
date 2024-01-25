@@ -58,7 +58,7 @@ const MergePdf = () => {
             <h1 className='text-3xl font-playfair font-bold'>Merge your PDF Files here</h1><br />
             <p>Combine PDFs in the order you want with the easiest PDF merger available.</p>
             {!merged && pdfs && pdfs.length ? 
-            <button onClick={mergeDocument} className='btn btn-error mt-5 font-bold text-2xl text-white'>Merge</button>
+            <button onClick={mergeDocument} className='btn bg-[#52ab98] mt-5 font-bold text-2xl text-white'>Merge</button>
             :<label className='label'>
                 <input onChange={handleInput} accept='application/pdf' type="file" name="merger[]" id="merge-input" multiple /><br />
                 <span className='font-bold text-xl text-white'>Select PDF files</span>
