@@ -7,6 +7,7 @@ import Subscriptions from "../pages/Subscriptions";
 import Contact from './../pages/Contact';
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
+import AllUsers from "../Pages/AllUsers/AllUsers";
 
 
 
@@ -37,6 +38,10 @@ import Registration from "../Pages/Registration/Registration";
             {
               path:'/register',
               element:<Registration></Registration>,
+            },
+            {
+              path:'/all',
+              element:<AllUsers></AllUsers>,
             },
         
           ]
