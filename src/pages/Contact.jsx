@@ -32,21 +32,21 @@ const Contact = () => {
                         <div>
                             <h1 className="text-3xl text-black my-5">Need Immediate help?</h1>
                         </div>
-                        <div className="max-w-sm p-6 my-5 bg-white border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
+                        <div className="max-w-sm p-6 my-5 bg-blue border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
                             <img src={apple} alt="" className="w-7 h-7 text-gray-500 mb-3" />
                             <a href="#">
                                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">On an Apple mobile device</h5>
                             </a>
                             <p className="mb-3 font-normal text-gray-500 ">Start the conversation</p>
                         </div>
-                        <div className="max-w-sm p-6 my-5 bg-white border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
+                        <div className="max-w-sm p-6 my-5 bg-blue border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
                             <img src={andorid} alt="" className="w-7 h-7 text-gray-500 mb-3" />
                             <a href="#">
                                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">On an Android mobile device</h5>
                             </a>
                             <p className="mb-3 font-normal text-gray-500 ">Start the conversation</p>
                         </div>
-                        <div className="max-w-sm p-6 my-5 bg-white border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
+                        <div className="max-w-sm p-6 my-5 bg-blue border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
                             <img src={whatsapp} alt="" className="w-7 h-7 text-gray-500 mb-3" />
                             <a href="#">
                                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">Using WhatsApp</h5>
@@ -88,7 +88,7 @@ const Contact = () => {
                                 <label className="block mb-2 text-sm font-medium text-gray-900">Any file you want to add(optional)</label>
                                 <input
                                     type="file"
-                                    className="shadow-sm border border-gray-300 text-black text-sm  rounded-lg w-36 p-2.5"
+                                    className="shadow-sm bg-aqua_marine border border-gray-300 text-black text-sm  rounded-lg w-36 p-2.5"
                                     placeholder="Your Massage"
                                 />
                             </div>
