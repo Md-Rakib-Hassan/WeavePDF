@@ -29,9 +29,9 @@ const DrawSignature = () => {
                         />
                     </div>
                     <div className="flex gap-5 items-center my-5">
-                        <button onClick={handleClear} className="px-10 py-2 text-lg bg-blue-950 text-white rounded-lg">Clear</button>
-                        <button onClick={handleSave} className="px-10 py-2 text-lg bg-blue-950 text-white rounded-lg">Save</button>
-                        <button onClick={handleDownload} className="px-10 py-2 text-lg bg-blue-950 text-white rounded-lg">Download</button>
+                        <button onClick={handleClear} className="px-10 py-2 text-lg bg-[#52ab98] text-white rounded-lg">Clear</button>
+                        <button onClick={handleSave} className="px-10 py-2 text-lg bg-[#52ab98] text-white rounded-lg">Save</button>
+                        <button onClick={handleDownload} className="px-10 py-2 text-lg bg-[#52ab98] text-white rounded-lg">Download</button>
                     </div>
                     <div className='my-5'>
                         <img src={url} />
