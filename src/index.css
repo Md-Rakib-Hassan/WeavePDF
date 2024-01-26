@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.label{
+    margin: 30px;
+    padding: 20px;
+    background: #52ab98;
+    cursor: pointer;
+    border-radius: 10%;
+}
+
+#merge-input{
+    display: none;
+    z-index: -1;
+}
