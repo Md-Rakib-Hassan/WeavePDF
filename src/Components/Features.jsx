@@ -35,7 +35,7 @@ const Features = () => {
                     <FaMarkdown className="text-6xl"></FaMarkdown>
                     <h1 className="font-bold text-xl">Markdown to PDF</h1>
                 </div></Link>
-                <Link><div className="flex flex-col items-center justify-center bg-blue py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg hover:scale-110 ease-in-out">
+                <Link to={'/htmlToPdf'}><div className="flex flex-col items-center justify-center bg-blue py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg hover:scale-110 ease-in-out">
                     <FaHtml5 className="text-6xl"></FaHtml5>
                     <h1 className="font-bold text-xl">HTML to PDF</h1>
                 </div></Link>

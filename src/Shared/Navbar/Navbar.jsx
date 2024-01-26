@@ -8,25 +8,25 @@ const Navbar = () => {
   const menu = (
     <>
       <li>
-        <NavLink to="">Tools</NavLink>
+        <Link to="">Tools</Link>
       </li>
       <li>
-        <NavLink to="">Compress</NavLink>
+        <Link to="">Compress</Link>
       </li>
       <li>
-        <NavLink to="">Convert</NavLink>
+        <Link to="">Convert</Link>
       </li>
       <li>
-        <NavLink to="/subscriptions">Subscriptions</NavLink>
+        <Link to="/subscriptions">Subscriptions</Link>
       </li>
       <li>
-        <NavLink to="/contact">Contact Us</NavLink>
+        <Link to="/contact">Contact Us</Link>
       </li>
     </>
   );
   return (
     <div>
-      <div className="navbar bg-base-100 flex justify-between">
+      <div className="navbar bg-teal text-white flex justify-between">
         <div className="">
           <Link to={"/"} className="btn btn-ghost text-xl">
             WeavePDF
@@ -41,9 +41,9 @@ const Navbar = () => {
             {user ? (
               <button className="btn" onClick={() =>logOut()}>Logout</button>
             ) : (
-              <button className="btn">
-                <Link to="/login">Login</Link>
-              </button>
+              
+                <Link className="btn" to="/login">Login</Link>
+             
             )}
             <button className="btn hidden md:flex">Free Trial</button>
           </div>
