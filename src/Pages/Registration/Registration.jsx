@@ -47,12 +47,12 @@ const Registration = () => {
   };
 
   return (
-    <div className="grid grid-cols-5 min-h-screen">
-      <div className="w-2/3 mx-auto p-4 col-span-3">
-      <h1 className="text-center text-xl font-bold mt-8 mb-2 text-[#172734]">
-        Register
+    <div className="grid lg:grid-cols-5 min-h-screen">
+      <div className="lg:w-2/3 mx-auto p-4 lg:col-span-3">
+      <h1 className="text-center text-xl font-semibold mt-8 mb-2 text-[#172734]">
+        Register your account
       </h1>
-      <div className="register-form mb-6 p-10 w-96 mx-auto rounded-sm">
+      <div className="register-form mb-6 p-10 w-80 lg:w-96 mx-auto rounded-sm">
         <form className="mb-6 px-4" onSubmit={handleSubmit(onSubmit)}>
           {/* Personal Information================== */}
           <div className="flex flex-col gap-6">
@@ -63,7 +63,7 @@ const Registration = () => {
               <input
                 {...register("name", { required: true })}
                 type="text"
-                className="border-2 border-[#253745] p-3 rounded-lg form-input "
+                className="p-3 rounded-lg form-input "
                 placeholder="Tabib E Alahi"
               />
               {errors.name && (
@@ -78,7 +78,7 @@ const Registration = () => {
               <input
                 {...register("photoURL", { required: true })}
                 type="text"
-                className="border-2 border-[#172734] p-3 rounded-lg form-input"
+                className="p-3 rounded-lg form-input"
                 placeholder="url...."
               />
               {errors.photoURL && (
@@ -93,7 +93,7 @@ const Registration = () => {
               <input
                 {...register("email", { required: true })}
                 type="email"
-                className="border-2 border-[#172734] p-3 rounded-lg form-input"
+                className="p-3 rounded-lg form-input"
                 placeholder="example@example.com"
               />
               {errors.email && (
@@ -112,7 +112,7 @@ const Registration = () => {
                   maxLength: 20,
                 })}
                 type="password"
-                className="border-2 border-[#172734] p-3 rounded-lg form-input"
+                className="p-3 rounded-lg form-input"
                 placeholder="password@123"
               />
               {errors.password?.type === "required" && (
@@ -140,15 +140,15 @@ const Registration = () => {
         </form>
         <SocialLogin></SocialLogin>
         <div className="flex justify-center items-center gap-1">
-          <p className="font-medium">Already have an account?</p>
+          <p className="font-normal">Already have an account?</p>
           <Link to="/login">
-            <button className="btn btn-link">Login</button>
+            <button className="btn btn-link pl-0">Login</button>
           </Link>
         </div>
       </div>
     </div>
 
-    <div className="pl-10 flex flex-col justify-center border bg-[#deebf5] col-span-2">
+    <div className="pl-10 hidden lg:flex flex-col justify-center border bg-[#deebf5] col-span-2">
         <div className="card  ">
         <img
               src={signature_img}
