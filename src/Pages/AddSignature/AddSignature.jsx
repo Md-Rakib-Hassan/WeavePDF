@@ -37,13 +37,13 @@ const AddSignature = () => {
                             <div className="flex gap-5 items-center my-10">
                                 <button
                                     type="button"
-                                    className="px-10 py-2 text-lg bg-blue-950 text-white rounded-lg"
+                                    className="px-10 py-2 text-lg bg-blue text-black rounded-lg"
                                 >
                                     Change Font
                                 </button>
                                 <button
                                     type="button"
-                                    className="px-10 py-2 text-lg bg-blue-950 text-white rounded-lg"
+                                    className="px-10 py-2 text-lg bg-blue text-black rounded-lg"
                                 >
                                     Download
                                 </button>
