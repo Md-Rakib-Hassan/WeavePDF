@@ -9,9 +9,10 @@ import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import AllUsers from "../Pages/AllUsers/AllUsers";
 import MergePdf from "../Pages/MergePdf/MergePdf";
+import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
 import DrawSignature from "../Pages/DrawSignature/DrawSignature";
 import AddSignature from "../Pages/AddSignature/AddSignature";
-
+import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
 
 
 const router = createBrowserRouter([
@@ -60,11 +61,16 @@ const router = createBrowserRouter([
             {
               path:'/all',
               element:<AllUsers></AllUsers>,
-            }
+            },
+  {
+        path: '/htmlToPdf',
+        element: <HtmlToPDF></HtmlToPDF>
+      }
     ]
   }
 
 
 ]);
+
 
 export default router;

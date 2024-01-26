@@ -13,6 +13,7 @@ const Features = () => {
         <div className='my-20'>
             <h1 className='font-playfair text-xl md:text-3xl font-bold text-center'>All your PDFs Tool in One Spot</h1>
             <div className="flex justify-center">
+
             <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 my-7 text-center">
                 <Link to="/merge-pdf"><div className="flex flex-col items-center justify-center bg-blue py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg hover:scale-110 ease-in-out">
                     <FaCodeMerge className="text-6xl"></FaCodeMerge>
