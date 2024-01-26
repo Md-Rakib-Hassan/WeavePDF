@@ -6,9 +6,10 @@ import Home from "../pages/Home";
 import Subscriptions from "../pages/Subscriptions";
 import Contact from './../pages/Contact';
 import MergePdf from "../Pages/MergePdf/MergePdf";
-import DrawSignature from "../Pages/DrawSignature/DrawSignature";
-import AddSignature from "../Pages/AddSignature/AddSignature";
 import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
+// import DrawSignature from "../Pages/DrawSignature/DrawSignature";
+// import AddSignature from "../Pages/AddSignature/AddSignature";
+// import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
 
 
 const router = createBrowserRouter([
@@ -37,14 +38,6 @@ const router = createBrowserRouter([
       {
         path: '/htmlToPdf',
         element: <HtmlToPDF></HtmlToPDF>
-      },
-      {
-        path: '/draw-signature',
-        element: <DrawSignature></DrawSignature>
-      },
-      {
-        path: '/add-signature',
-        element: <AddSignature></AddSignature>
       }
     ]
   }
