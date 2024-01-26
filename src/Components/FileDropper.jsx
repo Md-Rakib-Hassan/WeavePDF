@@ -13,7 +13,7 @@ const FileDropper = () => {
     }
     
     return (
-        <div className='flex flex-col items-center my-10 py-10 bg-slate-800'>
+        <div className='flex flex-col items-center mb-10 py-14 bg-blue'>
             <h1 className='font-playfair text-3xl font-bold text-center text-white'>Create your eSignature to sign with ease.</h1><br />
             <input className='bg-slate-300' type="file" name="pdf" id="pdf" />
 
