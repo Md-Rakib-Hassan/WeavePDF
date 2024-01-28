@@ -9,7 +9,7 @@ const Root = () => {
     location.pathname.includes("login") ||
     location.pathname.includes("register");
   return (
-    <div>
+    <div className="">
       {noShoulder || <Navbar></Navbar>}
       <Outlet></Outlet>
 

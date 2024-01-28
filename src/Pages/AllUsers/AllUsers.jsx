@@ -16,7 +16,7 @@ const AllUsers = () => {
     <div>
       {users?.map((user, idx) => (
         <div key={user._id} className="flex justify-center items-center gap10">
-          <h1>{idx+1}</h1>
+          <h1>{idx + 1}</h1>
           <h1>{user.user_Name}</h1>
           <h2>{user.user_Email}</h2>
           <img

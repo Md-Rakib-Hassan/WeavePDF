@@ -2,7 +2,7 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import Root from "../layout/Root";
-import Home from "../pages/Home";
+import Home from "../Pages/Home";
 import Subscriptions from "../pages/Subscriptions";
 import Contact from './../pages/Contact';
 import Login from "../Pages/Login/Login";
@@ -12,6 +12,8 @@ import MergePdf from "../Pages/MergePdf/MergePdf";
 import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
 import DrawSignature from "../Pages/DrawSignature/DrawSignature";
 import AddSignature from "../Pages/AddSignature/AddSignature";
+import SplitPDF from "../Pages/SplitPDF/SplitPDF";
+
 
 
 const router = createBrowserRouter([
@@ -64,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: '/htmlToPdf',
         element: <HtmlToPDF></HtmlToPDF>
+      },
+      {
+        path: '/split-pdf',
+        element: <SplitPDF></SplitPDF>
       }
     ]
   }
