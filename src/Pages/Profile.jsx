@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
+import axios from 'axios';
 
 const Profile = () => {
-    const [country, setCountry] = 
+    const [timezone, setTimezone] = useState(null);
     const { user } = useAuth();
-    const { displayName, photoURL } = user;
+    const { displayName,email, photoURL } = user;
+
+    useEffect(()=>{
+        getTimeZone();
+    },[])
+    const getTimeZone = () =>{
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        setTimezone(tz);
+    }
     return (
         <div>
            <div className='flex flex-col items-center'>
@@ -22,14 +31,18 @@ const Profile = () => {
                     </div>
                     <div className='flex flex-col'>
                         <p><strong>Name</strong>: {displayName}</p>
-                        <p><strong>Location</strong>: </p>
-                        <p><strong>TimeZone</strong>: </p>
+                        <p><strong>Email</strong>: {email}</p>
+                        {/* <p><strong>Location</strong>: </p> */}
+                        <p><strong>TimeZone</strong>: {timezone}</p>
                     </div>
                     <a className='underline text-error flex justify-end' href="">change</a>
                     
                 </div>
                 </div>
                 
+           </div>
+           <div>
+            
            </div>
         </div>
     );
