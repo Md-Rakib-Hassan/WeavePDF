@@ -40,13 +40,13 @@ const Navbar = () => {
           <div className="flex gap-3">
             {user ? (
               <div className="flex">
-              <button className="mx-5">
+              <Link to='/user-profile'><button className="btn btn-circle mx-5">
               <div className="avatar">
                 <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                   <img src={user.photoURL} />
                 </div>
               </div>
-              </button>
+              </button></Link>
               <button className="btn" onClick={() =>logOut()}>Logout</button>
               </div>
               
