@@ -22,7 +22,6 @@ const SplitPDFModal = () => {
     register,
     handleSubmit,
     setError,
-    reset,
     formState: { errors },
   } = useForm();
 
