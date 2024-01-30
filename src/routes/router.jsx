@@ -13,6 +13,7 @@ import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
 import DrawSignature from "../Pages/DrawSignature/DrawSignature";
 import AddSignature from "../Pages/AddSignature/AddSignature";
 import SplitPDF from "../Pages/SplitPDF/SplitPDF";
+import SplitPDFModal from "../Pages/SplitPDF/SplitPDFModal/SplitPDFModal";
 
 
 
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: '/split-pdf',
         element: <SplitPDF></SplitPDF>
+      },
+      {
+        path: '/splitting-page',
+        element: <SplitPDFModal></SplitPDFModal>
       }
     ]
   }
