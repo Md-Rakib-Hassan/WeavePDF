@@ -14,6 +14,8 @@
     "@stripe/stripe-js": "^2.3.0",
     "dragula": "^3.7.3",
     "file-saver": "^2.0.5",
+    "google-fonts": "^1.0.0",
+    "html2canvas": "^1.4.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.3",
     "pdf-lib": "^1.17.1",
@@ -23,7 +25,8 @@
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.21.2",
     "react-signature-canvas": "^1.0.6",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
