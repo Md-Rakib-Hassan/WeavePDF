@@ -12,6 +12,7 @@ import MergePdf from "../Pages/MergePdf/MergePdf";
 import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
 import DrawSignature from "../Pages/DrawSignature/DrawSignature";
 import AddSignature from "../Pages/AddSignature/AddSignature";
+import Editor from "../Pages/MdToPdf/Editor";
 
 
 const router = createBrowserRouter([
@@ -64,9 +65,15 @@ const router = createBrowserRouter([
       {
         path: '/htmlToPdf',
         element: <HtmlToPDF></HtmlToPDF>
+      },
+      {
+        path:'/md-to-pdf-editor',
+        element:<Editor></Editor>
       }
+      
     ]
-  }
+  },
+  
 
 
 ]);
