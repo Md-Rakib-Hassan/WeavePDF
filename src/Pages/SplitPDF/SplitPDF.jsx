@@ -31,9 +31,7 @@ const SplitPDF = () => {
             PDF Splitter
           </h1>
           <p className="mt-4 mb-8 hidden lg:inline-flex text-[#47474f] text-xl max-w-4xl mx-auto">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore,
-            excepturi fugiat molestias aperiam mollitia distinctio ducimus iste
-            repellendus quasi debitis!
+          Easily split and organize your PDF files. Select the pages you need and create new, smaller PDFs with just a few clicks.
           </p>
           <section
             onDrop={handleDrop}
