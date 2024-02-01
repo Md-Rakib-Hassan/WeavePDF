@@ -20,12 +20,8 @@ const SplitPDFModal = () => {
   }, [state]);
 
   // ==================== react hook form ------------------------------
-  const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors },
-  } = useForm();
+  const { register: registerTab1, handleSubmit: handleSubmitTab1, setError: setErrorTab1, formState: { errors: errorsTab1 } } = useForm();
+  const { register: registerTab2, handleSubmit: handleSubmitTab2, setError: setErrorTab2, formState: { errors: errorsTab2 } } = useForm();
 
   // ============================== extraction functions ------------------------
 
@@ -88,8 +84,8 @@ const SplitPDFModal = () => {
         toPage > numPagesSrc ||
         fromPage > toPage
       ) {
-        setError("from", { type: "manual", message: "Invalid page range" });
-        setError("to", { type: "manual", message: "Invalid page range" });
+        setErrorTab1("from", { type: "manual", message: "Invalid page range" });
+        setErrorTab1("to", { type: "manual", message: "Invalid page range" });
         return;
       }
 
@@ -176,7 +172,7 @@ const SplitPDFModal = () => {
   };
 
   const onSubmitSplit = async (data) => {
-    // console.log('hitted', data);
+    console.log('hitted', data);
     // console.log('===============',state[0].name);
     const pdfArrayBuffer = await readFileAsync(state[0]);
     const pdfSrcDoc = await PDFDocument.load(pdfArrayBuffer);
@@ -191,10 +187,10 @@ const SplitPDFModal = () => {
 
   return (
     <div className="flex flex-col p-10 gap-16">
-      <div className="grid grid-cols-2 gap-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
         <section className="w-fit mx-auto">
           <iframe
-            className="w-[700px] h-[495px] rounded mx-auto"
+            className="w-fit h-96 lg:w-[700px] lg:h-[495px] rounded mx-auto"
             src={initialFile}
           ></iframe>
         </section>
@@ -202,14 +198,14 @@ const SplitPDFModal = () => {
         {/* ================== tab area ================= */}
 
         <section className="w-full">
-          <div role="tablist" className="tabs tabs-bordered">
+          <div role="tablist" className="tabs tabs-lifted">
             {/* tab -1 content ===========================================  */}
             <input
               type="radio"
               name="my_tabs_1"
               role="tab"
-              className={`tab text-2xl font-medium border-2 text-aqua_marine focus:bg-teal py-2 h-fit border-aqua_marine focus:text-white  rounded-md `}
-              aria-label="Extract Pages"
+              className={`tab  w-fit text-sm lg:text-2xl font-medium border-2 text-aqua_marine py-2 h-fit border-aqua_marine e  rounded-md `}
+              aria-label="Extract Pages" checked required
             />
             <div
               role="tabpanel"
@@ -217,26 +213,26 @@ const SplitPDFModal = () => {
             >
               <section>
                 <form
-                  onSubmit={handleSubmit(onSubmit)}
+                  onSubmit={handleSubmitTab1(onSubmit)}
                   className="flex flex-col justify-center gap-10"
                 >
-                  <div className="grid grid-cols-2 w-fit mx-auto gap-10">
+                  <div className="grid grid-cols-2 w-fit mx-auto gap-4 lg:gap-10">
                     <div className="flex flex-col gap-1 ">
                       <label htmlFor="" className="pb-0.5 font-medium">
                         Form(Page No.)
                       </label>
                       <input
-                        {...register("from", { required: true })}
+                        {...registerTab1("from", { required: true })}
                         type="text"
                         className={`p-3 rounded-lg form-input hover:outline-none focus:outline-none ${
-                          errors.from ? "border-2 border-error_color" : ""
+                          errorsTab1.from ? "border-2 border-error_color" : ""
                         }`}
                         placeholder="1"
                       />
-                      {errors.from && (
+                      {errorsTab1.from && (
                         <span className="text-error_color">
-                          {errors.from.message
-                            ? errors.from.message
+                          {errorsTab1.from.message
+                            ? errorsTab1.from.message
                             : "This field is required"}
                         </span>
                       )}
@@ -246,17 +242,17 @@ const SplitPDFModal = () => {
                         To(Page No.)
                       </label>
                       <input
-                        {...register("to", { required: true })}
+                        {...registerTab1("to", { required: true })}
                         type="text"
                         className={`p-3 rounded-lg form-input hover:outline-none focus:outline-none ${
-                          errors.to ? "border-2 border-error_color" : ""
+                          errorsTab1.to ? "border-2 border-error_color" : ""
                         }`}
                         placeholder="4"
                       />
-                      {errors.to && (
+                      {errorsTab1.to && (
                         <span className="text-error_color">
-                          {errors.to.message
-                            ? errors.to.message
+                          {errorsTab1.to.message
+                            ? errorsTab1.to.message
                             : "This field is required"}
                         </span>
                       )}
@@ -277,7 +273,7 @@ const SplitPDFModal = () => {
               type="radio"
               name="my_tabs_1"
               role="tab"
-              className="tab text-2xl font-medium border-2 text-aqua_marine focus:bg-teal py-2 h-fit border-aqua_marine focus:text-white  rounded-md"
+              className="tab text-sm lg:text-2xl font-medium border-2 text-aqua_marine  py-2 h-fit border-aqua_marine  rounded-md"
               aria-label="Split by Per Page"
             />
             <div
@@ -286,7 +282,7 @@ const SplitPDFModal = () => {
             >
               <section>
               <form
-                onSubmit={handleSubmit(onSubmitSplit)}
+                onSubmit={handleSubmitTab2(onSubmitSplit)}
                 className="flex flex-col justify-center gap-10"
               >
                 <div className="">
@@ -294,17 +290,17 @@ const SplitPDFModal = () => {
                     Pages Per File
                   </label>
                   <input
-                    {...register("pagesPerFile", { required: true })}
+                    {...registerTab2("pagesPerFile", { required: true })}
                     type="number"
-                    className={`p-3 rounded-lg form-input hover:outline-none focus:outline-none ${
-                      errors.pagesPerFile ? "border-2 border-error_color" : ""
+                    className={`p-3 rounded-lg text-black text-lg font-medium form-input hover:outline-none focus:outline-none ${
+                      errorsTab2.pagesPerFile ? "border-2 border-error_color" : ""
                     }`}
-                    placeholder="2"
+                    placeholder="2" min={1} required
                   />
-                  {errors.pagesPerFile && (
+                  {errorsTab2.pagesPerFile && (
                     <span className="text-error_color">
-                      {errors.pagesPerFile.message
-                        ? errors.pagesPerFile.message
+                      {errorsTab2.pagesPerFile.message
+                        ? errorsTab2.pagesPerFile.message
                         : "This field is required"}
                     </span>
                   )}

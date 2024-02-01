@@ -24,13 +24,13 @@ const SplitPDF = () => {
   };
 
   return (
-    <div className=" pt-0  text-center mb-40 max-h-screen">
-      <div className="p-12    text-center bg-blue h-[600px]">
-        <div className=" py-12  bg-white w-5/6 mx-auto rounded-lg shadow-lg shadow-blue h-[640px]">
-          <h1 className="text-4xl font-semibold text-[#33333b]">
+    <div className=" pt-0 text-center mb-40 ">
+      <div className="p-4 lg:p-12    text-center bg-blue  lg:h-[600px]">
+        <div className=" py-12  bg-white lg:w-5/6 mx-auto rounded-lg shadow-lg shadow-blue lg:h-[640px]">
+          <h1 className="text-4xl mb-8 lg:mb-0 font-semibold text-[#33333b]">
             PDF Splitter
           </h1>
-          <p className="mt-4 mb-8 text-[#47474f] text-xl max-w-4xl mx-auto">
+          <p className="mt-4 mb-8 hidden lg:inline-flex text-[#47474f] text-xl max-w-4xl mx-auto">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore,
             excepturi fugiat molestias aperiam mollitia distinctio ducimus iste
             repellendus quasi debitis!
@@ -43,7 +43,7 @@ const SplitPDF = () => {
             <div className="outline-2 outline-dashed outline-[#ccc] bg-[#52ab98] rounded-lg p-5 w-fit mx-auto text-center cursor-pointer">
               <label
                 htmlFor="pdf-input"
-                className="custom-file-input-label text-white text-xl font-semibold"
+                className="custom-file-input-label text-white text-sm lg:text-xl font-semibold"
               >
                 {selectedFile ? selectedFile[0].name : "Choose PDF File"}
               </label>
@@ -55,7 +55,7 @@ const SplitPDF = () => {
                 onChange={onFileSelected}
               />
             </div>
-            <p>or Drag PDF here</p>
+            <p className="text-sm lg:text-base">or Drag PDF here</p>
             {selectedFile && (
               <button
                 onClick={() =>
