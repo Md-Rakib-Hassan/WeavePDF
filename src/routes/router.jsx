@@ -12,6 +12,8 @@ import MergePdf from "../Pages/MergePdf/MergePdf";
 import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
 import DrawSignature from "../Pages/DrawSignature/DrawSignature";
 import AddSignature from "../Pages/AddSignature/AddSignature";
+// import PdfSignature from "../Pages/PdfSignature/PdfSignature";
+import PdfViewer from "../Pages/PdfEditor/PDFViewer";
 
 
 const router = createBrowserRouter([
@@ -64,6 +66,15 @@ const router = createBrowserRouter([
       {
         path: '/htmlToPdf',
         element: <HtmlToPDF></HtmlToPDF>
+      },
+      // work not complete yet - nafisa 
+      // {
+      //   path: '/pdf-signature',
+      //   element: <PdfSignature></PdfSignature>
+      // },
+      {
+        path: '/pdf-editor',
+        element: <PdfViewer></PdfViewer>
       }
     ]
   }
