@@ -31,7 +31,7 @@ const Features = () => {
                     <FaFilePdf className="text-6xl"></FaFilePdf>
                     <h1 className="font-bold text-xl">Word to PDF</h1>
                 </div></Link>
-                <Link><div className="flex flex-col items-center justify-center bg-blue py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg hover:scale-110 ease-in-out">
+                <Link to={'/md-to-pdf-editor'}><div className="flex flex-col items-center justify-center bg-blue py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg hover:scale-110 ease-in-out">
                     <FaMarkdown className="text-6xl"></FaMarkdown>
                     <h1 className="font-bold text-xl">Markdown to PDF</h1>
                 </div></Link>
