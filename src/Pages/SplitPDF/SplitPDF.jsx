@@ -24,9 +24,9 @@ const SplitPDF = () => {
   };
 
   return (
-    <div className=" pt-0  text-center min-h-screen">
-      <div className="p-12   text-center bg-blue h-[600px]">
-        <div className=" py-12 bg-white w-5/6 mx-auto rounded-lg shadow-lg shadow-blue h-[660px]">
+    <div className=" pt-0  text-center mb-40 max-h-screen">
+      <div className="p-12    text-center bg-blue h-[600px]">
+        <div className=" py-12  bg-white w-5/6 mx-auto rounded-lg shadow-lg shadow-blue h-[640px]">
           <h1 className="text-4xl font-semibold text-[#33333b]">
             PDF Splitter
           </h1>

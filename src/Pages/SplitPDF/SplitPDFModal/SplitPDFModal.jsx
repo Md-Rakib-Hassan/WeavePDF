@@ -6,7 +6,7 @@ import "./SplitPDFModal.css";
 
 const SplitPDFModal = () => {
   const [initialFile, setInitialFile] = useState(null);
-  const [pdfFileData, setPdfFileData] = useState(null);
+  // const [pdfFileData, setPdfFileData] = useState(null);
   const location = useLocation();
   const { state } = location;
 
@@ -43,7 +43,17 @@ const SplitPDFModal = () => {
       type: "application/pdf",
     });
     const docUrl = URL.createObjectURL(tempBlob);
-    setPdfFileData(docUrl);
+    // setPdfFileData(docUrl); ----------------- will be used for future work
+
+    const downloadLink = document.createElement("a");
+    downloadLink.href = docUrl;
+    downloadLink.download = "extracted.pdf"; //
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+
+    downloadLink.click();
+    
+    document.body.removeChild(downloadLink);
   };
 
   // ========================= extracting range =========================
@@ -115,21 +125,28 @@ const SplitPDFModal = () => {
   return (
     <div className="flex flex-col p-10 gap-16">
       <div className="grid grid-cols-2 gap-20">
-        <section className="">
+        <section className="w-fit mx-auto">
           <iframe
-            className="w-[800px] h-[495px] rounded mx-auto"
+            className="w-[700px] h-[495px] rounded mx-auto"
             src={initialFile}
           ></iframe>
         </section>
 
         {/* ================== tab area ================= */}
 
-        <section>
+        <section className="w-full">
           <div role="tablist" className="tabs tabs-bordered">
-          <input type="radio" name="my_tabs_1" role="tab" className={`tab text-2xl font-medium border-2 focus:bg-teal py-2 h-fit border-aqua_marine  rounded-md `} aria-label="Extract Pages" />
+            {/* tab -1 content ===========================================  */}
+            <input
+              type="radio"
+              name="my_tabs_1"
+              role="tab"
+              className={`tab text-2xl font-medium border-2 text-aqua_marine focus:bg-teal py-2 h-fit border-aqua_marine focus:text-white  rounded-md `}
+              aria-label="Extract Pages"
+            />
             <div
               role="tabpanel"
-              className="tab-content bg-base-100 border-aqua_marine rounded-box p-6"
+              className="tab-content bg-base-100 border-2 border-aqua_marine rounded-box p-6"
             >
               <section>
                 <form
@@ -188,10 +205,17 @@ const SplitPDFModal = () => {
               </section>
             </div>
 
-            <input type="radio" name="my_tabs_1" role="tab" className="tab text-2xl font-medium border-2 focus:bg-teal py-2 h-fit border-aqua_marine rounded-md" aria-label="Split" />
+            {/* tab -2 content ===========================================  */}
+            <input
+              type="radio"
+              name="my_tabs_1"
+              role="tab"
+              className="tab text-2xl font-medium border-2 text-aqua_marine focus:bg-teal py-2 h-fit border-aqua_marine focus:text-white  rounded-md"
+              aria-label="Split"
+            />
             <div
               role="tabpanel"
-              className="tab-content bg-base-100 border-aqua_marine rounded-box p-6"
+              className="tab-content bg-base-100 border-2 border-aqua_marine rounded-box p-6"
             >
               Tab content 2
             </div>
@@ -199,7 +223,7 @@ const SplitPDFModal = () => {
         </section>
       </div>
 
-      {/* ============================================================  */}
+      {/* ============================================================ 
       <section className="">
         <iframe
           className={`w-[800px] h-[495px] rounded mx-auto ${
@@ -207,7 +231,7 @@ const SplitPDFModal = () => {
           }`}
           src={pdfFileData}
         ></iframe>
-      </section>
+      </section> */}
     </div>
   );
 };
