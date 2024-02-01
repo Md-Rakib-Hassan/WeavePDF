@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import "./SplitPDFModal.css";
+import JSZip from "jszip";
 
 const SplitPDFModal = () => {
   const [initialFile, setInitialFile] = useState(null);
   // const [pdfFileData, setPdfFileData] = useState(null);
+  const [splitPdfFiles, setSplitPdfFiles] = useState([]);
   const location = useLocation();
   const { state } = location;
 
@@ -52,7 +54,7 @@ const SplitPDFModal = () => {
     document.body.appendChild(downloadLink);
 
     downloadLink.click();
-    
+
     document.body.removeChild(downloadLink);
   };
 
@@ -120,6 +122,71 @@ const SplitPDFModal = () => {
         renderPdf(newPdfDoc);
       }
     }
+  };
+
+  // ====================== Split pdf per page ============================
+
+  const splitPdf = async (pdfSrcDoc, pagesPerFile,pdfName) => {
+    try {
+      const pdfFiles = [];
+      const numPagesSrc = pdfSrcDoc.getPages().length;
+      const numFiles = Math.ceil(numPagesSrc / pagesPerFile);
+      const zip = new JSZip();
+
+      for (let i = 0; i < numFiles; i++) {
+        const startPage = i * pagesPerFile + 1;
+        const endPage = Math.min((i + 1) * pagesPerFile, numPagesSrc);
+
+        const pdfNewDoc = await PDFDocument.create();
+        const pages = await pdfNewDoc.copyPages(pdfSrcDoc, range(startPage, endPage));
+
+        if (pages) {
+          console.log('---',pdfSrcDoc);
+          pages.forEach((page) => pdfNewDoc.addPage(page));
+          const newPdf = await pdfNewDoc.save();
+          // console.log('---------------',newPdf);
+          const fileName = `${pdfName}_${i + 1}.pdf`;
+          pdfFiles.push({ data: newPdf, name: fileName });
+          zip.file(fileName, newPdf);
+        } else {
+          console.warn("Failed to copy pages");
+          return null;
+        }
+      }
+
+      setSplitPdfFiles(pdfFiles);
+
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+      const zipFile = new File([zipBlob], "split_pdfs.zip", { type: "application/zip" });
+
+      //  I am wrapping the files in zip and alos triggered it 
+      const downloadLink = document.createElement("a");
+      downloadLink.href = URL.createObjectURL(zipFile);
+      downloadLink.download = "split_pdfs.zip";
+      downloadLink.style.display = "none";
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+
+      return pdfFiles;
+    } catch (error) {
+      console.error("Error during PDF splitting:", error);
+      return null;
+    }
+  };
+
+  const onSubmitSplit = async (data) => {
+    // console.log('hitted', data);
+    // console.log('===============',state[0].name);
+    const pdfArrayBuffer = await readFileAsync(state[0]);
+    const pdfSrcDoc = await PDFDocument.load(pdfArrayBuffer);
+    const pdfFiles = await splitPdf(pdfSrcDoc, parseInt(data?.pagesPerFile),state[0].name);
+
+    if (pdfFiles && pdfFiles.length > 0) {
+      console.log("Extracted PDF files:", pdfFiles);
+    }
+
+
   };
 
   return (
@@ -211,13 +278,64 @@ const SplitPDFModal = () => {
               name="my_tabs_1"
               role="tab"
               className="tab text-2xl font-medium border-2 text-aqua_marine focus:bg-teal py-2 h-fit border-aqua_marine focus:text-white  rounded-md"
-              aria-label="Split"
+              aria-label="Split by Per Page"
             />
             <div
               role="tabpanel"
               className="tab-content bg-base-100 border-2 border-aqua_marine rounded-box p-6"
             >
-              Tab content 2
+              <section>
+              <form
+                onSubmit={handleSubmit(onSubmitSplit)}
+                className="flex flex-col justify-center gap-10"
+              >
+                <div className="">
+                  <label htmlFor="" className="pb-0.5 font-medium">
+                    Pages Per File
+                  </label>
+                  <input
+                    {...register("pagesPerFile", { required: true })}
+                    type="number"
+                    className={`p-3 rounded-lg form-input hover:outline-none focus:outline-none ${
+                      errors.pagesPerFile ? "border-2 border-error_color" : ""
+                    }`}
+                    placeholder="2"
+                  />
+                  {errors.pagesPerFile && (
+                    <span className="text-error_color">
+                      {errors.pagesPerFile.message
+                        ? errors.pagesPerFile.message
+                        : "This field is required"}
+                    </span>
+                  )}
+                </div>
+                <button
+                    className="text-grey text-xl font-medium w-fit mx-auto rounded bg-aqua_marine px-8 py-5"
+                    type="submit"
+                  >
+                    Split this file
+                  </button>
+              </form>
+
+              {splitPdfFiles.length > 0 && (
+                <div className="mt-6">
+                  <h2 className="text-xl font-medium mb-2">Split PDF Files:</h2>
+                  <ul>
+                    {splitPdfFiles.map((file, index) => (
+                      <li key={index}>
+                        <a
+                          href={URL.createObjectURL(new Blob([file.data], { type: "application/pdf" }))}
+                          download={file.name}
+                          className="text-blue-600 hover:underline"
+                        >
+                          {file.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </section>
             </div>
           </div>
         </section>
