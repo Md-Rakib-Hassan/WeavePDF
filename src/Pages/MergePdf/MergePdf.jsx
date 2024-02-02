@@ -21,7 +21,7 @@ const MergePdf = () => {
         const service = {service_name, date, user_email, no_of_files}
         // console.log(service);
         axiosPublic.post('/user-services',service)
-        .then(res=>console.log(res.data))
+        
     }
     const handleInput  = e =>{
         e.preventDefault();
