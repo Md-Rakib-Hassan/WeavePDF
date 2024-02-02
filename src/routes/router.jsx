@@ -10,6 +10,7 @@ import MergePdf from "../Pages/MergePdf/MergePdf";
 import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
 import DrawSignature from "../Pages/DrawSignature/DrawSignature";
 import AddSignature from "../Pages/AddSignature/AddSignature";
+import Profile from "../Pages/Profile/Profile";
 import WordToPDF from "../Pages/WordToPDF/WordToPDF";
 import Editor from "../Pages/MdToPdf/Editor";
 
@@ -60,6 +61,7 @@ const router = createBrowserRouter([
         element: <AllUsers></AllUsers>,
       },
       {
+
         path: "/htmlToPdf",
         element: <HtmlToPDF></HtmlToPDF>,
       },
@@ -70,6 +72,11 @@ const router = createBrowserRouter([
       {
         path: "/md-to-pdf-editor",
         element: <Editor></Editor>,
+      },
+  {
+        path: '/user-profile',
+        element: <Profile></Profile>,
+        loader: ()=> fetch('http://localhost:5000/user-services')
       },
     ],
   },
