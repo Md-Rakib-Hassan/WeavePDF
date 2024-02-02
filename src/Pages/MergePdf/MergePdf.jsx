@@ -2,11 +2,27 @@ import { useState } from 'react';
 import MergeCard from './MergeCard';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { PDFDocument } from 'pdf-lib';
+import useAuth from '../../hooks/useAuth';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+
 const MergePdf = () => {
 
     const [pdfs, setPdfs] = useState([]);
     const [sortedpdfs, setsortedPdfs] = useState([])
     const [merged, setmerged] = useState(null);
+    const { user } = useAuth();
+    const axiosPublic = useAxiosPublic();
+    const handlePost = () =>{
+        const no_of_files = pdfs.length;
+        const service_name = "Merge PDF";
+        const date = new Date();
+        const user_email = user?.email;
+
+        const service = {service_name, date, user_email, no_of_files}
+        // console.log(service);
+        axiosPublic.post('/user-services',service)
+        .then(res=>console.log(res.data))
+    }
     const handleInput  = e =>{
         e.preventDefault();
         setPdfs([]);
@@ -47,6 +63,10 @@ const MergePdf = () => {
         const mergedPdfBytes = await mergedDoc.save();
         const mergedPdfBlob = new Blob([mergedPdfBytes], { type : 'application/pdf' });
         setmerged(URL.createObjectURL(mergedPdfBlob))
+
+        if(user){
+            handlePost();
+        }
         }
         catch(err){
             console.log(err);

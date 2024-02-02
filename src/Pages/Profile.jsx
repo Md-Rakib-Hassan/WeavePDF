@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
-import axios from 'axios';
+
 
 const Profile = () => {
     const [timezone, setTimezone] = useState(null);
     const { user } = useAuth();
     const { displayName,email, photoURL } = user;
-
+    
     useEffect(()=>{
         getTimeZone();
     },[])
