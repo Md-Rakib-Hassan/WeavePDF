@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layout/Root";
-import Home from "../pages/Home";
+import Home from "../Pages/Home";
 import Subscriptions from "../pages/Subscriptions";
 import Contact from "./../pages/Contact";
 import Login from "../Pages/Login/Login";
@@ -10,6 +10,10 @@ import MergePdf from "../Pages/MergePdf/MergePdf";
 import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
 import DrawSignature from "../Pages/DrawSignature/DrawSignature";
 import AddSignature from "../Pages/AddSignature/AddSignature";
+import SplitPDF from "../Pages/SplitPDF/SplitPDF";
+import SplitPDFModal from "../Pages/SplitPDF/SplitPDFModal/SplitPDFModal";
+
+
 import Profile from "../Pages/Profile/Profile";
 import WordToPDF from "../Pages/WordToPDF/WordToPDF";
 import Editor from "../Pages/MdToPdf/Editor";
@@ -61,7 +65,18 @@ const router = createBrowserRouter([
         element: <AllUsers></AllUsers>,
       },
       {
-
+        path: '/htmlToPdf',
+        element: <HtmlToPDF></HtmlToPDF>
+      },
+      {
+        path: '/split-pdf',
+        element: <SplitPDF></SplitPDF>
+      },
+      {
+        path: '/splitting-page',
+        element: <SplitPDFModal></SplitPDFModal>
+      },
+      {
         path: "/htmlToPdf",
         element: <HtmlToPDF></HtmlToPDF>,
       },
