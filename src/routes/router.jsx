@@ -12,7 +12,7 @@ import MergePdf from "../Pages/MergePdf/MergePdf";
 import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
 import DrawSignature from "../Pages/DrawSignature/DrawSignature";
 import AddSignature from "../Pages/AddSignature/AddSignature";
-import Profile from "../Pages/Profile";
+import Profile from "../Pages/Profile/Profile";
 
 
 const router = createBrowserRouter([
