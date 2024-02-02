@@ -17,8 +17,8 @@ const MergePdf = () => {
         const service_name = "Merge PDF";
         const date = new Date();
         const user_email = user?.email;
-
-        const service = {service_name, date, user_email, no_of_files}
+        const status = true;
+        const service = {service_name, date, user_email, no_of_files, status}
         // console.log(service);
         axiosPublic.post('/user-services',service)
         

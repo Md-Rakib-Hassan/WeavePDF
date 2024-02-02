@@ -48,7 +48,7 @@ const Profile = () => {
                 </div>
                 
            </div>
-           <div>
+           <div className='max-w-3xl mx-auto my-10'>
            <h1 className='text-xl font-semibold'>Recent Tasks</h1>
             {
                 userservices ? 
@@ -56,7 +56,7 @@ const Profile = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                    <tr>
+                    <tr className='bg-blue'>
                         <th></th>
                         <th>Date</th>
                         <th>Tool</th>
