@@ -1,0 +1,44 @@
+/* styles.css */
+
+.pdf-viewer-container {
+    padding: 20px;
+  }
+  
+  .pdf-viewer-wrapper {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  .iframe-container {
+    overflow: auto;
+  }
+  
+  .pdf-iframe {
+    border: none;
+  }
+
+  .form-input{
+    width: 100%;
+    padding: 12px 16px 11px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 2px solid #c8d8e4;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px #c8d8e4;
+    border-radius: 3px;
+    color: #596a78;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+}
+.error-class{
+  border: 1px solid red !important;
+}
+.error-message{
+  color: rgb(177, 4, 4) !important;
+}
+
+/* .tab-class{
+  width: fit-content !important;
+} */
+  

@@ -20,7 +20,7 @@ const Features = () => {
                     <FaCodeMerge className="text-6xl"></FaCodeMerge>
                     <h1 className="font-bold text-xl">Merge PDF</h1>
                 </div></Link>
-                <Link><div className="flex flex-col items-center justify-center bg-blue py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg hover:scale-110 ease-in-out">
+                <Link to='/split-pdf'><div className="flex flex-col items-center justify-center bg-blue py-3 w-[250px] lg:w-[150px] h-[150px] rounded-lg hover:scale-110 ease-in-out">
                     <FaArrowsSplitUpAndLeft className="text-6xl"></FaArrowsSplitUpAndLeft>
                     <h1 className="font-bold text-xl">Split PDF</h1>
                 </div></Link>
@@ -61,7 +61,7 @@ const Features = () => {
             </div></div>
 
         </div>
-    );
+  );
 };
 
 export default Features;
