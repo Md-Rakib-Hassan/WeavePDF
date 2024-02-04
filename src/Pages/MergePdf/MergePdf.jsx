@@ -12,15 +12,23 @@ const MergePdf = () => {
     const [merged, setmerged] = useState(null);
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
-    const handlePost = () =>{
-        const no_of_files = pdfs.length;
-        const service_name = "Merge PDF";
+    const handlePost = (mergedblob) =>{
+        const formData = new FormData();
         const date = new Date();
-        const user_email = user?.email;
-        const status = true;
-        const service = {service_name, date, user_email, no_of_files, status}
+        formData.append("no_of_files",pdfs.length)
+        formData.append("date",date)
+        formData.append("service_name","Merge PDF")
+        formData.append("user_email",user?.email)
+        formData.append("status",true)
+        formData.append("mergedFile",mergedblob)
         // console.log(service);
-        axiosPublic.post('/user-services',service)
+        axiosPublic.post('/upload-file',
+        formData,
+        {
+            headers: { "Content-Type": "multipart/form-data" }
+        }
+        )
+        .then(res=>console.log(res.data))
         
     }
     const handleInput  = e =>{
@@ -62,16 +70,17 @@ const MergePdf = () => {
 
         const mergedPdfBytes = await mergedDoc.save();
         const mergedPdfBlob = new Blob([mergedPdfBytes], { type : 'application/pdf' });
+        const mergedFile = new File([mergedPdfBytes], 'merged.pdf', {type: 'application/pdf'});
         setmerged(URL.createObjectURL(mergedPdfBlob))
-
         if(user){
-            handlePost();
+            handlePost(mergedFile);
         }
         }
         catch(err){
             console.log(err);
         }
     }
+    
 
     return (
         <div className='flex flex-col items-center py-10'>
