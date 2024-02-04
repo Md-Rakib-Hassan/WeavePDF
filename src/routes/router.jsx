@@ -91,7 +91,7 @@ const router = createBrowserRouter([
   {
         path: '/user-profile',
         element: <Profile></Profile>,
-        loader: ()=> fetch('http://localhost:5000/user-services')
+        loader: ()=> fetch('http://localhost:5000/all-services')
       },
     ],
   },
