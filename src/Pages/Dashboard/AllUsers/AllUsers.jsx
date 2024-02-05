@@ -26,7 +26,7 @@ const AllUsers = () => {
               </th>
               <th>Name</th>
               <th>Email</th>
-              <th>Favorite Color</th>
+              <th>Role</th>
               <th></th>
             </tr>
           </thead>
@@ -43,7 +43,7 @@ const AllUsers = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              <th>Favorite Color</th>
+              <th>Role</th>
               <th></th>
             </tr>
           </tfoot>

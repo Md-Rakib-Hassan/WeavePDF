@@ -1,7 +1,11 @@
+import { FaUsers } from "react-icons/fa";
 
 
 const User = ({user,idx}) => {
-    const {user_Email,user_Name,user_Profile_Picture} = user
+    const {user_Email,user_Name,user_Profile_Picture,role} = user;
+    const handleMakeAdmin = () =>{
+
+    }
     return (
         <tr>
               <th>
@@ -30,7 +34,21 @@ const User = ({user,idx}) => {
                   Desktop Support Technician
                 </span>
               </td>
-              <td>Purple</td>
+              <td>
+                  {role === "admin" ? (
+                    "Admin"
+                  ) : (
+                    <button
+                      onClick={() => handleMakeAdmin(user)}
+                      className="btn btn-lg bg-orange-500"
+                    >
+                      <FaUsers
+                        className="text-white 
+                                    text-2xl"
+                      ></FaUsers>
+                    </button>
+                  )}
+                </td>
               <th>
                 <button className="btn btn-ghost btn-xs">details</button>
               </th>
