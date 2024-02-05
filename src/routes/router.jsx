@@ -5,7 +5,7 @@ import Subscriptions from "../pages/Subscriptions";
 import Contact from "./../pages/Contact";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
-import AllUsers from "../Pages/AllUsers/AllUsers";
+
 import MergePdf from "../Pages/MergePdf/MergePdf";
 import HtmlToPDF from "../Pages/HtmlToPDF/HtmlToPDF";
 import DrawSignature from "../Pages/DrawSignature/DrawSignature";
@@ -13,10 +13,12 @@ import AddSignature from "../Pages/AddSignature/AddSignature";
 import SplitPDF from "../Pages/SplitPDF/SplitPDF";
 import SplitPDFModal from "../Pages/SplitPDF/SplitPDFModal/SplitPDFModal";
 
-
 import Profile from "../Pages/Profile/Profile";
 import WordToPDF from "../Pages/WordToPDF/WordToPDF";
 import Editor from "../Pages/MdToPdf/Editor";
+import Dashboard from "../layout/Dashboard";
+import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -61,20 +63,16 @@ const router = createBrowserRouter([
         element: <Registration></Registration>,
       },
       {
-        path: "/all",
-        element: <AllUsers></AllUsers>,
+        path: "/htmlToPdf",
+        element: <HtmlToPDF></HtmlToPDF>,
       },
       {
-        path: '/htmlToPdf',
-        element: <HtmlToPDF></HtmlToPDF>
+        path: "/split-pdf",
+        element: <SplitPDF></SplitPDF>,
       },
       {
-        path: '/split-pdf',
-        element: <SplitPDF></SplitPDF>
-      },
-      {
-        path: '/splitting-page',
-        element: <SplitPDFModal></SplitPDFModal>
+        path: "/splitting-page",
+        element: <SplitPDFModal></SplitPDFModal>,
       },
       {
         path: "/htmlToPdf",
@@ -88,13 +86,23 @@ const router = createBrowserRouter([
         path: "/md-to-pdf-editor",
         element: <Editor></Editor>,
       },
-  {
-        path: '/user-profile',
+      {
+        path: "/user-profile",
         element: <Profile></Profile>,
-        loader: ()=> fetch('http://localhost:5000/user-services')
+        loader: () => fetch("http://localhost:5000/user-services"),
       },
     ],
   },
+  {
+    path:'dashboard',
+    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    children:[
+      {
+        path:'allUsers',
+        element:<AllUsers></AllUsers>
+      }
+    ]
+  }
 ]);
 
 export default router;
