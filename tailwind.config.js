@@ -13,6 +13,7 @@ export default {
       grey : '#f2f2f2' ,
       blue : '#c8d8e4',
       white: '#ffffff',
+      black:'#000000',
       aqua_marine : '#52ab98',
       error_color:'#ff0000'
 
