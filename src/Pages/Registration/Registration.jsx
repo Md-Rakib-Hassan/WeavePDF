@@ -19,17 +19,16 @@ const Registration = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    createUser(data.email, data.password).then((result) => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
+
+    createUser(data.email, data.password).then(() => {
 
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
           const userInfo = { user_Name: data.name, user_Email: data.email, user_Profile_Picture:data.photoURL };
-          console.log(userInfo);
+          console.log('-----------',userInfo);
           axiosPublic.post('/users', userInfo)
           .then(res => {
+            console.log(res.data)
             if(res.data.insertedId){
               console.log('User added: ',res.data);
               reset();
@@ -108,8 +107,7 @@ const Registration = () => {
               <input
                 {...register("password", {
                   required: true,
-                  minLength: 6,
-                  maxLength: 20,
+                  minLength: 6
                 })}
                 type="password"
                 className="p-3 rounded-lg form-input"
@@ -123,11 +121,6 @@ const Registration = () => {
               {errors.password?.type === "minLength" && (
                 <p role="alert" className="text-red-500">
                   Password must be 6 characters minimum
-                </p>
-              )}
-              {errors.password?.type === "maxLength" && (
-                <p role="alert" className="text-red-500">
-                  Password must be less that 20 characters minimum
                 </p>
               )}
             </div>
