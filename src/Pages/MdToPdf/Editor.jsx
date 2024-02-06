@@ -12,15 +12,18 @@ const Editor = () => {
       const doc= new jsPDF("p","pt","a4");
       doc.html(document.querySelector("#prose"),{
         callback: function(pdf){
-          pdf.save("mypdf.pdf");
+          pdf.save("md-to-pdf.pdf");
         }
       })
 
     }
     return (
-        <div className='flex' >
-            <textarea autoFocus className=' min-h-[100vh] w-1/2 p-4 border bg-neutral-50' value={input} onChange={(e)=>setInput(e.target.value)}></textarea>
-            <div className='w-1/2 p-4 text-black' id='prose'>
+      <div className='relative'>
+        {input ? <button className='absolute right-2 bg-blue px-2 rounded-md' onClick={generatePDF}>Download Pdf</button>:''}
+        
+        <div className='flex lg:flex-row flex-col' >
+            <textarea autoFocus className=' min-h-[100vh] lg:w-1/2 p-4 border bg-neutral-50' value={input} onChange={(e)=>setInput(e.target.value)}></textarea>
+            <div className='lg:w-1/2 p-4 text-black text-wrap' id='prose'>
                 <Markdown 
                 remarkPlugins={remarkGfm}
                 rehypePlugins={[rehypeKatex]}
@@ -49,7 +52,8 @@ const Editor = () => {
                 ></Markdown>
                 
             </div>
-            <button onClick={generatePDF}>Download Pdf</button>
+            
+        </div>
         </div>
     );
 };
