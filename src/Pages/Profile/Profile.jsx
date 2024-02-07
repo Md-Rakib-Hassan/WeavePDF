@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useLoaderData } from 'react-router';
 import Service from './Service';
+import { Link } from 'react-router-dom';
 ;
 
 
@@ -30,7 +31,7 @@ const Profile = () => {
                 <div>
                 <div className='flex justify-between items-center max-w-5xl my-10'>
                     <h1 className='text-xl font-semibold'>My Account</h1>
-                    <button className="btn bg-aqua_marine text-white">Upgrade to Premium</button>
+                    <Link to={'/user-subscription'}><button className="btn bg-aqua_marine text-white">Upgrade to Premium</button></Link>
                 </div>
                 <div className='lg:flex gap-10 shadow-lg p-10 shadow-teal rounded-lg'>
                     <div>
