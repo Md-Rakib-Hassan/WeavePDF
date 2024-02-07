@@ -17,6 +17,7 @@ import SplitPDFModal from "../Pages/SplitPDF/SplitPDFModal/SplitPDFModal";
 import Profile from "../Pages/Profile/Profile";
 import WordToPDF from "../Pages/WordToPDF/WordToPDF";
 import Editor from "../Pages/MdToPdf/Editor";
+import UserSubscription from "../Pages/UserSubscription/UserSubscription";
 
 const router = createBrowserRouter([
   {
@@ -88,11 +89,15 @@ const router = createBrowserRouter([
         path: "/md-to-pdf-editor",
         element: <Editor></Editor>,
       },
-  {
+      {
         path: '/user-profile',
         element: <Profile></Profile>,
         loader: ()=> fetch('http://localhost:5000/all-services')
       },
+      {
+        path: '/user-subscription',
+        element: <UserSubscription></UserSubscription>
+      }
     ],
   },
 ]);
