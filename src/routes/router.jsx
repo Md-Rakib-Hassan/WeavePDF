@@ -20,6 +20,7 @@ import Editor from "../Pages/MdToPdf/Editor";
 import Dashboard from "../layout/Dashboard";
 import MyTransection from "../Pages/Transection/MyTransection";
 import AddFeedback from "../Pages/AddFeedBack/AddFeedback";
+import RecentDocumentHistory from "../Pages/RecentDocumentHistory/RecentDocumentHistory";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
         path: 'user-profile',
         element: <Profile></Profile>,
         loader: () => fetch('http://localhost:5000/user-services')
+      },
+      {
+        path: 'document-history',
+        element: <RecentDocumentHistory></RecentDocumentHistory>
       },
       {
         path: 'transection',

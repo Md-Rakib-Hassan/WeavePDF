@@ -22,7 +22,7 @@ const AddFeedback = () => {
         <div>
             <h1 className="bg-white text-center font-bold text-2xl p-2">Add Your Feedback</h1>
 
-            <div className="w-[80%] lg:w-[70%] mx-auto my-[2.5%]  flex flex-col justify-center items-center h-auto bg-white p-4">
+            <div className="w-[80%] lg:w-[70%] mx-auto my-[2.5%]  flex flex-col justify-center items-center h-auto bg-white p-4 shadow-xl">
                 <form onSubmit={handleSignIn}
                     className="flex flex-col w-full gap-2 mt-6 "
                 >

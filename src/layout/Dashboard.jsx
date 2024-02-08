@@ -7,9 +7,9 @@ const Dashboard = () => {
 
     const isAdmin = false;
     return (
-        <div className="flex">
+        <div className="lg:flex">
             {/* bashboard sidebar */}
-            <div className="w-64 min-h-screen bg-[#3a3939] text-white">
+            <div className="lg:w-64 min-h-screen bg-[#3a3939] text-white">
                 <ul className="text-center menu space-y-5">
                     {
                         isAdmin ? <>
@@ -42,6 +42,9 @@ const Dashboard = () => {
                                 </li>
                                 <li>
                                     <NavLink className={`buttonProject3`} to='/dashboard/transection'>My Transection</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink className={`buttonProject3`} to='/dashboard/document-history'>Recent Document History</NavLink>
                                 </li>
                                 <li>
                                     <NavLink className={`buttonProject3`} to='/dashboard/addFeedback'>Add Your Feedback</NavLink>
