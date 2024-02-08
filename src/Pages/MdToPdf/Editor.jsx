@@ -1,12 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import { useState } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
 import rehypeKatex from 'rehype-katex'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { vs } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import jsPDF from 'jspdf';
+import TakeReviews from '../../Shared/Reviews/TakeReviews';
+import ShowReviews from '../../Shared/Reviews/ShowReviews';
 const Editor = () => {
-
+    const [isOn,setIsOn]=useState(false);
     const [input,setInput]=useState();
     const generatePDF=()=>{
       const doc= new jsPDF("p","pt","a4");
@@ -14,13 +16,17 @@ const Editor = () => {
         callback: function(pdf){
           pdf.save("md-to-pdf.pdf");
         }
+        
       })
+      setIsOn(true);
 
     }
     return (
       <div className='relative'>
+
+         <TakeReviews isOn={isOn} uniqueId='md-to-pdf'></TakeReviews>
+
         {input ? <button className='absolute right-2 bg-blue px-2 rounded-md' onClick={generatePDF}>Download Pdf</button>:''}
-        
         <div className='flex lg:flex-row flex-col' >
             <textarea autoFocus className=' min-h-[100vh] lg:w-1/2 p-4 border bg-neutral-50' value={input} onChange={(e)=>setInput(e.target.value)}></textarea>
             <div className='lg:w-1/2 p-4 text-black text-wrap' id='prose'>
@@ -54,6 +60,14 @@ const Editor = () => {
             </div>
             
         </div>
+
+        <ShowReviews uniqueId='md-to-pdf'
+        title='Users Feedback'
+        subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'
+        ></ShowReviews>
+
+       
+
         </div>
     );
 };
