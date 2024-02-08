@@ -6,15 +6,14 @@ const MyTransection = () => {
     const { payments } = true;
 
     return (
-        <div className="bg-white p-2">
+        <div>
             <div>
-                <div className="">
-                    <h2 className="flex justify-center items-center gap-2 text-3xl font-bold my-7">My Transection <MdPayment></MdPayment></h2>
+                <div className="bg-white p-2">
+                    <h2 className="flex justify-center items-center gap-2 text-3xl font-bold my-3">My Transection <MdPayment></MdPayment></h2>
                 </div>
             </div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto my-3 bg-white">
                 <table className="table table-zebra bg-[#42453d]">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th className="text-base text-white">Index</th>

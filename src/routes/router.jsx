@@ -19,6 +19,7 @@ import WordToPDF from "../Pages/WordToPDF/WordToPDF";
 import Editor from "../Pages/MdToPdf/Editor";
 import Dashboard from "../layout/Dashboard";
 import MyTransection from "../Pages/Transection/MyTransection";
+import AddFeedback from "../Pages/AddFeedBack/AddFeedback";
 
 const router = createBrowserRouter([
   {
@@ -99,14 +100,18 @@ const router = createBrowserRouter([
     children: [
       // Thesee routes for Common Users
       {
-        path: 'transection',
-        element: <MyTransection></MyTransection>
-      },
-      {
         path: 'user-profile',
         element: <Profile></Profile>,
         loader: () => fetch('http://localhost:5000/user-services')
       },
+      {
+        path: 'transection',
+        element: <MyTransection></MyTransection>
+      },
+      {
+        path: 'addFeedback',
+        element: <AddFeedback></AddFeedback>
+      }
 
 
       // These are for admin
