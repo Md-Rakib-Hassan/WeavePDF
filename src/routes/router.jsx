@@ -22,6 +22,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import AdminEmail from "../Pages/Dashboard/AdminEmail/AdminEmail";
+import ImageToPDF from "../Pages/ImageToPDF/ImageToPDF";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         path: "/wordToPdf",
         element: <WordToPDF></WordToPDF>,
+      },
+      {
+        path: '/imageToPdf',
+        element: <ImageToPDF></ImageToPDF>
       },
       {
         path: "/md-to-pdf-editor",
