@@ -20,6 +20,8 @@ import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import AdminEmail from "../Pages/Dashboard/AdminEmail/AdminEmail";
 
 const router = createBrowserRouter([
   {
@@ -95,13 +97,21 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path:'dashboard',
-    element:<PrivateRoute><AdminRoute><Dashboard></Dashboard></AdminRoute></PrivateRoute>,
-    children:[
+    path: 'dashboard',
+    element: <PrivateRoute><AdminRoute><Dashboard></Dashboard></AdminRoute></PrivateRoute>,
+    children: [
       {
-        path:'allUsers',
-        element:<AllUsers></AllUsers>
-      }
+        path: 'allUsers',
+        element: <AllUsers></AllUsers>
+      },
+      {
+        path: 'adminHome',
+        element: <AdminHome></AdminHome>
+      },
+      {
+        path: 'adminEmail',
+        element: <AdminEmail></AdminEmail>
+      },
     ]
   }
 ]);

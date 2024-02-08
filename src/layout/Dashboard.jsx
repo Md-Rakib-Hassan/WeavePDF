@@ -20,7 +20,7 @@ const Dashboard = () => {
             <>
               <li className="w-fit">
                 <NavLink
-                  to="/dashboard"
+                  to="/dashboard/adminHome"
                   className="group flex items-center relative w-fit p-0 dashboard-link"
                 >
                   <LuLayoutDashboard className="w-10 h-8 p-0 text-white"></LuLayoutDashboard>
