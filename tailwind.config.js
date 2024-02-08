@@ -16,7 +16,6 @@ export default {
       black:'#000000',
       aqua_marine : '#52ab98',
       error_color:'#ff0000'
-
     },
     extend: {},
   },
