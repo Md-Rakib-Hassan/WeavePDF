@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+
 
 import Input from "./Input";
 import Button from "./Button";
@@ -52,26 +52,10 @@ const AddFeedback = () => {
                     />
 
                     <Button className="py-2 mt-3 text-sm text-white md:text-base">
-                        Add Your Review
+                        Add Your Feedback
                     </Button>
 
                 </form>
-                {/* <p className="text-[12px] md:text-sm mb-8">
-                    Don't have an account?
-                    <span
-                        onClick={() => navigate("/signup")}
-                        className="font-bold underline duration-300 cursor-pointer active:scale-90"
-                    >
-                        Sign Up
-                    </span>
-                </p> */}
-                {/* <div
-                    onClick={handleGoogleSignIn}
-                    className="flex items-center justify-center w-full gap-2 py-2 text-sm duration-300 border cursor-pointer active:scale-95 md:text-base"
-                >
-                    <FcGoogle />
-                    <p>Continue Wih Google</p>
-                </div> */}
             </div>
         </div>
     );
