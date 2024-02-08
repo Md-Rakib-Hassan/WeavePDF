@@ -30,14 +30,14 @@ const TakeReviews = ({isOn, uniqueId }) => {
     }
 
     return (
-        <div className={`${isOn&&shouldOn ?'':'hidden'}`}>
-            <button onClick={isOn ? document.getElementById('modal')?.showModal() :''}></button>
+        <div className={`${isOn&&shouldOn&&user ?'':'hidden'}`}>
+            <button onClick={isOn ? document.getElementById('modal')?.showModal() :()=>{}}></button>
             <dialog id="modal" className="modal">
-                <div className="modal-box space-y-4">
+                <div className="modal-box ">
                     <form method="dialog">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
-                    <form  onSubmit={handleSubmit}>
+                    <form className='space-y-4' onSubmit={handleSubmit}>
                          <h3 className="font-bold text-center text-lg">How was your exprience</h3>
                     <div className='flex justify-center'>
                         <div className="rating rating-lg">
@@ -49,7 +49,7 @@ const TakeReviews = ({isOn, uniqueId }) => {
                             <input type="radio" name="rating9" value={5} defaultChecked className="mask mask-star-2 bg-teal" />
                         </div>
                     </div> 
-                    <textarea name="review" id="" className='w-full border border-grey p-2 rounded-lg' rows="5" placeholder='Write your review'></textarea>
+                    <textarea required name="review" id="" className='w-full border border-grey p-2 rounded-lg' rows="5" placeholder='Write your review'></textarea>
                     <div className='flex justify-center'>
                     <input type='submit'value='Submit' className='btn bg-teal text-white rounded-md '/>
                     </div>

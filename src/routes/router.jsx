@@ -20,8 +20,6 @@ import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
-import TakeReviews from "../Shared/Reviews/TakeReviews";
-import Calling from "../Shared/Reviews/Calling";
 
 const router = createBrowserRouter([
   {
