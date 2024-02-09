@@ -4,12 +4,14 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { PDFDocument } from 'pdf-lib';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import TakeReviews from '../../Shared/Reviews/TakeReviews';
 
 const MergePdf = () => {
 
     const [pdfs, setPdfs] = useState([]);
     const [sortedpdfs, setsortedPdfs] = useState([])
     const [merged, setmerged] = useState(null);
+    const [isOn, setIsOn] = useState(false);
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
     const handlePost = () =>{
@@ -21,7 +23,7 @@ const MergePdf = () => {
         const service = {service_name, date, user_email, no_of_files, status}
         // console.log(service);
         axiosPublic.post('/user-services',service)
-        
+        setIsOn(true)
     }
     const handleInput  = e =>{
         e.preventDefault();
@@ -77,6 +79,7 @@ const MergePdf = () => {
         <div className='flex flex-col items-center py-10'>
             <h1 className='text-3xl font-playfair font-bold'>Merge your PDF Files here</h1><br />
             <p>Combine PDFs in the order you want with the easiest PDF merger available.</p>
+            <TakeReviews isOn={isOn} uniqueId="merge"></TakeReviews>
             {!merged && pdfs && pdfs.length ? 
             <button onClick={mergeDocument} className='btn bg-[#52ab98] mt-5 font-bold text-2xl text-white'>Merge</button>
             :<label className='label'>
