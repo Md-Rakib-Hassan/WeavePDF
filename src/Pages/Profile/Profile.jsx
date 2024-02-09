@@ -13,7 +13,7 @@ const Profile = () => {
     const { displayName,email, photoURL } = user;
     const services = useLoaderData();
     const userservices = services.filter(service=> service.user_email == user?.email)
-    console.log(userservices);
+    // console.log(userservices);
     useEffect(()=>{
         getTimeZone();
     },[])

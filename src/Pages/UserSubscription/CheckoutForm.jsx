@@ -1,28 +1,60 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
-
+import useAuth from '../../hooks/useAuth';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import spinner from '../../assets/spinner.json'
+import Lottie from 'lottie-react';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = () => {
-
+    const { user } = useAuth();
     const stripe = useStripe();
     const elements = useElements();
     const [error,setError] = useState(null);
     const [subscription, setSubscription] = useState(null);
     const [activeone,setActiveone] = useState(true);
     const [activetwo,setActivetwo] = useState(false);
-
-    // useEffect(()=>{
-
-    // },[])
+    const [price, setPrice] = useState(50);
+    const [clientSecret, setClientSecret] = useState("");
+    const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
+    useEffect(()=>{
+        axiosPublic.post('/create-payment-intent', {price: price})
+        .then(res=>
+            {
+                // console.log(res.data);
+                setClientSecret(res.data.clientSecret)
+            })
+    },[axiosPublic,price])
 
     
     const activeMonthly = () =>{
         setActiveone(true);
         setActivetwo(false);
+        setPrice(50)
+        const activePackage = {
+            user_email: user.email,
+            user_name : user.displayName,
+            type: 'monthly',
+            amount : 50,
+
+        }
+        setSubscription(activePackage)
     }
     const activeYearly = () =>{
         setActiveone(false);
         setActivetwo(true);
+        setPrice(540)
+
+        const activePackage = {
+            user_email: user.email,
+            user_name : user.displayName,
+            type: 'yearly',
+            amount : 540,
+
+        }
+        setSubscription(activePackage)
     }
     const handleSubmit = async(event) =>{
         event.preventDefault();
@@ -43,6 +75,52 @@ const CheckoutForm = () => {
         }else{
             setError(null);
             console.log('[paymentMethod:]:',paymentMethod);
+        }
+
+        //confirm payment
+
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details : {
+                    name: user.displayName || 'Anonymous',
+                    email: user.email || 'Anonymous'
+                }
+                
+            }
+        })
+
+        if(confirmError){
+            console.log("confirm error: ", confirmError);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: confirmError.message,
+              });
+        }else{
+            if(paymentIntent.status == "succeeded"){
+                axiosPublic.patch(`/make-premium?email=${user.email}`,{
+                    isPremium : true,
+                    subscription_type: subscription.type
+                })
+                    Swal.fire({
+                            title: "Success!",
+                            text: `You have booked a ${subscription.type} subscription`,
+                            icon: "success"
+                          });
+                    navigate('/');
+                // .then(res=>{
+                    // console.log(res);
+                    // if(res.data.modifiedCount){
+                    //     Swal.fire({
+                    //         title: "Success!",
+                    //         text: `You have booked a ${subscription.type} subscription`,
+                    //         icon: "success"
+                    //       });
+                    // }
+                // })
+                
+            }
         }
     }
     return (
@@ -73,9 +151,12 @@ const CheckoutForm = () => {
                 }}
             />
             <div className='flex justify-center my-10'>
-            <button className='btn text-center bg-teal text-white' type="submit" disabled={!stripe}>
+            {clientSecret? <button className='btn text-center bg-teal text-white' type="submit" disabled={!stripe}>
                 Get Premium
             </button>
+            :
+            <Lottie animationData={spinner} className='w-52 h-52'></Lottie>
+            }
             </div>
             
             {error && <p className='text-error_color text-center'>{error}</p>}
