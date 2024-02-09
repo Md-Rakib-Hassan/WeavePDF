@@ -27,6 +27,7 @@ import AdminRoute from "./AdminRoute";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import AdminEmail from "../Pages/Dashboard/AdminEmail/AdminEmail";
 import ImageToPDF from "../Pages/ImageToPDF/ImageToPDF";
+import UserSubscription from "../Pages/UserSubscription/UserSubscription";
 
 const router = createBrowserRouter([
   {
