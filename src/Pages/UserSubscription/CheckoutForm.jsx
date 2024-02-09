@@ -1,5 +1,5 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const CheckoutForm = () => {
@@ -7,6 +7,23 @@ const CheckoutForm = () => {
     const stripe = useStripe();
     const elements = useElements();
     const [error,setError] = useState(null);
+    const [subscription, setSubscription] = useState(null);
+    const [activeone,setActiveone] = useState(true);
+    const [activetwo,setActivetwo] = useState(false);
+
+    // useEffect(()=>{
+
+    // },[])
+
+    
+    const activeMonthly = () =>{
+        setActiveone(true);
+        setActivetwo(false);
+    }
+    const activeYearly = () =>{
+        setActiveone(false);
+        setActivetwo(true);
+    }
     const handleSubmit = async(event) =>{
         event.preventDefault();
 
@@ -29,7 +46,15 @@ const CheckoutForm = () => {
         }
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <div>
+            <div className="flex gap-10 justify-center">
+                    <div onClick={activeMonthly} className={activeone? 'activeButton' : 'deactiveButton'}>
+                        Monthly <br />$ 50</div>
+                    <div onClick={activeYearly} className={activetwo? 'activeButton' : 'deactiveButton'}>
+                        Yearly <br />$ 540
+                    </div>
+            </div><br /><br />
+            <form onSubmit={handleSubmit}>
             <CardElement
                 
                 options={{
@@ -55,6 +80,8 @@ const CheckoutForm = () => {
             
             {error && <p className='text-error_color text-center'>{error}</p>}
             </form>
+        </div>
+        
     );
 };
 
