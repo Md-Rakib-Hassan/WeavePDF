@@ -98,7 +98,10 @@ const router = createBrowserRouter([
         path: "/md-to-pdf-editor",
         element: <Editor></Editor>,
       },
-
+      {
+        path: '/user-subscription',
+        element:<PrivateRoute><UserSubscription></UserSubscription></PrivateRoute> 
+      }
     ],
   },
   {
@@ -109,7 +112,7 @@ const router = createBrowserRouter([
       {
         path: '/userDashboard/user-profile',
         element: <PrivateRoute><Profile></Profile></PrivateRoute>,
-        loader: () => fetch('http://localhost:5000/user-services')
+        loader: () => fetch('http://localhost:5000/all-services')
       },
       {
         path: '/userDashboard/transection',
@@ -124,14 +127,6 @@ const router = createBrowserRouter([
         element: <RecentDocumentHistory></RecentDocumentHistory>,
         loader: () => fetch('http://localhost:5000/user-services')
       },
-
-
-
-      // {
-      //   path: "/user-profile",
-      //   element: <Profile></Profile>,
-      //   loader: () => fetch("http://localhost:5000/user-services"),
-      // },
     ],
   },
   {
