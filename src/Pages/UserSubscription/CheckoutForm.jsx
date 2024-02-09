@@ -39,7 +39,7 @@ const CheckoutForm = () => {
                     color: '#424770',
                     '::placeholder': {
                         color: '#aab7c4',
-                    },
+                    }
                     },
                     invalid: {
                     color: '#9e2146',

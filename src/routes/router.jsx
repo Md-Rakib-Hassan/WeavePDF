@@ -18,6 +18,7 @@ import Profile from "../Pages/Profile/Profile";
 import WordToPDF from "../Pages/WordToPDF/WordToPDF";
 import Editor from "../Pages/MdToPdf/Editor";
 import UserSubscription from "../Pages/UserSubscription/UserSubscription";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -91,12 +92,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/user-profile',
-        element: <Profile></Profile>,
+        element:<PrivateRoute><Profile></Profile></PrivateRoute>,
         loader: ()=> fetch('http://localhost:5000/all-services')
       },
       {
         path: '/user-subscription',
-        element: <UserSubscription></UserSubscription>
+        element:<PrivateRoute><UserSubscription></UserSubscription></PrivateRoute> 
       }
     ],
   },

@@ -20,9 +20,9 @@ const UserSubscription = () => {
     }
     return (
         <div className="lg:flex gap-10">
-            <div className='w-1/2 py-10 px-5'>
+            <div className='w-1/2 py-10 px-5 mx-auto'>
                 <h1 className="font-bold font-playfair text-4xl text-center">Weave<span className="text-teal">PDF</span></h1><br />
-                <p className="font-bold font-playfair text-xl text-center">Get premium to enjoy endless exciting features</p><br /><br />
+                <p className="font-bold font-playfair text-lg md:text-xl text-center">Get premium to enjoy endless exciting features</p><br /><br />
                 <div className="flex gap-10 justify-center">
                     <div onClick={activeMonthly} className={activeone? 'activeButton' : 'deactiveButton'}>
                         Monthly <br />$ 50</div>
@@ -35,7 +35,7 @@ const UserSubscription = () => {
             </div>
         
 
-        <div className=" text bg-gradient-to-r from-teal to-aqua_marine h-full flex justify-center items-center w-1/2">
+        <div className="hidden text bg-gradient-to-r from-teal to-aqua_marine h-full lg:flex justify-center items-center w-1/2">
             <div>
 
             <h1 className="text-center font-playfair font-bold text-3xl text-white">Upgrade to Premium</h1>
