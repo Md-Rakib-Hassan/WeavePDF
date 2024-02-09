@@ -7,7 +7,9 @@ const Root = () => {
   const location = useLocation();
   const noShoulder =
     location.pathname.includes("login") ||
-    location.pathname.includes("register");
+    location.pathname.includes("register") ||
+    location.pathname.includes("user-subscription");
+
   return (
     <div className="">
       {noShoulder || <Navbar></Navbar>}
