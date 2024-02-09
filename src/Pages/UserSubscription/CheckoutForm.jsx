@@ -13,7 +13,7 @@ const CheckoutForm = () => {
     const elements = useElements();
     const [error,setError] = useState(null);
     const [subscription, setSubscription] = useState(null);
-    const [activeone,setActiveone] = useState(true);
+    const [activeone,setActiveone] = useState(false);
     const [activetwo,setActivetwo] = useState(false);
     const [price, setPrice] = useState(50);
     const [clientSecret, setClientSecret] = useState("");
