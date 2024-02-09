@@ -12,6 +12,7 @@ const ShowReviews = ({ uniqueId, title, subTitle }) => {
 
     const axiosPublic = useAxiosPublic();
     const [reviews, setReviews] = useState([]);
+    console.log(reviews.length);
 
     useEffect(() => {
         axiosPublic.get(`/user-reviews/${uniqueId}`)
@@ -21,8 +22,8 @@ const ShowReviews = ({ uniqueId, title, subTitle }) => {
     return (
         <div className='mt-10 px-2'>
 
-            <h1 className={`${title ? 'text-center font-black lg:text-5xl md:text-4xl text-2xl pt-8 pb-4 ' : 'hidden'} `}> {title}</h1>
-            <p className={`${subTitle ? 'text-center lg:w-2/3 mx-auto mb-4 ' : 'hidden'}`}>{subTitle}</p>
+            <h1 className={`${title&&reviews.length>0 ? 'text-center font-black lg:text-5xl md:text-4xl text-2xl pt-8 pb-4 ' : 'hidden'} `}> {title}</h1>
+            <p className={`${subTitle&&reviews.length>0 ? 'text-center lg:w-2/3 mx-auto mb-4 ' : 'hidden'}`}>{subTitle}</p>
 
             <Swiper
 
