@@ -16,6 +16,10 @@ import SplitPDFModal from "../Pages/SplitPDF/SplitPDFModal/SplitPDFModal";
 import Profile from "../Pages/Profile/Profile";
 import WordToPDF from "../Pages/WordToPDF/WordToPDF";
 import Editor from "../Pages/MdToPdf/Editor";
+import MyTransection from "../Pages/Transection/MyTransection";
+import AddFeedback from "../Pages/AddFeedBack/AddFeedback";
+import RecentDocumentHistory from "../Pages/RecentDocumentHistory/RecentDocumentHistory";
+import UserDashboard from "../layout/UserDashboard";
 import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
@@ -94,6 +98,35 @@ const router = createBrowserRouter([
         path: "/md-to-pdf-editor",
         element: <Editor></Editor>,
       },
+
+    ],
+  },
+  {
+    path: 'userDashboard',
+    element: <UserDashboard></UserDashboard>,
+    children: [
+      // These routes for Common Users
+      {
+        path: 'user-profile',
+        element: <Profile></Profile>,
+        loader: () => fetch('http://localhost:5000/user-services')
+      },
+      {
+        path: 'transection',
+        element: <MyTransection></MyTransection>
+      },
+      {
+        path: 'addFeedback',
+        element: <AddFeedback></AddFeedback>
+      },
+      {
+        path: 'document-history',
+        element: <RecentDocumentHistory></RecentDocumentHistory>,
+        loader: () => fetch('http://localhost:5000/user-services')
+      },
+
+
+
       {
         path: "/user-profile",
         element: <Profile></Profile>,
@@ -117,6 +150,7 @@ const router = createBrowserRouter([
         path: 'adminEmail',
         element: <AdminEmail></AdminEmail>
       },
+
     ]
   }
 ]);
