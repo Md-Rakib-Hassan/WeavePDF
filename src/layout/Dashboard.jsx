@@ -22,7 +22,7 @@ const Dashboard = () => {
                             :
                             <>
                                 <div className="flex flex-col items-center gap-4 pb-6 mt-5 text-white border-b">
-                                    <h1 className="font-bold mb-7 underline">WeavePDF</h1>
+                                    <h1 className="font-semibold mb-7 border p-1 rounded-md text-sm">WeavePDF</h1>
                                     <div className="w-[80px] h-[80px] rounded-full bg-white text-black flex justify-center items-center font-clashBold text-2xl">
                                         {/* JK */}
                                         <img
@@ -54,10 +54,6 @@ const Dashboard = () => {
                                 </li>
                             </>
                     }
-
-
-
-                    {/* common navlinks (Navbar) */}
 
 
                 </ul>

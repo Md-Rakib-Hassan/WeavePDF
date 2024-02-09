@@ -13,8 +13,8 @@ const MyTransection = () => {
                 </div>
             </div>
             <div className="overflow-x-auto my-3 bg-white">
-                <table className="table table-zebra bg-[#42453d]">
-                    <thead>
+                <table className="table table-zebra">
+                    <thead className=" bg-[#42453d]">
                         <tr>
                             <th className="text-base text-white">Index</th>
                             <th className="text-base text-white">Transaction ID</th>
@@ -31,7 +31,6 @@ const MyTransection = () => {
                             <td>{payment.date}</td>
                             <td>{payment.status}</td>
                         </tr>)}
-
                     </tbody>
                 </table>
             </div>

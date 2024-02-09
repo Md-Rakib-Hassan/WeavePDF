@@ -106,17 +106,18 @@ const router = createBrowserRouter([
         loader: () => fetch('http://localhost:5000/user-services')
       },
       {
-        path: 'document-history',
-        element: <RecentDocumentHistory></RecentDocumentHistory>
-      },
-      {
         path: 'transection',
         element: <MyTransection></MyTransection>
       },
       {
         path: 'addFeedback',
         element: <AddFeedback></AddFeedback>
-      }
+      },
+      {
+        path: 'document-history',
+        element: <RecentDocumentHistory></RecentDocumentHistory>,
+        loader: () => fetch('http://localhost:5000/user-services')
+      },
 
 
       // These are for admin
