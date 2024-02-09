@@ -102,36 +102,36 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: 'userDashboard',
+    path: '/userDashboard',
     element: <UserDashboard></UserDashboard>,
     children: [
       // These routes for Common Users
       {
-        path: 'user-profile',
-        element: <Profile></Profile>,
+        path: '/userDashboard/user-profile',
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>,
         loader: () => fetch('http://localhost:5000/user-services')
       },
       {
-        path: 'transection',
+        path: '/userDashboard/transection',
         element: <MyTransection></MyTransection>
       },
       {
-        path: 'addFeedback',
+        path: '/userDashboard/addFeedback',
         element: <AddFeedback></AddFeedback>
       },
       {
-        path: 'document-history',
+        path: '/userDashboard/document-history',
         element: <RecentDocumentHistory></RecentDocumentHistory>,
         loader: () => fetch('http://localhost:5000/user-services')
       },
 
 
 
-      {
-        path: "/user-profile",
-        element: <Profile></Profile>,
-        loader: () => fetch("http://localhost:5000/user-services"),
-      },
+      // {
+      //   path: "/user-profile",
+      //   element: <Profile></Profile>,
+      //   loader: () => fetch("http://localhost:5000/user-services"),
+      // },
     ],
   },
   {
@@ -139,15 +139,15 @@ const router = createBrowserRouter([
     element: <PrivateRoute><AdminRoute><Dashboard></Dashboard></AdminRoute></PrivateRoute>,
     children: [
       {
-        path: 'allUsers',
+        path: 'dashboard/allUsers',
         element: <AllUsers></AllUsers>
       },
       {
-        path: 'adminHome',
+        path: 'dashboard/adminHome',
         element: <AdminHome></AdminHome>
       },
       {
-        path: 'adminEmail',
+        path: 'dashboard/adminEmail',
         element: <AdminEmail></AdminEmail>
       },
 
