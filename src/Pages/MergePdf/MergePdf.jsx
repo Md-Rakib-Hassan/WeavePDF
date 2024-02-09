@@ -5,6 +5,7 @@ import { PDFDocument } from 'pdf-lib';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import TakeReviews from '../../Shared/Reviews/TakeReviews';
+import ShowReviews from '../../Shared/Reviews/ShowReviews';
 
 const MergePdf = () => {
 
@@ -111,6 +112,11 @@ const MergePdf = () => {
                     <iframe title="Merged PDF" src={merged} width={600} height={700}></iframe>
                 </div>
             }
+
+        <ShowReviews uniqueId='merge'
+        title='Users Feedback'
+        subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'
+        ></ShowReviews>
         </div>
     );
 };
