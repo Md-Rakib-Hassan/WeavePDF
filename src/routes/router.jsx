@@ -17,10 +17,10 @@ import SplitPDFModal from "../Pages/SplitPDF/SplitPDFModal/SplitPDFModal";
 import Profile from "../Pages/Profile/Profile";
 import WordToPDF from "../Pages/WordToPDF/WordToPDF";
 import Editor from "../Pages/MdToPdf/Editor";
-import Dashboard from "../layout/Dashboard";
 import MyTransection from "../Pages/Transection/MyTransection";
 import AddFeedback from "../Pages/AddFeedBack/AddFeedback";
 import RecentDocumentHistory from "../Pages/RecentDocumentHistory/RecentDocumentHistory";
+import UserDashboard from "../layout/UserDashboard";
 
 const router = createBrowserRouter([
   {
@@ -96,10 +96,10 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: 'dashboard',
-    element: <Dashboard></Dashboard>,
+    path: 'userDashboard',
+    element: <UserDashboard></UserDashboard>,
     children: [
-      // Thesee routes for Common Users
+      // These routes for Common Users
       {
         path: 'user-profile',
         element: <Profile></Profile>,
@@ -119,8 +119,6 @@ const router = createBrowserRouter([
         loader: () => fetch('http://localhost:5000/user-services')
       },
 
-
-      // These are for admin
 
     ]
   }

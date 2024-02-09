@@ -29,20 +29,20 @@ const AddFeedback = () => {
                     <div className="flex gap-2">
                         <Input
                             name="name"
-                            placeholder="Name"
+                            placeholder="Your Name"
                             type="text"
                             className="py-2 text-sm md:text-base"
                         />
                         <Input
                             name="rating"
-                            placeholder="Rating"
+                            placeholder="Rating out of 5"
                             type="number"
                             className="py-2 text-sm md:text-base"
                         />
                     </div>
                     <Input
                         name="email"
-                        placeholder="Email"
+                        placeholder="Your Email"
                         className="py-2 text-sm md:text-base"
                     />
                     <Input

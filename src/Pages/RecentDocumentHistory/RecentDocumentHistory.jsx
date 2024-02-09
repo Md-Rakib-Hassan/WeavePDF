@@ -3,9 +3,9 @@ import useAuth from "../../hooks/useAuth";
 
 
 const RecentDocumentHistory = () => {
-    const services = useLoaderData();
+    const history = useLoaderData();
     const { user } = useAuth()
-    const userservices = services.filter(service => service.user_email == user?.email);
+    const userHistory = history.filter(service => service.user_email == user?.email);
     return (
         <div>
             <div className="bg-white p-2">
@@ -24,14 +24,13 @@ const RecentDocumentHistory = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {userservices?.map((service, index) => <tr key={service._id}>
+                            {userHistory?.map((service, index) => <tr key={service._id}>
                                 <th className="font-bold text-lg">{index + 1}</th>
                                 <td className="font-bold text-lg">{service.date}</td>
                                 <td className="font-bold text-lg">{service.service_name}</td>
                                 <td className="font-bold text-lg">{service.no_of_files}</td>
                                 <td className="font-bold text-lg">Done ✅</td>
                             </tr>)}
-
                         </tbody>
                     </table>
                 </div>

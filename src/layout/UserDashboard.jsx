@@ -1,8 +1,9 @@
-import { NavLink, Outlet } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+
+import { NavLink, Outlet } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 import { FaHome } from "react-icons/fa";
 
-const Dashboard = () => {
+const UserDashboard = () => {
     const { user } = useAuth()
 
     const isAdmin = false;
@@ -38,16 +39,16 @@ const Dashboard = () => {
                                 </div>
 
                                 <li>
-                                    <NavLink className={`buttonProject3`} to='/dashboard/user-profile'>User Profile</NavLink>
+                                    <NavLink className={`buttonProject3`} to='/userDashboard/user-profile'>User Profile</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink className={`buttonProject3`} to='/dashboard/transection'>My Transection</NavLink>
+                                    <NavLink className={`buttonProject3`} to='/userDashboard/transection'>My Transection</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink className={`buttonProject3`} to='/dashboard/document-history'>Recent Document History</NavLink>
+                                    <NavLink className={`buttonProject3`} to='/userDashboard/document-history'>Recent Document History</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink className={`buttonProject3`} to='/dashboard/addFeedback'>Add Your Feedback</NavLink>
+                                    <NavLink className={`buttonProject3`} to='/userDashboard/addFeedback'>Add Your Feedback</NavLink>
                                 </li>
                                 <li>
                                     <NavLink className={`buttonProject3 flex items-center`} to='/'>Go To Home <FaHome></FaHome></NavLink>
@@ -66,4 +67,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default UserDashboard;
