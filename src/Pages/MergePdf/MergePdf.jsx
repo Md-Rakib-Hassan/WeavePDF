@@ -46,6 +46,7 @@ const MergePdf = () => {
         setsortedPdfs(filesArray)
     }
     // console.log(sortedpdfs);
+    // console.log(sortedpdfs);
     const handleDragEnd = result =>{
         if(!result.destination) return;
         const items = Array.from(sortedpdfs);
