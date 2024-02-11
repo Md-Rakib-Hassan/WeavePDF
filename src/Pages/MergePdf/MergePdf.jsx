@@ -4,23 +4,35 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { PDFDocument } from 'pdf-lib';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import TakeReviews from '../../Shared/Reviews/TakeReviews';
+import ShowReviews from '../../Shared/Reviews/ShowReviews';
 
 const MergePdf = () => {
 
     const [pdfs, setPdfs] = useState([]);
     const [sortedpdfs, setsortedPdfs] = useState([])
     const [merged, setmerged] = useState(null);
+    const [isOn, setIsOn] = useState(false);
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
-    const handlePost = () =>{
-        const no_of_files = pdfs.length;
-        const service_name = "Merge PDF";
+    const handlePost = (mergedblob) =>{
+        const formData = new FormData();
         const date = new Date();
-        const user_email = user?.email;
-        const status = true;
-        const service = {service_name, date, user_email, no_of_files, status}
+        formData.append("no_of_files",pdfs.length)
+        formData.append("date",date)
+        formData.append("service_name","Merge PDF")
+        formData.append("user_email",user?.email)
+        formData.append("status",true)
+        formData.append("mergedFile",mergedblob)
         // console.log(service);
-        axiosPublic.post('/user-services',service)
+        axiosPublic.post('/upload-file',
+        formData,
+        {
+            headers: { "Content-Type": "multipart/form-data" }
+        }
+        )
+        .then(res=>console.log(res.data));
+        setIsOn(true)
         
     }
     const handleInput  = e =>{
@@ -37,6 +49,7 @@ const MergePdf = () => {
         setPdfs(filesArray)
         setsortedPdfs(filesArray)
     }
+    // console.log(sortedpdfs);
     // console.log(sortedpdfs);
     const handleDragEnd = result =>{
         if(!result.destination) return;
@@ -62,21 +75,23 @@ const MergePdf = () => {
 
         const mergedPdfBytes = await mergedDoc.save();
         const mergedPdfBlob = new Blob([mergedPdfBytes], { type : 'application/pdf' });
+        const mergedFile = new File([mergedPdfBytes], 'merged.pdf', {type: 'application/pdf'});
         setmerged(URL.createObjectURL(mergedPdfBlob))
-
         if(user){
-            handlePost();
+            handlePost(mergedFile);
         }
         }
         catch(err){
             console.log(err);
         }
     }
+    
 
     return (
         <div className='flex flex-col items-center py-10'>
             <h1 className='text-3xl font-playfair font-bold'>Merge your PDF Files here</h1><br />
             <p>Combine PDFs in the order you want with the easiest PDF merger available.</p>
+            <TakeReviews isOn={isOn} uniqueId="merge"></TakeReviews>
             {!merged && pdfs && pdfs.length ? 
             <button onClick={mergeDocument} className='btn bg-[#52ab98] mt-5 font-bold text-2xl text-white'>Merge</button>
             :<label className='label'>
@@ -108,6 +123,11 @@ const MergePdf = () => {
                     <iframe title="Merged PDF" src={merged} width={600} height={700}></iframe>
                 </div>
             }
+
+        <ShowReviews uniqueId='merge'
+        title='Users Feedback'
+        subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'
+        ></ShowReviews>
         </div>
     );
 };

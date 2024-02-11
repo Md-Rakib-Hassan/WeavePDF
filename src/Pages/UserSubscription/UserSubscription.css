@@ -1,0 +1,23 @@
+.activeButton{
+
+    padding: 20px;
+    background: linear-gradient(teal, azure);
+    border-radius: 20%;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.deactiveButton{
+
+    padding: 20px;
+    background: white;
+    border: solid black 0.5px;
+    border-radius: 20%;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+
+}
