@@ -7,6 +7,7 @@ import { vs } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import jsPDF from 'jspdf';
 import TakeReviews from '../../Shared/Reviews/TakeReviews';
 import ShowReviews from '../../Shared/Reviews/ShowReviews';
+import Task from '../../Shared/RecentTask/Task';
 const Editor = () => {
     const [isOn,setIsOn]=useState(false);
     const [input,setInput]=useState();
@@ -23,7 +24,7 @@ const Editor = () => {
     }
     return (
       <div className='relative'>
-
+          <Task uid='md-to-pdf' service_name='md-to-pdf' no_of_files={1} isON={isOn}></Task>
          <TakeReviews isOn={isOn} uniqueId='md-to-pdf'></TakeReviews>
 
         {input ? <button className='absolute right-2 bg-blue px-2 rounded-md' onClick={generatePDF}>Download Pdf</button>:''}
