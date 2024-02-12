@@ -18,13 +18,13 @@ const SimpleTask = () => {
                     <FaArrowAltCircleRight/></div></Link>
                 </div>
                 <div>
-                    <img src="https://iili.io/J1kFCe1.png" alt="" />
+                    <img src="https://i.ibb.co/GngVK6v/J1kFCe1.png" alt="" />
                 </div>
             </div>
             {/* section 2 */}
             <div className="flex flex-col md:flex-row justify-between items-center py-20">
             <div>
-                    <img src="https://iili.io/J16o3cN.png" alt="" />
+                    <img src="https://i.ibb.co/cJr9cnS/J16o3cN.png" alt="" />
                 </div>
                 <div className="w-full md:w-1/3">
                     <h1 className="text-[30px] font-bold">Digital Signatures Made Easy</h1>
@@ -50,7 +50,7 @@ const SimpleTask = () => {
                         {/* section 4 */}
                         <div className="flex flex-col md:flex-row justify-between items-center py-20">
             <div>
-                    <img src="https://iili.io/J16xZTF.png" alt="" />
+                    <img src="https://i.ibb.co/nzvB684/J16xZTF.png" alt="" />
                 </div>
                 <div className="w-full md:w-1/3">
                     <h1 className="text-[30px] font-bold">Manage Documents—All in One Place</h1>
