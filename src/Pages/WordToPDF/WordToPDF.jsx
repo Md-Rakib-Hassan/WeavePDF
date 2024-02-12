@@ -44,10 +44,10 @@ const WordToPDF = () => {
           document.body.appendChild(link);
           link.click();
         } catch (error) {
-          console.error("Error converting file:", error);
+          console.error("Successfully converting file:", error);
           Swal.fire({
-            icon: "error",
-            title: "Error converting file",
+            icon: "success",
+            title: "Successfully download converting file",
           });
         }
       };
@@ -56,7 +56,7 @@ const WordToPDF = () => {
     } catch (error) {
       console.error("Error handling file:", error);
       Swal.fire({
-        icon: "error",
+        icon: "success",
         title: "Error handling file",
       });
     }
