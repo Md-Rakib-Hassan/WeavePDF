@@ -29,7 +29,7 @@ const GetMobile = () => {
           </div>
         </div>
         <div>
-          <img src="https://iili.io/J16zS9I.png" alt="" />
+          <img src="https://i.ibb.co/xLVcY1V/J16zS9I.png" alt="" />
         </div>
       </div>
     </div>

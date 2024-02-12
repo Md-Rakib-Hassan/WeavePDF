@@ -14,7 +14,7 @@ const Banner = () => {
           </div>
         </div>
         <div className="">
-          <img className="w-[75vh]" src="https://s.smallpdf.com/static/311bd86d9496c1f1.svg" alt="banner image" />
+          <img className="w-[75vh]" src="https://i.ibb.co/0953SPc/311bd86d9496c1f1.png" alt="banner image" />
         </div>
       </div>
     </div>
