@@ -1,13 +1,17 @@
-import  { useState } from 'react';
-import { PDFDocument, rgb, degrees } from 'pdf-lib';
+import { useState } from "react";
+import { PDFDocument, rgb, degrees } from "pdf-lib";
 
 const AddWatermark = () => {
   const [file, setFile] = useState(null);
-  const [watermarkText, setWatermarkText] = useState('');
+  const [watermarkText, setWatermarkText] = useState("");
   const [watermarkSize, setWatermarkSize] = useState(50);
-  const [watermarkColor, setWatermarkColor] = useState({ r: 0.5, g: 0.5, b: 0.5 });
+  const [watermarkColor, setWatermarkColor] = useState({
+    r: 0.5,
+    g: 0.5,
+    b: 0.5,
+  });
   const [rotationAngle, setRotationAngle] = useState(0);
-  const [modifiedPdfUrl, setModifiedPdfUrl] = useState('');
+  const [modifiedPdfUrl, setModifiedPdfUrl] = useState("");
 
   const handleFileChange = (event) => {
     const uploadedFile = event.target.files[0];
@@ -24,7 +28,10 @@ const AddWatermark = () => {
 
   const handleColorChange = (event) => {
     const color = event.target.value;
-    const [r, g, b] = color.substring(1).match(/.{1,2}/g).map((val) => parseInt(val, 16) / 255);
+    const [r, g, b] = color
+      .substring(1)
+      .match(/.{1,2}/g)
+      .map((val) => parseInt(val, 16) / 255);
     setWatermarkColor({ r, g, b });
   };
 
@@ -34,7 +41,7 @@ const AddWatermark = () => {
 
   const addWatermark = async () => {
     if (!file) {
-      alert('Please upload a PDF file.');
+      alert("Please upload a PDF file.");
       return;
     }
 
@@ -49,10 +56,14 @@ const AddWatermark = () => {
         const { width, height } = page.getSize();
         const radians = (rotationAngle * Math.PI) / 180;
         const rotation = degrees(radians);
+        const watermarkWidth = (watermarkText.length * watermarkSize) / 2; // Approximation for width
+        const watermarkHeight = watermarkSize;
 
+        const x = (width - watermarkWidth) / 2;
+        const y = (height - watermarkHeight) / 2;
         page.drawText(watermarkText, {
-          x: width / 2,
-          y: height / 2,
+          x,
+          y,
           size: watermarkSize,
           color: rgb(watermarkColor.r, watermarkColor.g, watermarkColor.b),
           rotate: rotation,
@@ -61,7 +72,9 @@ const AddWatermark = () => {
       });
 
       const modifiedPdfBytes = await pdfDoc.save();
-      const modifiedPdfUrl = URL.createObjectURL(new Blob([modifiedPdfBytes], { type: 'application/pdf' }));
+      const modifiedPdfUrl = URL.createObjectURL(
+        new Blob([modifiedPdfBytes], { type: "application/pdf" })
+      );
       setModifiedPdfUrl(modifiedPdfUrl);
     };
 
@@ -72,24 +85,50 @@ const AddWatermark = () => {
     <div>
       <h2>Add Watermark to PDF</h2>
       <div>
-        <input type="file" onChange={handleFileChange} accept="application/pdf" />
+        <input
+          type="file"
+          onChange={handleFileChange}
+          accept="application/pdf"
+        />
         {file && <p>File selected: {file.name}</p>}
       </div>
       <div>
         <label>Watermark Text:</label>
-        <input type="text" value={watermarkText} onChange={handleWatermarkTextChange} />
+        <input
+          type="text"
+          value={watermarkText}
+          onChange={handleWatermarkTextChange}
+        />
       </div>
       <div>
         <label>Watermark Size:</label>
-        <input type="number" value={watermarkSize} onChange={handleWatermarkSizeChange} />
+        <input
+          type="number"
+          value={watermarkSize}
+          onChange={handleWatermarkSizeChange}
+        />
       </div>
       <div>
         <label>Watermark Color:</label>
-        <input type="color" value={`#${Math.floor(watermarkColor.r * 255).toString(16).padStart(2, '0')}${Math.floor(watermarkColor.g * 255).toString(16).padStart(2, '0')}${Math.floor(watermarkColor.b * 255).toString(16).padStart(2, '0')}`} onChange={handleColorChange} />
+        <input
+          type="color"
+          value={`#${Math.floor(watermarkColor.r * 255)
+            .toString(16)
+            .padStart(2, "0")}${Math.floor(watermarkColor.g * 255)
+            .toString(16)
+            .padStart(2, "0")}${Math.floor(watermarkColor.b * 255)
+            .toString(16)
+            .padStart(2, "0")}`}
+          onChange={handleColorChange}
+        />
       </div>
       <div>
         <label>Rotation Angle (degrees):</label>
-        <input type="number" value={rotationAngle} onChange={handleRotationChange} />
+        <input
+          type="number"
+          value={rotationAngle}
+          onChange={handleRotationChange}
+        />
       </div>
       <div>
         <button onClick={addWatermark}>Add Watermark</button>
@@ -97,8 +136,15 @@ const AddWatermark = () => {
       {modifiedPdfUrl && (
         <div>
           <h3>Modified PDF with Watermark</h3>
-          <iframe src={modifiedPdfUrl} width="100%" height="600px" title="Modified PDF"></iframe>
-          <a href={modifiedPdfUrl} download="modified_pdf_with_watermark.pdf">Download Modified PDF</a>
+          <iframe
+            src={modifiedPdfUrl}
+            width="100%"
+            height="600px"
+            title="Modified PDF"
+          ></iframe>
+          <a href={modifiedPdfUrl} download="modified_pdf_with_watermark.pdf">
+            Download Modified PDF
+          </a>
         </div>
       )}
     </div>
