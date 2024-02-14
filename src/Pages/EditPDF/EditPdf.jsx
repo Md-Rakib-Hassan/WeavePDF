@@ -13,7 +13,13 @@ const EditPdf = () => {
           initialDoc: doce,
         },
         viewer.current,
-      )
+      ).then((instance) => {
+        const { Core } = instance;
+        // adding an event listener for when a document is loaded
+        Core.documentViewer.addEventListener('documentLoaded', () => {
+          console.log('document loaded');
+        });
+        });
     }
     
   }, [doce]);
