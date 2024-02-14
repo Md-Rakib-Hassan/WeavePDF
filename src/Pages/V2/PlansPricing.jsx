@@ -20,7 +20,7 @@ const PlansPricing = () => {
                         </div>
                             <hr className="w-full border-t border-neutral-300 my-3" />
                         <div className="flex items-baseline">
-                        <h1 className="text-[50px]">USD 9</h1>
+                        <h1 className="text-[50px]">USD 50</h1>
                         <p>/month</p>
                         </div>
                         <p>per user, billed annually.</p>
@@ -32,7 +32,7 @@ const PlansPricing = () => {
                         </div>
                             <hr className="w-full border-t border-neutral-300 my-3" />
                         <div className="flex items-baseline">
-                        <h1 className="text-[50px]">USD 7</h1>
+                        <h1 className="text-[50px]">USD 540</h1>
                         <p>/month</p>
                         </div>
                         <p>per user, billed annually.</p>
