@@ -5,7 +5,19 @@ const EditPdf = () => {
     const [doce, setDoce] = useState()
     const viewer = useRef(null);
 
-  
+  useEffect(() => {
+    if(doce){
+      WebViewer(
+        {
+          path: '/webviewer/lib',
+          initialDoc: doce,
+        },
+        viewer.current,
+      )
+    }
+    
+  }, [doce]);
+
     const handleChange = e =>{
       e.preventDefault();
       const file = e.target.files[0];
