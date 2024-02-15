@@ -123,11 +123,10 @@ const Dashboard = () => {
 
 
             : (
-              // User dashboard
+              // User dashboard==================================
               <>
                 <ul className="text-center menu space-y-5">
                   <div className="flex flex-col items-center gap-4 pb-6 mt-5 text-white border-b">
-                    <h1 className="font-semibold mb-7 border p-1 rounded-md text-sm">WeavePDF</h1>
                     <div className="w-[80px] h-[80px] rounded-full bg-white text-black flex justify-center items-center font-clashBold text-2xl">
                       {/* JK */}
                       <img
@@ -153,6 +152,9 @@ const Dashboard = () => {
                   </li>
                   <li>
                     <NavLink className={`buttonProject3`} to='/dashboard/addFeedback'>Add Your Feedback</NavLink>
+                  </li>
+                  <li>
+                    <NavLink className={`buttonProject3`} to='/contact'>Contact With Us</NavLink>
                   </li>
                   <li>
                     <NavLink className={`buttonProject3`} to='/'>Back To Home <FaHome></FaHome></NavLink>
