@@ -28,6 +28,7 @@ import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import AdminEmail from "../Pages/Dashboard/AdminEmail/AdminEmail";
 import ImageToPDF from "../Pages/ImageToPDF/ImageToPDF";
 import UserSubscription from "../Pages/UserSubscription/UserSubscription";
+import EditPdf from "../Pages/EditPDF/EditPdf";
 
 const router = createBrowserRouter([
   {
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
       {
         path: '/user-subscription',
         element:<PrivateRoute><UserSubscription></UserSubscription></PrivateRoute> 
+      },
+      {
+        path: '/edit-pdf',
+        element: <EditPdf></EditPdf>
       }
     ],
   },
