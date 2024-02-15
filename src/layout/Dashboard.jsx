@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaEnvelope } from "react-icons/fa";
+import { FaEnvelope, FaHome } from "react-icons/fa";
 // import useAdmin from "../hooks/useAdmin";
 import "./Dashboard.css";
 import { IoHomeOutline } from "react-icons/io5";
@@ -14,7 +14,7 @@ const Dashboard = () => {
   const { user } = useAuth();
 
   return (
-    <div className="flex">
+    <div className={`${isAdmin ? 'flex' : 'lg:flex'}`}>
       {/* dashboard side bar */}
       <div className={`${isAdmin ? 'w-[72px] pt-10  min-h-screen bg-teal text-white text-xl' : 'lg:w-56 min-h-screen bg-teal text-white'}`}>
         <ul className="flex flex-col justify-center  items-center gap-8">
@@ -80,6 +80,40 @@ const Dashboard = () => {
                   </span>
                 </NavLink>
               </li>
+
+
+              {/* shared nav links */}
+              <div className="divider divider-neutral"></div>
+              <li>
+                <NavLink
+                  to="/"
+                  className="group flex items-center relative w-fit h-fit p-0 dashboard-link"
+                >
+                  <IoHomeOutline className="w-10 h-8 p-0 text-white"></IoHomeOutline>
+                  <span
+                    className={
+                      "group-hover:opacity-100 transition-opacity bg-teal px-4 py-2 text-grey rounded-sm absolute text-2xl translate-x-12 w-44   opacity-0 m-4 mx-auto"
+                    }
+                  >
+                    Home
+                  </span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/contact"
+                  className="group flex items-center relative w-fit h-fit p-0 dashboard-link"
+                >
+                  <FaEnvelope className="w-10 h-8 p-0 text-white"></FaEnvelope>
+                  <span
+                    className={
+                      "group-hover:opacity-100 transition-opacity bg-teal px-4 py-2 text-grey rounded-sm absolute text-2xl translate-x-12 w-44   opacity-0 m-4 mx-auto"
+                    }
+                  >
+                    Contact Us
+                  </span>
+                </NavLink>
+              </li>
             </>
           )
 
@@ -120,6 +154,9 @@ const Dashboard = () => {
                   <li>
                     <NavLink className={`buttonProject3`} to='/dashboard/addFeedback'>Add Your Feedback</NavLink>
                   </li>
+                  <li>
+                    <NavLink className={`buttonProject3`} to='/'>Back To Home <FaHome></FaHome></NavLink>
+                  </li>
                 </ul>
               </>
             )}
@@ -128,38 +165,7 @@ const Dashboard = () => {
 
 
 
-          {/* shared nav links */}
-          <div className="divider divider-neutral"></div>
-          <li>
-            <NavLink
-              to="/"
-              className="group flex items-center relative w-fit h-fit p-0 dashboard-link"
-            >
-              <IoHomeOutline className="w-10 h-8 p-0 text-white"></IoHomeOutline>
-              <span
-                className={
-                  "group-hover:opacity-100 transition-opacity bg-teal px-4 py-2 text-grey rounded-sm absolute text-2xl translate-x-12 w-44   opacity-0 m-4 mx-auto"
-                }
-              >
-                Home
-              </span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact"
-              className="group flex items-center relative w-fit h-fit p-0 dashboard-link"
-            >
-              <FaEnvelope className="w-10 h-8 p-0 text-white"></FaEnvelope>
-              <span
-                className={
-                  "group-hover:opacity-100 transition-opacity bg-teal px-4 py-2 text-grey rounded-sm absolute text-2xl translate-x-12 w-44   opacity-0 m-4 mx-auto"
-                }
-              >
-                Contact Us
-              </span>
-            </NavLink>
-          </li>
+
         </ul>
       </div>
 
