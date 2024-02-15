@@ -6,7 +6,7 @@ const AddWatermark = () => {
   const [watermarkText, setWatermarkText] = useState("");
   const [watermarkSize, setWatermarkSize] = useState(50);
   const [watermarkColor, setWatermarkColor] = useState({
-    r: 0.5,
+    r: 0.8,
     g: 0.5,
     b: 0.5,
   });
@@ -86,7 +86,7 @@ const AddWatermark = () => {
   };
 
   return (
-    <div className="pt-12 ">
+    <div className="py-16 ">
       <div className="flex flex-col gap-10 justify-center items-center">
         <h2 className="text-center text-5xl font-medium">
           Add Watermark to PDF
@@ -106,29 +106,32 @@ const AddWatermark = () => {
                 onChange={handleFileChange}
               />
             </div>
-        <div className="grid grid-cols-2 gap-10 mt-10 w-fit mx-auto">
-          <div>
-            <label>Watermark Text:</label>
+        <div className="grid grid-cols-3 gap-10 mt-10 w-fit mx-auto  p-10 rounded-md shadow-md shadow-teal bg-white" >
+          <div className="flex flex-col justify-center items-center col-span-3">
+            <label className="text-xl font-semibold text-teal mr-1">Text:</label>
             <input
-              type="text"
+              type="text" 
+              className="w-fit text-sm lg:text-2xl font-medium border-2 text-aqua_marine py-2 h-fit border-aqua_marine e  rounded-md focus:outline-none"
               value={watermarkText}
               onChange={handleWatermarkTextChange}
               required
             />
           </div>
-          <div>
-            <label>Watermark Size:</label>
+          <div className="flex flex-col justify-center items-center">
+            <label className="text-xl font-semibold text-teal mr-1">Text Size:</label>
             <input
               type="number"
+              className="text-sm w-20 border-2 lg:text-2xl font-medium text-aqua_marine py-2 h-fit border-aqua_marine e  rounded-md focus:outline-none"
               value={watermarkSize}
               onChange={handleWatermarkSizeChange}
               min={1}
             />
           </div>
-          <div>
-            <label>Watermark Color:</label>
+          <div className="flex flex-col justify-center items-center">
+            <label className="text-xl font-semibold text-teal mr-1">Text Color:</label>
             <input
               type="color"
+              className="border  border-aqua_marine e  rounded focus:outline-none"
               value={`#${Math.floor(watermarkColor.r * 255)
                 .toString(16)
                 .padStart(2, "0")}${Math.floor(watermarkColor.g * 255)
@@ -139,17 +142,18 @@ const AddWatermark = () => {
               onChange={handleColorChange}
             />
           </div>
-          <div>
-            <label>Rotation Angle (degrees):</label>
+          <div className="flex flex-col justify-center items-center">
+            <label className="text-xl font-semibold text-teal mr-1">Rotation Angle:</label>
             <input
               type="number"
+              className="text-sm w-20 border-2 lg:text-2xl font-medium text-aqua_marine py-2 h-fit border-aqua_marine e  rounded-md focus:outline-none"
               value={rotationAngle}
               onChange={handleRotationChange}
             />
           </div>
         </div>
         <div>
-          <button onClick={addWatermark}>Add Watermark</button>
+          <button className="px-8 py-5 bg-teal text-white rounded text-lg" onClick={addWatermark}>Add Watermark</button>
         </div>
       </div>
 
