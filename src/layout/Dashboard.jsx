@@ -7,14 +7,16 @@ import { LiaUsersCogSolid } from "react-icons/lia";
 import { TfiEmail } from "react-icons/tfi";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { BiPurchaseTag } from "react-icons/bi";
+import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
 const Dashboard = () => {
-  //   const [isAdmin] = useAdmin()
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  const { user } = useAuth();
 
   return (
     <div className="flex">
       {/* dashboard side bar */}
-      <div className="w-[72px] pt-10  min-h-screen bg-teal text-white text-xl">
+      <div className={`${isAdmin ? 'w-[72px] pt-10  min-h-screen bg-teal text-white text-xl' : 'lg:w-56 min-h-screen bg-teal text-white'}`}>
         <ul className="flex flex-col justify-center  items-center gap-8">
           {isAdmin ? (
             <>
@@ -79,9 +81,53 @@ const Dashboard = () => {
                 </NavLink>
               </li>
             </>
-          ) : (
-            <>{/* users dashboard routes  */}</>
-          )}
+          )
+
+
+
+
+
+
+            : (
+              // User dashboard
+              <>
+                <ul className="text-center menu space-y-5">
+                  <div className="flex flex-col items-center gap-4 pb-6 mt-5 text-white border-b">
+                    <h1 className="font-semibold mb-7 border p-1 rounded-md text-sm">WeavePDF</h1>
+                    <div className="w-[80px] h-[80px] rounded-full bg-white text-black flex justify-center items-center font-clashBold text-2xl">
+                      {/* JK */}
+                      <img
+                        src={user?.photoURL}
+                        alt={user?.displayName}
+                        className="w-full h-full rounded-full border-2 border-blue object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-xl font-semibold">Hi 👋,</p>
+                      <p className="font-bold uppercase text-xl">{user?.displayName}</p>
+                    </div>
+                  </div>
+
+                  <li>
+                    <NavLink className={`buttonProject3`} to='/dashboard/user-profile'>User Profile</NavLink>
+                  </li>
+                  <li>
+                    <NavLink className={`buttonProject3`} to='/dashboard/transection'>My Transection</NavLink>
+                  </li>
+                  <li>
+                    <NavLink className={`buttonProject3`} to='/dashboard/document-history'>Recent Document History</NavLink>
+                  </li>
+                  <li>
+                    <NavLink className={`buttonProject3`} to='/dashboard/addFeedback'>Add Your Feedback</NavLink>
+                  </li>
+                </ul>
+              </>
+            )}
+
+
+
+
+
           {/* shared nav links */}
           <div className="divider divider-neutral"></div>
           <li>
