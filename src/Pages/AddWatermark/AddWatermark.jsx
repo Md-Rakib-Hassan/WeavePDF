@@ -59,11 +59,11 @@ const AddWatermark = () => {
         const { width, height } = page.getSize();
 
         const fontSizeInPoints = watermarkSize;
-        const textWidth = watermarkText.length * (fontSizeInPoints / 2);
-        const textHeight = fontSizeInPoints;
+      const textWidth = watermarkText.length * (fontSizeInPoints / 2);
+      const textHeight = fontSizeInPoints;
 
-        const xPos = width - textWidth / 2;
-        const yPos = height / 2;
+      const xPos = width / 2 - textWidth / 2;
+      const yPos = height / 2 - textHeight / 2;
 
         page.drawText(watermarkText, {
           x: xPos,
@@ -88,7 +88,7 @@ const AddWatermark = () => {
   return (
     <div className="py-16 ">
       <div className="flex flex-col gap-10 justify-center items-center">
-        <h2 className="text-center text-5xl font-medium">
+        <h2 className="text-center text-5xl font-semibold text-teal">
           Add Watermark to PDF
         </h2>
         <div className="outline-2 outline-dashed outline-[#ccc] bg-[#52ab98] rounded-lg p-5 w-fit mx-auto text-center cursor-pointer">
@@ -148,7 +148,7 @@ const AddWatermark = () => {
               type="number"
               className="text-sm w-20 border-2 lg:text-2xl font-medium text-aqua_marine py-2 h-fit border-aqua_marine e  rounded-md focus:outline-none"
               value={rotationAngle}
-              onChange={handleRotationChange}
+              onChange={handleRotationChange} max={60} min={-60}
             />
           </div>
         </div>
@@ -158,15 +158,15 @@ const AddWatermark = () => {
       </div>
 
       {modifiedPdfUrl && (
-        <div>
-          <h3>Modified PDF with Watermark</h3>
+        <div className="flex justify-center mt-10">
+          {/* <h3>Modified PDF with Watermark</h3>
           <iframe
             src={modifiedPdfUrl}
             width="100%"
             height="600px"
             title="Modified PDF"
-          ></iframe>
-          <a href={modifiedPdfUrl} download="modified_pdf_with_watermark.pdf">
+          ></iframe> */}
+          <a href={modifiedPdfUrl} className="px-8 py-5  bg-teal text-white rounded text-lg" download="modified_pdf_with_watermark.pdf">
             Download Modified PDF
           </a>
         </div>
