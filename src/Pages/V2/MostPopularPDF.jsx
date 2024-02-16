@@ -1,4 +1,4 @@
-import { BiSolidUserVoice } from "react-icons/bi";
+import { MdOutlineSettingsVoice } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
 import { LuFileEdit } from "react-icons/lu";
 import { MdOutlineSplitscreen } from "react-icons/md";
@@ -98,10 +98,10 @@ const MostPopularPDF = () => {
             <IoIosArrowForward className="mt-3 text-2xl" />
           </div>
         </Link>
-        <Link to={"/speechToText"}>
+        <Link to={"/speech-To-Text"}>
           {" "}
           <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-            <BiSolidUserVoice className="text-[50px] text-[#ee4030]" />
+            <MdOutlineSettingsVoice className="text-[40px] text-[#693080]" />
             <div className="pl-3">
               {" "}
               <h2 className="font-bold text-[20px]">Speech to Text</h2>
