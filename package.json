@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@pdftron/pdfjs-express": "^8.7.4",
     "@react-pdf/renderer": "^3.3.8",
     "@stripe/react-stripe-js": "^2.4.0",
     "@stripe/stripe-js": "^2.3.0",
@@ -41,6 +42,7 @@
     "react-markdown": "^9.0.1",
     "react-messenger-customer-chat": "^0.8.0",
     "react-pdf": "^7.7.0",
+    "react-pdf-watermark": "^1.0.6",
     "react-router-dom": "^6.21.2",
     "react-signature-canvas": "^1.0.6",
     "react-syntax-highlighter": "^15.5.0",
