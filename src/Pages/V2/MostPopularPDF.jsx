@@ -111,6 +111,36 @@ const MostPopularPDF = () => {
             <IoIosArrowForward className="mt-3 text-2xl" />
           </div>
         </Link>
+        {/* {showMore && (
+          <>
+            <Link to={"/imageToPdf"}>
+              {" "}
+              <div className="bg-base-300 hover:scale-110 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <FcImageFile className="text-[45px]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">Image to PDF</h2>
+                  <p className="font-normal pt-1">Convert your Image into PDF File</p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
+            <Link to={"/draw-signature"}>
+              {" "}
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <FcSignature className="text-[60px] text-[#ee4030]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">Draw Signature</h2>
+                  <p className="font-normal pt-1">
+                    Get your online signature just do a draw
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
+          </>)} */}
+
         {showMore && (
           <>
             <Link to={"/imageToPdf"}>
@@ -134,6 +164,21 @@ const MostPopularPDF = () => {
                   <h2 className="font-bold text-[20px]">Draw Signature</h2>
                   <p className="font-normal pt-1">
                     Get your online signature just do a draw
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
+
+            <Link to={"/addWaterMark"}>
+              {" "}
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <img className="h-[40px] w-auto" src="https://i.ibb.co/4fWq7sY/watermark.png" alt="" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">Add WaterMark</h2>
+                  <p className="font-normal pt-1">
+                    Add watermark to your PDF files.
                   </p>
                 </div>
                 <IoIosArrowForward className="mt-3 text-2xl" />
