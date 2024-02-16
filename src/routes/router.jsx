@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../layout/Root";
 import Home from "../Pages/Home";
 import Subscriptions from "../pages/Subscriptions";
-import Contact from "./../pages/Contact";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 
@@ -12,7 +11,6 @@ import DrawSignature from "../Pages/DrawSignature/DrawSignature";
 import AddSignature from "../Pages/AddSignature/AddSignature";
 import SplitPDF from "../Pages/SplitPDF/SplitPDF";
 import SplitPDFModal from "../Pages/SplitPDF/SplitPDFModal/SplitPDFModal";
-
 import Profile from "../Pages/Profile/Profile";
 import WordToPDF from "../Pages/WordToPDF/WordToPDF";
 import Editor from "../Pages/MdToPdf/Editor";
@@ -24,10 +22,13 @@ import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
-import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
-import AdminEmail from "../Pages/Dashboard/AdminEmail/AdminEmail";
+// import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+// import AdminEmail from "../Pages/Dashboard/AdminEmail/AdminEmail";
 import ImageToPDF from "../Pages/ImageToPDF/ImageToPDF";
 import UserSubscription from "../Pages/UserSubscription/UserSubscription";
+import Contact from "../Pages/Contact";
+import AdminHome from './../Pages/Dashboard/AdminHome/AdminHome';
+import AdminEmail from './../Pages/Dashboard/AdminEmail/AdminEmail';
 
 const router = createBrowserRouter([
   {
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <Contact></Contact>,
+        element: <Contact></Contact>
       },
       {
         path: "/merge-pdf",
@@ -58,10 +59,6 @@ const router = createBrowserRouter([
       {
         path: "/add-signature",
         element: <AddSignature></AddSignature>,
-      },
-      {
-        path: "/contact",
-        element: <Contact></Contact>,
       },
       {
         path: "/login",
@@ -135,15 +132,17 @@ const router = createBrowserRouter([
     element: <PrivateRoute><AdminRoute><Dashboard></Dashboard></AdminRoute></PrivateRoute>,
     children: [
       {
-        path: 'dashboard/allUsers',
+        path: '/dashboard/allUsers',
         element: <AllUsers></AllUsers>
       },
       {
-        path: 'dashboard/adminHome',
+        path: '/dashboard/adminHome',
         element: <AdminHome></AdminHome>
       },
       {
-        path: 'dashboard/adminEmail',
+        path: '/dashboard/adminEmail',
+        // loader: () => fetch('http://localhost:5000/contact'),
+        loader: () => fetch('https://weave-pdf-backend-three.vercel.app/contact'),
         element: <AdminEmail></AdminEmail>
       },
 

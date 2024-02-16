@@ -1,5 +1,5 @@
 import { IoIosArrowForward } from "react-icons/io";
-import { FaRegFileWord } from "react-icons/fa";
+// import { FaRegFileWord } from "react-icons/fa";
 import { MdOutlineSplitscreen } from "react-icons/md";
 import { BsSignMergeRight } from "react-icons/bs";
 import { FaRegFilePdf } from "react-icons/fa";
@@ -11,12 +11,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const MostPopularPDF = () => {
-    const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
-    const toggleSeeMore = () => {
-      setShowMore(!showMore);
-    };
-    
+  const toggleSeeMore = () => {
+    setShowMore(!showMore);
+  };
+
   return (
     <div className="max-w-5xl mx-auto py-10 p-2">
       <div className="text-center">
@@ -55,7 +55,7 @@ const MostPopularPDF = () => {
             <IoIosArrowForward className="mt-3 text-2xl" />
           </div>
         </Link>
-        <Link>
+        {/* <Link>
           {" "}
           <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
             <FaRegFileWord className="text-[35px] text-[#24b2ff]" />
@@ -68,7 +68,7 @@ const MostPopularPDF = () => {
             </div>
             <IoIosArrowForward className="mt-3 text-2xl" />
           </div>
-        </Link>
+        </Link> */}
         <Link to={"/wordToPdf"}>
           {" "}
           <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
@@ -111,8 +111,6 @@ const MostPopularPDF = () => {
             <IoIosArrowForward className="mt-3 text-2xl" />
           </div>
         </Link>
-        {showMore && (
-          <>
         <Link to={"/imageToPdf"}>
           {" "}
           <div className="bg-base-300 hover:scale-110 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
@@ -125,30 +123,32 @@ const MostPopularPDF = () => {
             <IoIosArrowForward className="mt-3 text-2xl" />
           </div>
         </Link>
-        <Link to={"/draw-signature"}>
-          {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-            <FcSignature className="text-[60px] text-[#ee4030]" />
-            <div className="pl-3">
+        {showMore && (
+          <>
+            <Link to={"/draw-signature"}>
               {" "}
-              <h2 className="font-bold text-[20px]">Draw Signature</h2>
-              <p className="font-normal pt-1">
-                Get your online signature just do a draw
-              </p>
-            </div>
-            <IoIosArrowForward className="mt-3 text-2xl" />
-          </div>
-        </Link>
-        </>)}
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <FcSignature className="text-[60px] text-[#ee4030]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">Draw Signature</h2>
+                  <p className="font-normal pt-1">
+                    Get your online signature just do a draw
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
+          </>)}
       </div>
-<div className="flex justify-center py-9">
-<button
-        onClick={toggleSeeMore}
-        className="btn bg-[#52ab98] text-white font-bold mr-4"
-      >
-        {showMore ? "See Less" : "See all Tools"}
-      </button>
-</div>
+      <div className="flex justify-center py-9">
+        <button
+          onClick={toggleSeeMore}
+          className="btn bg-[#52ab98] text-white font-bold mr-4"
+        >
+          {showMore ? "See Less" : "See all Tools"}
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { IoDocumentsOutline } from "react-icons/io5";
 import { RiCharacterRecognitionLine } from "react-icons/ri";
 import { LuUser2 } from "react-icons/lu";
@@ -8,24 +8,24 @@ import { FaUsersRays } from "react-icons/fa6";
 
 const Subscriptions = () => {
 
-    const [Monthly,setMonthly]=useState(true);
+    const [Monthly, setMonthly] = useState(true);
 
 
     return (
         <div className='my-10 max-w-7xl mx-auto'>
 
-                <div className='space-y-4'>
+            <div className='space-y-4'>
                 <h1 className='text-4xl font-bold text-center'>Subscriptions</h1>
-            <h3 className='text-2xl text-center'>Get ahead with subscription access to premium features!</h3>
+                <h3 className='text-2xl text-center'>Get ahead with subscription access to premium features!</h3>
 
-            <div className='flex justify-center'>
-                <button onClick={()=>setMonthly(true)} className={`px-5 py-2  rounded-l-xl hover:bg-slate-400 font-bold border-r-2 border-black ${Monthly? 'bg-black text-teal':'bg-grey'}`}>Monthly</button>
-                <button onClick={()=>setMonthly(false)} className={`px-5 py-2  rounded-r-xl hover:bg-slate-400 font-bold border-black ${Monthly? 'bg-grey':'bg-black text-teal'}`}>Yearly</button>
-            </div>
+                <div className='flex justify-center'>
+                    <button onClick={() => setMonthly(true)} className={`px-5 py-2  rounded-l-xl hover:bg-slate-400 font-bold border-r-2 border-black ${Monthly ? 'bg-black text-teal' : 'bg-grey'}`}>Monthly</button>
+                    <button onClick={() => setMonthly(false)} className={`px-5 py-2  rounded-r-xl hover:bg-slate-400 font-bold border-black ${Monthly ? 'bg-grey' : 'bg-black text-teal'}`}>Yearly</button>
                 </div>
+            </div>
 
             <div>
-                
+
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 l:grid-cols-3 mt-16 gap-10 '>
                 <SubscriptionCard Monthly={Monthly} price={50} type={'Personal'} contents={
@@ -49,7 +49,7 @@ const Subscriptions = () => {
                             <p>Draw Signature</p>
                         </div></>
 
-                }/>
+                } />
 
                 <SubscriptionCard Monthly={Monthly} price={70} type={'Business'} contents={
                     <><div className='flex items-center text-xl gap-2'>
@@ -72,7 +72,7 @@ const Subscriptions = () => {
                             <p>Draw Signature</p>
                         </div></>
 
-                }/>
+                } />
                 <SubscriptionCard Monthly={Monthly} btn_text={'Contact Us'} price={90} type={'Customize'} contents={
                     <><div className='flex items-center text-xl gap-2'>
                         <IoDocumentsOutline className='text-3xl' />
@@ -94,7 +94,7 @@ const Subscriptions = () => {
                             <p>Draw Signature</p>
                         </div></>
 
-                }/>
+                } />
 
             </div>
 

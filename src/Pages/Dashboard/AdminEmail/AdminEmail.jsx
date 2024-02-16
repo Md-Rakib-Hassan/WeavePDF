@@ -1,6 +1,51 @@
 import DataTable from 'react-data-table-component';
+import { useLoaderData } from 'react-router-dom';
+import deletebtn from '../../../images/delete.svg';
+import Swal from 'sweetalert2';
+import { useState } from 'react';
 
 const AdminEmail = () => {
+    const [contacts, setContacts] = useState(useLoaderData());
+
+    const handleDelete = (_id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // http://localhost:5000/
+                // https://weave-pdf-backend-three.vercel.app/:production
+                fetch(`https://weave-pdf-backend-three.vercel.app/contact/${_id}`, {
+                    method: 'DELETE'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Massage has been deleted.',
+                            'success'
+                        );
+                        // Update state after delete operation
+                        setContacts(prevContacts => prevContacts.filter(contact => contact._id !== _id));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire(
+                        'Error!',
+                        'Failed to delete contact.',
+                        'error'
+                    );
+                });
+            }
+        });
+    }
 
     const customStyles = {
         headRow: {
@@ -23,6 +68,7 @@ const AdminEmail = () => {
             }
         },
     }
+
     const columns = [
         {
             name: 'Serial Number',
@@ -38,24 +84,21 @@ const AdminEmail = () => {
         },
         {
             name: 'Message',
-            selector: row => row.message
+            selector: row => row.massage
         },
-        // {
-        //     name: 'Blog Owner Image',
-        //     // cell: (row) => <img src={row.owner_image} alt={row.owner_name} style={{ width: '50px', height: '50px', borderRadius: '50px', margin: '3px' }} />,
-        //     cell: (row) => <img src={row.owner_image} alt={row.owner_name} style={{ width: '50px', height: '50px', borderRadius: '50px', margin: '3px' }} />,
-        // }
-    ]
-    // Assuming sortBlogs is an array of blog objects
-    const data = [
         {
-            id: 1,
-            name: 'name',
-            email: 'email@gmail.com',
-            message: 'Hello, this is a message.'
-        },
+            name: 'Delete',
+            cell: (row) => <img src={deletebtn} alt="delete" onClick={() => handleDelete(row._id)} style={{ width: '20px', height: '20px', borderRadius: '50px', margin: '3px', cursor: 'pointer' }} />,
+        }
+    ]
 
-    ];
+    const data = contacts.map((contact, index) => ({
+        id: index + 1,
+        _id: contact._id,
+        name: contact.name,
+        email: contact.email,
+        massage: contact.massage,
+    }));
 
     return (
         <div>

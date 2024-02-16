@@ -10,6 +10,7 @@ export default {
     },
     colors: {
       teal : '#2b6777',
+      tealtwo:'#c7ddcc',
       grey : '#f2f2f2' ,
       blue : '#c8d8e4',
       white: '#ffffff',
