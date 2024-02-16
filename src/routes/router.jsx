@@ -19,7 +19,6 @@ import Editor from "../Pages/MdToPdf/Editor";
 import MyTransection from "../Pages/Transection/MyTransection";
 import AddFeedback from "../Pages/AddFeedBack/AddFeedback";
 import RecentDocumentHistory from "../Pages/RecentDocumentHistory/RecentDocumentHistory";
-import UserDashboard from "../layout/UserDashboard";
 import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
@@ -29,6 +28,7 @@ import AdminEmail from "../Pages/Dashboard/AdminEmail/AdminEmail";
 import ImageToPDF from "../Pages/ImageToPDF/ImageToPDF";
 import UserSubscription from "../Pages/UserSubscription/UserSubscription";
 import AddWatermark from "../Pages/AddWatermark/AddWatermark";
+import EditPdf from "../Pages/EditPDF/EditPdf";
 
 const router = createBrowserRouter([
   {
@@ -107,53 +107,55 @@ const router = createBrowserRouter([
       {
         path: '/user-subscription',
         element:<PrivateRoute><UserSubscription></UserSubscription></PrivateRoute> 
+      },
+      {
+        path: '/edit-pdf',
+        element: <EditPdf></EditPdf>
       }
     ],
   },
   {
-    path: '/userDashboard',
-    element: <UserDashboard></UserDashboard>,
+    path: '/dashboard',
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       // These routes for Common Users
       {
-        path: '/userDashboard/user-profile',
+        path: '/dashboard/user-profile',
         element: <PrivateRoute><Profile></Profile></PrivateRoute>,
         loader: () => fetch('http://localhost:5000/all-services')
       },
       {
-        path: '/userDashboard/transection',
+        path: '/dashboard/transection',
         element: <MyTransection></MyTransection>
       },
       {
-        path: '/userDashboard/addFeedback',
+        path: '/dashboard/addFeedback',
         element: <AddFeedback></AddFeedback>
       },
       {
-        path: '/userDashboard/document-history',
+        path: '/dashboard/document-history',
         element: <RecentDocumentHistory></RecentDocumentHistory>,
         loader: () => fetch('http://localhost:5000/user-services')
       },
+
+
+
+
+      // These routes only for Admin
+      {
+        path: '/dashboard/allUsers',
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+      },
+      {
+        path: '/dashboard/adminHome',
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+      },
+      {
+        path: '/dashboard/adminEmail',
+        element: <AdminRoute><AdminEmail></AdminEmail></AdminRoute>
+      },
     ],
   },
-  {
-    path: 'dashboard',
-    element: <PrivateRoute><AdminRoute><Dashboard></Dashboard></AdminRoute></PrivateRoute>,
-    children: [
-      {
-        path: 'dashboard/allUsers',
-        element: <AllUsers></AllUsers>
-      },
-      {
-        path: 'dashboard/adminHome',
-        element: <AdminHome></AdminHome>
-      },
-      {
-        path: 'dashboard/adminEmail',
-        element: <AdminEmail></AdminEmail>
-      },
-
-    ]
-  }
 ]);
 
 export default router;
