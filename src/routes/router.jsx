@@ -152,6 +152,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/adminEmail',
+        loader: () => fetch('http://localhost:5000/contact'),
         element: <AdminRoute><AdminEmail></AdminEmail></AdminRoute>
       },
     ],
