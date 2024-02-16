@@ -27,6 +27,7 @@ import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import AdminEmail from "../Pages/Dashboard/AdminEmail/AdminEmail";
 import ImageToPDF from "../Pages/ImageToPDF/ImageToPDF";
 import UserSubscription from "../Pages/UserSubscription/UserSubscription";
+import AddWatermark from "../Pages/AddWatermark/AddWatermark";
 import EditPdf from "../Pages/EditPDF/EditPdf";
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path:'/addWaterMark',
+        element:<AddWatermark></AddWatermark>
       },
 
       {
