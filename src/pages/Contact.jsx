@@ -2,8 +2,31 @@ import question from '../images/image2.jpg'
 import apple from '../images/apple.jpg'
 import andorid from '../images/Vector.jpg'
 import whatsapp from '../images/Vector (1).jpg'
+import useAxiosPublic from '../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
+import { useForm } from 'react-hook-form';
+
 
 const Contact = () => {
+    const axiosPublic = useAxiosPublic();
+    const { register, handleSubmit } = useForm()
+    const onSubmit = (data) => {
+        // console.log(data)
+        const contactInfo = {
+            name: data.name,
+            email: data.email,
+            massage: data.massage,
+        }
+        // console.log(contactInfo)
+        axiosPublic.post('/contact', contactInfo)
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `Your massage has been added to the register camp`,
+            showConfirmButton: false,
+            timer: 1600
+        });
+    }
     return (
         <>
             <div className="container mx-auto my-10">
@@ -25,7 +48,6 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-                {/* new */}
                 <div className="flex flex-col md:flex-row gap-10 my-10 p-5">
                     {/* Card Section */}
                     <div className="md:w-1/2">
@@ -56,12 +78,13 @@ const Contact = () => {
                     </div>
 
                     {/* Form Section */}
-                    <div className="md:w-1/2">
-                        <form className="max-w-4xl">
+                    <div className="md:w-1/2" >
+                        <form onSubmit={handleSubmit(onSubmit)} className="max-w-4xl">
                             <div className="mb-5">
                                 <label className="block mb-2 text-sm font-medium text-gray-900">Your Name</label>
                                 <input
                                     type="text"
+                                    {...register("name")}
                                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5"
                                     placeholder="Your Name"
                                     required
@@ -71,6 +94,7 @@ const Contact = () => {
                                 <label className="block mb-2 text-sm font-medium text-gray-900">Your Email</label>
                                 <input
                                     type="email"
+                                    {...register("email")}
                                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5"
                                     placeholder="Your Email"
                                     required
@@ -80,6 +104,7 @@ const Contact = () => {
                                 <label className="block mb-2 text-sm font-medium text-gray-900">Your Massage</label>
                                 <textarea
                                     type="text"
+                                    {...register("massage")}
                                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5"
                                     placeholder="Your Massage"
                                 />
