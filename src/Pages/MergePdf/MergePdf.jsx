@@ -27,7 +27,7 @@ const MergePdf = () => {
         console.log(service);
         axiosPublic.post('/upload-service',service)
         .then(res=>console.log(res.data));
-        // setIsOn(true)
+        setIsOn(true)
         
     }
     const handleInput  = e =>{
