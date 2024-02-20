@@ -3,14 +3,14 @@ import useAuth from '../../hooks/useAuth';
 import { useLoaderData } from 'react-router';
 import Service from './Service';
 import { Link } from 'react-router-dom';
+import useService from '../../hooks/useService';
 
 
 const Profile = () => {
     const [timezone, setTimezone] = useState(null);
-    // const [userservices, setuserServices] = useState([]);
     const { user } = useAuth();
     const { displayName,email, photoURL } = user;
-    const services = useLoaderData();
+    const [services] = useService();
     const userservices = services.filter(service=> service.user_email == user?.email)
     // console.log(userservices);
     useEffect(()=>{

@@ -1,10 +1,13 @@
 import WebViewer from '@pdftron/pdfjs-express';
 import { useEffect, useRef, useState } from 'react';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useAuth from '../../hooks/useAuth';
 
 const EditPdf = () => {
     const [doce, setDoce] = useState()
     const viewer = useRef(null);
-
+    const axiosPublic = useAxiosPublic();
+    const {user} = useAuth();
   useEffect(() => {
     if(doce){
       WebViewer(
@@ -29,6 +32,16 @@ const EditPdf = () => {
       const file = e.target.files[0];
       const PdfBlob = new Blob([file], { type: 'application/pdf' });
       setDoce(URL.createObjectURL(PdfBlob));
+      if(user){
+        const date = new Date();
+        const user_email = user.email
+        const no_of_files = 1
+        const service_name = "Edit PDF"
+        const status = true
+
+        const service = {  date, user_email, no_of_files, service_name, status}
+        axiosPublic.post('/upload-service',service)
+      }
     }
     return (
         <div className="MyComponent h-full">

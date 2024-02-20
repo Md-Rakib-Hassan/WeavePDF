@@ -1,21 +1,37 @@
-
-import { saveAs } from "file-saver";
-import { useState } from "react";
-import { FaDownload } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
+import useService from "../../hooks/useService";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const Service = ({service, index}) => {
-    const [fileUrl, setfileUrl] = useState(null);
-    // const {file} = file;
-    // const filedata = file.data;
-
-    const downloadPdf = (filedata) =>{
-        
-        const file = new Blob([new Uint8Array(filedata)], {type : 'application/pdf'})
-        console.log(file);
-        const gotFile = new File([file], 'merged.pdf', {type: 'application/pdf'});
-        // console.log(gotFile);
-        saveAs(gotFile, "Weavedpdf.pdf")
+    const [,refetch] = useService();
+    const axiosPublic = useAxiosPublic()
+    const deleteRecord = (id) =>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              axiosPublic.delete(`/delete-service/${id}`)
+              .then(res=>{
+                // console.log(res.data);
+                if(res.data.deletedCount>1){
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Service has been deleted.",
+                        icon: "success"
+                      });
+                      refetch();
+                }
+              })
+              
+            }
+          });
     }
     return (
         <tr>
@@ -23,13 +39,8 @@ const Service = ({service, index}) => {
             <td>{service.date}</td>
             <td>{service.service_name}</td>
             <td>{service.no_of_files}</td>
-            <td>✅</td>
-             { service.file && 
-             <td><button onClick={()=>{downloadPdf(service.file.data)}}><FaDownload className=' text-teal'></FaDownload></button>
-             </td>
-            // <a href={service.serviceSrc} download></a>
-                }            
-            <td><button><MdDelete className=' text-teal'></MdDelete></button></td>
+            <td>✅</td>          
+            <td><button onClick={()=>{deleteRecord(service._id)}}><MdDelete className=' text-teal'></MdDelete></button></td>
         </tr>
     );
 };
