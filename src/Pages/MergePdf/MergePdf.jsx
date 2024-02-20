@@ -15,24 +15,18 @@ const MergePdf = () => {
     const [isOn, setIsOn] = useState(false);
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
-    const handlePost = (mergedblob) =>{
-        const formData = new FormData();
+    const handlePost = (filedata) =>{
         const date = new Date();
-        formData.append("no_of_files",pdfs.length)
-        formData.append("date",date)
-        formData.append("service_name","Merge PDF")
-        formData.append("user_email",user?.email)
-        formData.append("status",true)
-        formData.append("mergedFile",mergedblob)
-        // console.log(service);
-        axiosPublic.post('/upload-file',
-        formData,
-        {
-            headers: { "Content-Type": "multipart/form-data" }
-        }
-        )
-        .then(res=>console.log(res.data));
-        setIsOn(true)
+        const user_email = user.email
+        const no_of_files = pdfs.length
+        const service_name = "Merge PDF"
+        const status = true
+        const file = filedata
+
+        const service = {  date, user_email, no_of_files, service_name, status, file}
+        console.log(service);
+        
+        // setIsOn(true)
         
     }
     const handleInput  = e =>{
