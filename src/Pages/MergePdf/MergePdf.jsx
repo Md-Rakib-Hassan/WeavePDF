@@ -25,7 +25,7 @@ const MergePdf = () => {
 
         const service = {  date, user_email, no_of_files, service_name, status, file}
         console.log(service);
-        axiosPublic.post('/upload-service')
+        axiosPublic.post('/upload-service',service)
         .then(res=>console.log(res.data));
         // setIsOn(true)
         
