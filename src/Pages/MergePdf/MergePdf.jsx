@@ -21,9 +21,9 @@ const MergePdf = () => {
         const no_of_files = pdfs.length
         const service_name = "Merge PDF"
         const status = true
-        const file = filedata
+        const pdf = filedata
 
-        const service = {  date, user_email, no_of_files, service_name, status, file}
+        const service = {  date, user_email, no_of_files, service_name, status, pdf}
         console.log(service);
         axiosPublic.post('/upload-service',service)
         .then(res=>console.log(res.data));
@@ -73,12 +73,13 @@ const MergePdf = () => {
         const mergedFile = new File([mergedPdfBytes], 'merged.pdf', {type: 'application/pdf'});
         setmerged(URL.createObjectURL(mergedPdfBlob))
         if(user){
-            handlePost(mergedFile);
+            handlePost(URL.createObjectURL(mergedPdfBlob));
         }
         }
         catch(err){
             console.log(err);
         }
+        
     }
     
 
