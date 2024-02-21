@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../layout/Root";
 import Home from "../Pages/Home";
 import Subscriptions from "../pages/Subscriptions";
-import Contact from "./../pages/Contact";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 
@@ -29,6 +28,7 @@ import ImageToPDF from "../Pages/ImageToPDF/ImageToPDF";
 import UserSubscription from "../Pages/UserSubscription/UserSubscription";
 import AddWatermark from "../Pages/AddWatermark/AddWatermark";
 import EditPdf from "../Pages/EditPDF/EditPdf";
+import Contact from './../Pages/Contact';
 
 const router = createBrowserRouter([
   {
@@ -48,10 +48,10 @@ const router = createBrowserRouter([
         path: "/subscriptions",
         element: <Subscriptions></Subscriptions>,
       },
-      {
-        path: "/contact",
-        element: <Contact></Contact>,
-      },
+      // {
+      //   path: "/contact",
+      //   element: <Contact></Contact>,
+      // },
       {
         path: "/merge-pdf",
         element: <MergePdf></MergePdf>,
