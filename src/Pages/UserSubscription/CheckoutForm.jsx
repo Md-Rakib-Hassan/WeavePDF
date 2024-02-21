@@ -17,6 +17,7 @@ const CheckoutForm = () => {
     const [activetwo,setActivetwo] = useState(false);
     const [price, setPrice] = useState(50);
     const [clientSecret, setClientSecret] = useState("");
+    const [active, setActive] = useState(false);
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     useEffect(()=>{
@@ -101,24 +102,36 @@ const CheckoutForm = () => {
             if(paymentIntent.status == "succeeded"){
                 if(subscription.type == 'monthly'){
                     axiosPublic.post(`/start-monthly-subscription`)
-                    .then(res=>console.log(res.data))
+                    .then(res=>{
+                        if(res.data.active){
+                            axiosPublic.patch(`/make-premium?email=${user.email}`,{
+                                isPremium : true,
+                                subscription_type: subscription.type,
+                                plan_id : res.data.id
+                            })
+                        }
+                    })
                 }
                 else{
                     axiosPublic.post(`/start-yearly-subscription`)
-                .then(res=>console.log(res.data))
-                }
-                
-                axiosPublic.patch(`/make-premium?email=${user.email}`,{
-                    isPremium : true,
-                    subscription_type: subscription.type
+                .then(res=>{
+                    if(res.data.active){
+                        axiosPublic.patch(`/make-premium?email=${user.email}`,{
+                            isPremium : true,
+                            subscription_type: subscription.type,
+                            plan_id : res.data.id
+                        })
+                    }
                 })
+                }
                     Swal.fire({
                             title: "Success!",
                             text: `You have booked a ${subscription.type} subscription`,
                             icon: "success"
                           });
                     navigate('/');
-            }
+            
+        }
         }
     }
     return (
