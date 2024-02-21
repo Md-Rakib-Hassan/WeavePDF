@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
-import { useLoaderData } from 'react-router';
 import Service from './Service';
 import { Link } from 'react-router-dom';
 import useService from '../../hooks/useService';
