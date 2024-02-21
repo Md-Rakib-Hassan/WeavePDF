@@ -23,7 +23,7 @@ const CheckoutForm = () => {
         axiosPublic.post('/create-payment-intent', {price: price})
         .then(res=>
             {
-                // console.log(res.data);
+                console.log(res.data);
                 setClientSecret(res.data.clientSecret)
             })
     },[axiosPublic,price])
@@ -99,6 +99,15 @@ const CheckoutForm = () => {
               });
         }else{
             if(paymentIntent.status == "succeeded"){
+                if(subscription.type == 'monthly'){
+                    axiosPublic.post(`/start-monthly-subscription`)
+                    .then(res=>console.log(res.data))
+                }
+                else{
+                    axiosPublic.post(`/start-yearly-subscription`)
+                .then(res=>console.log(res.data))
+                }
+                
                 axiosPublic.patch(`/make-premium?email=${user.email}`,{
                     isPremium : true,
                     subscription_type: subscription.type
@@ -109,17 +118,6 @@ const CheckoutForm = () => {
                             icon: "success"
                           });
                     navigate('/');
-                // .then(res=>{
-                    // console.log(res);
-                    // if(res.data.modifiedCount){
-                    //     Swal.fire({
-                    //         title: "Success!",
-                    //         text: `You have booked a ${subscription.type} subscription`,
-                    //         icon: "success"
-                    //       });
-                    // }
-                // })
-                
             }
         }
     }
