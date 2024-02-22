@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Tiptap from "./Tiptap";
 import Details from "./Details";
+import { Tiptap } from "./Tiptap";
 
 const TextEditor = () => {
     const [description, setDescription] = useState("");

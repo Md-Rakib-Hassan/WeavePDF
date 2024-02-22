@@ -1,3 +1,4 @@
+import parse from "html-react-parser";
 import jsPDF from "jspdf";
 import { useState } from "react";
 
@@ -16,7 +17,7 @@ const Details = ({ description }) => {
     }
     return (
         <>
-            <div id='detailsButton' className="ProseMirrorr">{description ? <button className='absolute right-2 bg-blue px-2 rounded-md' onClick={generatePDF}>Download Pdf</button> : ''} {parse(description)}</div>
+            <div id='detailsButton' className="ProseMirrorr">{description ? <button className='absolute right-2 btn btn-secondary' onClick={generatePDF}>Download Pdf</button> : ''} {parse(description)}</div>
         </>
     );
 };
