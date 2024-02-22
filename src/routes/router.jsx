@@ -121,8 +121,7 @@ const router = createBrowserRouter([
       // These routes for Common Users
       {
         path: '/dashboard/user-profile',
-        element: <PrivateRoute><Profile></Profile></PrivateRoute>,
-        loader: () => fetch('http://localhost:5000/all-services')
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
       },
       {
         path: '/dashboard/transection',
