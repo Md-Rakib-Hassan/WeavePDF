@@ -2,15 +2,15 @@
 import { FaDownload } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 
-const Service = ({service, index}) => {
+const Service = ({ service, index }) => {
 
-    const showPdf = () =>{
+    const showPdf = () => {
         window.open(`http://localhost:5000/files/${service.mergedFile}`)
     }
 
     return (
         <tr>
-            <th>{index+1}</th>
+            <th>{index + 1}</th>
             <td>{service.date}</td>
             <td>{service.service_name}</td>
             <td>{service.no_of_files}</td>
