@@ -1,17 +1,22 @@
-import axios from "axios";
 import { useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const HtmlToPDF = () => {
+    const axiosPublic = useAxiosPublic();
     const [url, setUrl] = useState('');
     const [pdfBlob, setPdfBlob] = useState(null);
+    const [isLoading, setIsLoading] = useState(false); 
 
     const convertToPDF = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/convertToPDF', { url }, { responseType: 'blob' });
+            setIsLoading(true); 
+            const response = await axiosPublic.post('/convertToPDF', { url }, { responseType: 'blob' });
             setPdfBlob(response.data);
         } catch (error) {
             console.error('Error converting URL to PDF', error);
+        } finally {
+            setIsLoading(false); 
         }
     };
 
@@ -30,6 +35,7 @@ const HtmlToPDF = () => {
                 </div>
             </div>
             <div className='flex justify-center items-center my-5'>
+                {isLoading && <progress className="progress w-56"></progress>}
                 {pdfBlob && <iframe className="rounded-2xl" title="PDF Preview" src={URL.createObjectURL(pdfBlob)} width="70%" height="700px" />}
             </div>
         </div>

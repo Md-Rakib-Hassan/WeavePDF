@@ -5,7 +5,7 @@ const SplitPDF = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const navigate = useNavigate();
 
-  // Execute when user select a file
+
   const onFileSelected = async (e) => {
     const fileList = e.target.files;
     setSelectedFile(fileList);

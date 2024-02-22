@@ -21,7 +21,7 @@ const SplitPDFModal = () => {
 
   // ==================== react hook form ------------------------------
   const { register: registerTab1, handleSubmit: handleSubmitTab1, setError: setErrorTab1, formState: { errors: errorsTab1 } } = useForm();
-  const { register: registerTab2, handleSubmit: handleSubmitTab2, setError: setErrorTab2, formState: { errors: errorsTab2 } } = useForm();
+  const { register: registerTab2, handleSubmit: handleSubmitTab2,  formState: { errors: errorsTab2 } } = useForm();
 
   // ============================== extraction functions ------------------------
 
