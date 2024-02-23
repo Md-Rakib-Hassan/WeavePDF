@@ -59,12 +59,12 @@ const MostPopularPDF = () => {
         <Link to={"/edit-pdf"}>
           {" "}
           <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-            <LuFileEdit className="text-[35px] text-[#24b2ff]" />
+            <LuFileEdit className="text-[50px] text-[#24b2ff]" />
             <div className="pl-3">
               {" "}
               <h2 className="font-bold text-[20px]">Edit PDF</h2>
               <p className="font-normal pt-1">
-                Edit PDFs with a plethora of amazing tools
+                Add signatures, images, highlight and add texts, draw, add watermark and many other! 
               </p>
             </div>
             <IoIosArrowForward className="mt-3 text-2xl" />

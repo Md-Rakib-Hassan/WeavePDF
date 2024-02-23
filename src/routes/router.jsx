@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../layout/Root";
 import Home from "../Pages/Home";
 import Subscriptions from "../pages/Subscriptions";
-import Contact from "./../pages/Contact";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 
@@ -30,6 +29,8 @@ import UserSubscription from "../Pages/UserSubscription/UserSubscription";
 import AddWatermark from "../Pages/AddWatermark/AddWatermark";
 import EditPdf from "../Pages/EditPDF/EditPdf";
 import SpeechToText from "../Pages/SpeechToText/SpeechToText";
+import Contact from './../Pages/Contact';
+
 
 const router = createBrowserRouter([
   {
@@ -49,10 +50,10 @@ const router = createBrowserRouter([
         path: "/subscriptions",
         element: <Subscriptions></Subscriptions>,
       },
-      {
-        path: "/contact",
-        element: <Contact></Contact>,
-      },
+      // {
+      //   path: "/contact",
+      //   element: <Contact></Contact>,
+      // },
       {
         path: "/merge-pdf",
         element: <MergePdf></MergePdf>,
@@ -126,8 +127,7 @@ const router = createBrowserRouter([
       // These routes for Common Users
       {
         path: '/dashboard/user-profile',
-        element: <PrivateRoute><Profile></Profile></PrivateRoute>,
-        loader: () => fetch('http://localhost:5000/all-services')
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
       },
       {
         path: '/dashboard/transection',
@@ -157,6 +157,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/adminEmail',
+        loader: () => fetch('http://localhost:5000/contact'),
         element: <AdminRoute><AdminEmail></AdminEmail></AdminRoute>
       },
     ],

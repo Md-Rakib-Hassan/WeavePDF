@@ -17,13 +17,14 @@ const CheckoutForm = () => {
     const [activetwo,setActivetwo] = useState(false);
     const [price, setPrice] = useState(50);
     const [clientSecret, setClientSecret] = useState("");
+    const [active, setActive] = useState(false);
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     useEffect(()=>{
         axiosPublic.post('/create-payment-intent', {price: price})
         .then(res=>
             {
-                // console.log(res.data);
+                console.log(res.data);
                 setClientSecret(res.data.clientSecret)
             })
     },[axiosPublic,price])
@@ -99,28 +100,38 @@ const CheckoutForm = () => {
               });
         }else{
             if(paymentIntent.status == "succeeded"){
-                axiosPublic.patch(`/make-premium?email=${user.email}`,{
-                    isPremium : true,
-                    subscription_type: subscription.type
+                if(subscription.type == 'monthly'){
+                    axiosPublic.post(`/start-monthly-subscription`)
+                    .then(res=>{
+                        if(res.data.active){
+                            axiosPublic.patch(`/make-premium?email=${user.email}`,{
+                                isPremium : true,
+                                subscription_type: subscription.type,
+                                plan_id : res.data.id
+                            })
+                        }
+                    })
+                }
+                else{
+                    axiosPublic.post(`/start-yearly-subscription`)
+                .then(res=>{
+                    if(res.data.active){
+                        axiosPublic.patch(`/make-premium?email=${user.email}`,{
+                            isPremium : true,
+                            subscription_type: subscription.type,
+                            plan_id : res.data.id
+                        })
+                    }
                 })
+                }
                     Swal.fire({
                             title: "Success!",
                             text: `You have booked a ${subscription.type} subscription`,
                             icon: "success"
                           });
                     navigate('/');
-                // .then(res=>{
-                    // console.log(res);
-                    // if(res.data.modifiedCount){
-                    //     Swal.fire({
-                    //         title: "Success!",
-                    //         text: `You have booked a ${subscription.type} subscription`,
-                    //         icon: "success"
-                    //       });
-                    // }
-                // })
-                
-            }
+            
+        }
         }
     }
     return (
