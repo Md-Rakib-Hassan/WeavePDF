@@ -11,8 +11,9 @@ const styles = StyleSheet.create({
 });
 
 const ImageToPDF = () => {
+
     const fileInputRef = useRef(null);
-    // const [progress, setProgress] = useState(0);
+
 
     const convertToPDF = async () => {
         const files = fileInputRef.current.files;
@@ -26,7 +27,7 @@ const ImageToPDF = () => {
                 images.push(event.target.result);
 
                 if (images.length === files.length) {
-                    genratePDF(images);
+                    generatePDF(images);
                     fileInputRef.current.value = "";
                 }
             };
@@ -38,8 +39,7 @@ const ImageToPDF = () => {
             reader.readAsDataURL(file);
         }
     };
-
-    const genratePDF = async (images) => {
+    const generatePDF = async (images) => {
         try {
             const doc = (
                 <Document>
@@ -54,7 +54,8 @@ const ImageToPDF = () => {
             const asPdf = pdf();
             asPdf.updateContainer(doc);
             const pdfBlob = await asPdf.toBlob();
-            saveAs(pdfBlob, 'Cover.pdf');
+            saveAs(pdfBlob, 'convertImgToPDF.pdf');
+
         } catch (error) {
             console.log("Error", error);
         }
