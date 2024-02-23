@@ -29,6 +29,7 @@ import UserSubscription from "../Pages/UserSubscription/UserSubscription";
 import AddWatermark from "../Pages/AddWatermark/AddWatermark";
 import EditPdf from "../Pages/EditPDF/EditPdf";
 import Contact from './../Pages/Contact';
+import AddNumber from "../Pages/AddPageNumber/AddNumber";
 
 const router = createBrowserRouter([
   {
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
       {
         path: '/edit-pdf',
         element: <EditPdf></EditPdf>
+      },
+      {
+        path: '/add-pg-number',
+        element: <AddNumber></AddNumber>
       }
     ],
   },
