@@ -5,6 +5,7 @@ import { useState } from "react";
 import { IoIosCopy } from "react-icons/io";
 import { CiPause1 } from "react-icons/ci";
 import { MdOutlineSettingsVoice } from "react-icons/md";
+import { SlActionRedo } from "react-icons/sl";
 import "./SpeechToText.css"
 import TextEditor from './TextEditor/TextEditor';
 
@@ -20,7 +21,9 @@ const SpeechToText = () => {
     if (!browserSupportsSpeechRecognition) {
         return null
     }
-
+    const reloadPage = () => {
+        return location.reload();
+    }
     return (
 
         <div>
@@ -38,6 +41,7 @@ const SpeechToText = () => {
                         </button>
                         <button className='button-class button-class flex gap-1 items-center' onClick={startListening}><MdOutlineSettingsVoice className='text-lg'></MdOutlineSettingsVoice>Start Listening</button>
                         <button className='button-class flex gap-1 items-center' onClick={SpeechRecognition.stopListening}><CiPause1></CiPause1> Stop Listening</button>
+                        <button onClick={reloadPage} className='button-class flex gap-1 items-center' ><SlActionRedo></SlActionRedo> Clear</button>
                     </div>
                 </div>
 
