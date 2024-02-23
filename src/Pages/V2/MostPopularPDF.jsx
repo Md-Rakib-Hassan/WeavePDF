@@ -1,3 +1,4 @@
+import { MdOutlineSettingsVoice } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
 import { LuFileEdit } from "react-icons/lu";
 import { MdOutlineSplitscreen } from "react-icons/md";
@@ -59,12 +60,16 @@ const MostPopularPDF = () => {
         <Link to={"/edit-pdf"}>
           {" "}
           <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-            <LuFileEdit className="text-[35px] text-[#24b2ff]" />
+            <LuFileEdit className="text-[50px] text-[#24b2ff]" />
             <div className="pl-3">
               {" "}
               <h2 className="font-bold text-[20px]">Edit PDF</h2>
               <p className="font-normal pt-1">
+
                 Edit PDFs with a plethora of amazing tools
+
+                Add signatures, images, highlight and add texts, draw, add watermark and many other! 
+
               </p>
             </div>
             <IoIosArrowForward className="mt-3 text-2xl" />
@@ -98,15 +103,15 @@ const MostPopularPDF = () => {
             <IoIosArrowForward className="mt-3 text-2xl" />
           </div>
         </Link>
-        <Link to={"/htmlToPdf"}>
+        <Link to={"/speech-To-Text"}>
           {" "}
           <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-            <FaHtml5 className="text-[30px] text-[#ee4030]" />
+            <MdOutlineSettingsVoice className="text-[40px] text-[#693080]" />
             <div className="pl-3">
               {" "}
-              <h2 className="font-bold text-[20px]">HTML to PDF</h2>
+              <h2 className="font-bold text-[20px]">Speech to Text</h2>
               <p className="font-normal pt-1">
-                Convert your HTML editor file into PDF
+                Convert your Speech into text
               </p>
             </div>
             <IoIosArrowForward className="mt-3 text-2xl" />
@@ -121,9 +126,13 @@ const MostPopularPDF = () => {
                 <div className="pl-3">
                   {" "}
                   <h2 className="font-bold text-[20px]">Image to PDF</h2>
+
                   <p className="font-normal pt-1">
                     Convert your Image into PDF File
                   </p>
+
+                  <p className="font-normal pt-1">Convert your Image into PDF File</p>
+
                 </div>
                 <IoIosArrowForward className="mt-3 text-2xl" />
               </div>
@@ -146,11 +155,15 @@ const MostPopularPDF = () => {
             <Link to={"/addWaterMark"}>
               {" "}
               <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+
                 <img
                   className="h-[40px] w-auto"
                   src="https://i.ibb.co/4fWq7sY/watermark.png"
                   alt=""
                 />
+
+                <img className="h-[40px] w-auto" src="https://i.ibb.co/4fWq7sY/watermark.png" alt="" />
+
                 <div className="pl-3">
                   {" "}
                   <h2 className="font-bold text-[20px]">Add WaterMark</h2>
@@ -161,6 +174,7 @@ const MostPopularPDF = () => {
                 <IoIosArrowForward className="mt-3 text-2xl" />
               </div>
             </Link>
+
             <Link to={"/toDoList"}>
               {" "}
               <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
@@ -170,13 +184,28 @@ const MostPopularPDF = () => {
                   <h2 className="font-bold text-[20px]">To Do List</h2>
                   <p className="font-normal pt-1">
                     Use todo list for your daily task
+
+            <Link to={"/htmlToPdf"}>
+              {" "}
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <FaHtml5 className="text-[30px] text-[#ee4030]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">HTML to PDF</h2>
+                  <p className="font-normal pt-1">
+                    Convert your HTML editor file into PDF
+
                   </p>
                 </div>
                 <IoIosArrowForward className="mt-3 text-2xl" />
               </div>
             </Link>
+
           </>
         )}
+
+          </>)}
+
       </div>
       <div className="flex justify-center py-9">
         <button
