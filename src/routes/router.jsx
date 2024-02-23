@@ -29,6 +29,7 @@ import ImageToPDF from "../Pages/ImageToPDF/ImageToPDF";
 import UserSubscription from "../Pages/UserSubscription/UserSubscription";
 import AddWatermark from "../Pages/AddWatermark/AddWatermark";
 import EditPdf from "../Pages/EditPDF/EditPdf";
+import HtmlToPdfNew from "../Pages/HtmlToPdfNew/HtmlToPdfNew";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "/htmlToPdf",
         element: <HtmlToPDF></HtmlToPDF>,
+      },
+      {
+        path: "/htmlToPdfNew",
+        element: <HtmlToPdfNew></HtmlToPdfNew>,
       },
       {
         path: "/split-pdf",
