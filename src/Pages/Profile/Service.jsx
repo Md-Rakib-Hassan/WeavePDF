@@ -35,7 +35,7 @@ const Service = ({service, index}) => {
     }
     return (
         <tr>
-            <th>{index+1}</th>
+            <th>{index + 1}</th>
             <td>{service.date}</td>
             <td>{service.service_name}</td>
             <td>{service.no_of_files}</td>
