@@ -6,7 +6,7 @@ function ToDoTask(props) {
       <div className="flex items-center gap-2">
         <span className="text-lg">{props.item}</span>
         <FaTrash
-          className="text-red-500 cursor-pointer hover:text-red-700"
+          className="text-red-600 cursor-pointer hover:text-red-700"
           onClick={() => {
             props.deleteItem(props.index);
           }}
