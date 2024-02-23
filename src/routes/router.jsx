@@ -28,7 +28,9 @@ import ImageToPDF from "../Pages/ImageToPDF/ImageToPDF";
 import UserSubscription from "../Pages/UserSubscription/UserSubscription";
 import AddWatermark from "../Pages/AddWatermark/AddWatermark";
 import EditPdf from "../Pages/EditPDF/EditPdf";
+import SpeechToText from "../Pages/SpeechToText/SpeechToText";
 import Contact from './../Pages/Contact';
+
 
 const router = createBrowserRouter([
   {
@@ -40,8 +42,8 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path:'/addWaterMark',
-        element:<AddWatermark></AddWatermark>
+        path: '/addWaterMark',
+        element: <AddWatermark></AddWatermark>
       },
 
       {
@@ -106,11 +108,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/user-subscription',
-        element:<PrivateRoute><UserSubscription></UserSubscription></PrivateRoute> 
+        element: <PrivateRoute><UserSubscription></UserSubscription></PrivateRoute>
       },
       {
         path: '/edit-pdf',
         element: <EditPdf></EditPdf>
+      },
+      {
+        path: '/speech-To-Text',
+        element: <SpeechToText></SpeechToText>
       }
     ],
   },
