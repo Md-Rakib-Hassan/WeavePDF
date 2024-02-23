@@ -11,82 +11,90 @@ import Task from '../../Shared/RecentTask/Task';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 const Editor = () => {
-    const [isOn,setIsOn]=useState(false);
-    const [input,setInput]=useState();
-    const [previous_work,setPrevious_work]=useState([]);
-    const { user } = useAuth();
-    const axiosPublic = useAxiosPublic();
+  const [isOn, setIsOn] = useState(false);
+  const [input, setInput] = useState();
+  const [previous_work, setPrevious_work] = useState([]);
+  const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
 
-    useEffect(()=>{
-      if(user){
-        axiosPublic.get(`/tasks/${user.email}`)
-        .then(res=>setPrevious_work(res.data));
+  useEffect(() => {
+    if (user) {
+      axiosPublic.get(`/tasks/${user.email}`)
+        .then(res => setPrevious_work(res.data));
+    }
+
+  }, [axiosPublic, user]);
+
+  console.log(previous_work);
+
+  const generatePDF = () => {
+    const doc = new jsPDF("p", "pt", "a4");
+    doc.html(document.querySelector("#prose"), {
+      callback: function (pdf) {
+        pdf.save("md-to-pdf.pdf");
       }
 
-    },[axiosPublic,user]);
+    })
+    setIsOn(true);
 
-    console.log(previous_work);
-    
-    const generatePDF=()=>{
-      const doc= new jsPDF("p","pt","a4");
-      doc.html(document.querySelector("#prose"),{
-        callback: function(pdf){
-          pdf.save("md-to-pdf.pdf");
-        }
-        
-      })
-      setIsOn(true);
+  }
+  return (
+    <div className='relative'>
+      <Task uid='md-to-pdf' service_name='md-to-pdf' no_of_files={1} isON={isOn} content={input}></Task>
+      <TakeReviews isOn={isOn} uniqueId='md-to-pdf'></TakeReviews>
 
-    }
-    return (
-      <div className='relative'>
-          <Task uid='md-to-pdf' service_name='md-to-pdf' no_of_files={1} isON={isOn} content={input}></Task>
-         <TakeReviews isOn={isOn} uniqueId='md-to-pdf'></TakeReviews>
+      {input ? <button className='absolute right-2 bg-blue px-2 rounded-md' onClick={generatePDF}>Download Pdf</button> : ''}
+      {previous_work ? <div className="dropdown dropdown-right">
+        <div tabIndex={0} role="button" className="left-2 bg-blue px-2 rounded-md m-2">Previous Work</div>
+        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+          {
+            previous_work.map(work=><li key={work._id}><a onClick={()=>setInput(work.content)}>{work.date}</a></li>)
+          }
+        </ul>
+      </div> : ''}
+      <div className='flex lg:flex-row flex-col' >
+        <textarea autoFocus className=' min-h-[100vh] lg:w-1/2 p-4 border bg-neutral-50' value={input} onChange={(e) => setInput(e.target.value)}></textarea>
+        <div className='lg:w-1/2 p-4 text-black text-wrap' id='prose'>
+          <Markdown
+            remarkPlugins={remarkGfm}
+            rehypePlugins={[rehypeKatex]}
+            children={input}
+            className='prose'
+            components={{
+              code(props) {
+                const { children, className, ...rest } = props
+                const match = /language-(\w+)/.exec(className || '')
+                return match ? (
+                  <SyntaxHighlighter
+                    {...rest}
+                    PreTag="div"
+                    children={String(children).replace(/\n$/, '')}
+                    language={match[1]}
+                    style={vs}
+                  />
+                ) : (
+                  <code {...rest} className={className}>
 
-        {input ? <button className='absolute right-2 bg-blue px-2 rounded-md' onClick={generatePDF}>Download Pdf</button>:''}
-        <div className='flex lg:flex-row flex-col' >
-            <textarea autoFocus className=' min-h-[100vh] lg:w-1/2 p-4 border bg-neutral-50' value={input} onChange={(e)=>setInput(e.target.value)}></textarea>
-            <div className='lg:w-1/2 p-4 text-black text-wrap' id='prose'>
-                <Markdown 
-                remarkPlugins={remarkGfm}
-                rehypePlugins={[rehypeKatex]}
-                children={input}
-                className='prose'
-                components={{
-                    code(props) {
-                      const {children, className, ...rest} = props
-                      const match = /language-(\w+)/.exec(className || '')
-                      return match ? (
-                        <SyntaxHighlighter
-                          {...rest}
-                          PreTag="div"
-                          children={String(children).replace(/\n$/, '')}
-                          language={match[1]}
-                          style={vs}
-                        />
-                      ) : (
-                        <code {...rest} className={className}>
-                          
-                        </code>
-                      )
-                    }
-                  }}
-                
-                ></Markdown>
-                
-            </div>
-            
+                  </code>
+                )
+              }
+            }}
+
+          ></Markdown>
+
         </div>
 
-        <ShowReviews uniqueId='md-to-pdf'
+      </div>
+
+      <ShowReviews uniqueId='md-to-pdf'
         title='Users Feedback'
         subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'
-        ></ShowReviews>
+      ></ShowReviews>
 
-       
 
-        </div>
-    );
+
+    </div>
+  );
 };
 
 export default Editor;
