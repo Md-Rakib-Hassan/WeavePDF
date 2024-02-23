@@ -1,7 +1,6 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
-import './TipTap.css'
 import {
     FaBold,
     FaHeading,
@@ -69,7 +68,7 @@ const MenuBar = ({ editor }) => {
                 </button>
                 <button
                     onClick={() => editor.chain().focus().toggleBulletList().run()}
-                    className={editor.isActive("bulletList") ? "is_active" : ""}
+                    className={editor.isActive("bulletList") ? 'is-active' : ''}
                 >
                     <FaListUl />
                 </button>

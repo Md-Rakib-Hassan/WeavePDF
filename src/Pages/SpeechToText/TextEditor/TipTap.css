@@ -62,9 +62,9 @@
 }
 
 .ProseMirror blockquote {
-  padding-left: 1rem;
-  border-left: 3px solid #999999;
-}
+    padding-left: 1rem;
+    border-left: 2px solid rgba(#0D0D0D, 0.1);
+  }
 
 .ProseMirror hr {
   border: none;

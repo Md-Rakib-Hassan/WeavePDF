@@ -6,12 +6,12 @@ import { Tiptap } from "./Tiptap";
 
 const TextEditor = () => {
     const [description, setDescription] = useState("");
-    const [isOn, setIsOn] = useState(false);
+    const [, setIsOn] = useState(false);
     const generatePDF = () => {
         const doc = new jsPDF("p", "pt", "a4");
         doc.html(document.querySelector("#previewDownload"), {
             callback: function (pdf) {
-                pdf.save("md-to-pdf.pdf");
+                pdf.save("document.pdf");
             }
         })
         setIsOn(true);
@@ -24,7 +24,7 @@ const TextEditor = () => {
                 <Details description={description} />
             </div>
             <div className="text-center">
-                {description ? <button className='button-class' onClick={generatePDF}>Download Pdf</button> : ''}
+                {description ? <button className='button-class' onClick={generatePDF}>Download As Pdf</button> : ''}
             </div>
         </div>
     );
