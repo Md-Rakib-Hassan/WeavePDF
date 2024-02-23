@@ -2,7 +2,7 @@ import React from 'react';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
-const Task = ({no_of_files,uid,service_name,isON}) => {
+const Task = ({no_of_files,uid,service_name,isON,content}) => {
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
     if(isON){
@@ -13,7 +13,8 @@ const Task = ({no_of_files,uid,service_name,isON}) => {
             user_email:user.email,
             date:new Date(),
             service_name,
-            no_of_files
+            no_of_files,
+            content
         }
     
         axiosPublic.post('/tasks',data);
