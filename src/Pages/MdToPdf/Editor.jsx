@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
 import rehypeKatex from 'rehype-katex'
@@ -8,9 +8,25 @@ import jsPDF from 'jspdf';
 import TakeReviews from '../../Shared/Reviews/TakeReviews';
 import ShowReviews from '../../Shared/Reviews/ShowReviews';
 import Task from '../../Shared/RecentTask/Task';
+import useAuth from '../../hooks/useAuth';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 const Editor = () => {
     const [isOn,setIsOn]=useState(false);
     const [input,setInput]=useState();
+    const [previous_work,setPrevious_work]=useState([]);
+    const { user } = useAuth();
+    const axiosPublic = useAxiosPublic();
+
+    useEffect(()=>{
+      if(user){
+        axiosPublic.get(`/tasks/${user.email}`)
+        .then(res=>setPrevious_work(res.data));
+      }
+
+    },[axiosPublic,user]);
+
+    console.log(previous_work);
+    
     const generatePDF=()=>{
       const doc= new jsPDF("p","pt","a4");
       doc.html(document.querySelector("#prose"),{
