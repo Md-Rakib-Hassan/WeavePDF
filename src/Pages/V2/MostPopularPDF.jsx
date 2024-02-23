@@ -12,12 +12,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const MostPopularPDF = () => {
-    const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
-    const toggleSeeMore = () => {
-      setShowMore(!showMore);
-    };
-    
+  const toggleSeeMore = () => {
+    setShowMore(!showMore);
+  };
+
   return (
     <div className="max-w-5xl mx-auto py-10 p-2">
       <div className="text-center">
@@ -64,7 +64,7 @@ const MostPopularPDF = () => {
               {" "}
               <h2 className="font-bold text-[20px]">Edit PDF</h2>
               <p className="font-normal pt-1">
-                Edit PDFs with a plethora of amazing tools 
+                Edit PDFs with a plethora of amazing tools
               </p>
             </div>
             <IoIosArrowForward className="mt-3 text-2xl" />
@@ -114,71 +114,78 @@ const MostPopularPDF = () => {
         </Link>
         {showMore && (
           <>
-        <Link to={"/imageToPdf"}>
-          {" "}
-          <div className="bg-base-300 hover:scale-110 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-            <FcImageFile className="text-[45px]" />
-            <div className="pl-3">
+            <Link to={"/imageToPdf"}>
               {" "}
-              <h2 className="font-bold text-[20px]">Image to PDF</h2>
-              <p className="font-normal pt-1">Convert your Image into PDF File</p>
-            </div>
-            <IoIosArrowForward className="mt-3 text-2xl" />
-          </div>
-        </Link>
-        <Link to={"/draw-signature"}>
-          {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-            <FcSignature className="text-[60px] text-[#ee4030]" />
-            <div className="pl-3">
+              <div className="bg-base-300 hover:scale-110 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <FcImageFile className="text-[45px]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">Image to PDF</h2>
+                  <p className="font-normal pt-1">
+                    Convert your Image into PDF File
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
+            <Link to={"/draw-signature"}>
               {" "}
-              <h2 className="font-bold text-[20px]">Draw Signature</h2>
-              <p className="font-normal pt-1">
-                Get your online signature just do a draw
-              </p>
-            </div>
-            <IoIosArrowForward className="mt-3 text-2xl" />
-          </div>
-        </Link>
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <FcSignature className="text-[60px] text-[#ee4030]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">Draw Signature</h2>
+                  <p className="font-normal pt-1">
+                    Get your online signature just do a draw
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
 
-        <Link to={"/addWaterMark"}>
-          {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-            <img className="h-[40px] w-auto" src="https://i.ibb.co/4fWq7sY/watermark.png" alt="" />
-            <div className="pl-3">
+            <Link to={"/addWaterMark"}>
               {" "}
-              <h2 className="font-bold text-[20px]">Add WaterMark</h2>
-              <p className="font-normal pt-1">
-                Add watermark to your PDF files.
-              </p>
-            </div>
-            <IoIosArrowForward className="mt-3 text-2xl" />
-          </div>
-        </Link>
-        <Link to={"/toDoList"}>
-          {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-          <LuListTodo className="text-[35px] text-[#ee4030]" />
-            <div className="pl-3">
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <img
+                  className="h-[40px] w-auto"
+                  src="https://i.ibb.co/4fWq7sY/watermark.png"
+                  alt=""
+                />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">Add WaterMark</h2>
+                  <p className="font-normal pt-1">
+                    Add watermark to your PDF files.
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
+            <Link to={"/toDoList"}>
               {" "}
-              <h2 className="font-bold text-[20px]">To Do List</h2>
-              <p className="font-normal pt-1">
-              Use todo list for your daily task
-              </p>
-            </div>
-            <IoIosArrowForward className="mt-3 text-2xl" />
-          </div>
-        </Link>
-        </>)}
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <LuListTodo className="text-[35px] text-[#ee4030]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">To Do List</h2>
+                  <p className="font-normal pt-1">
+                    Use todo list for your daily task
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
+          </>
+        )}
       </div>
-<div className="flex justify-center py-9">
-<button
-        onClick={toggleSeeMore}
-        className="btn bg-[#52ab98] text-white font-bold mr-4"
-      >
-        {showMore ? "See Less" : "See all Tools"}
-      </button>
-</div>
+      <div className="flex justify-center py-9">
+        <button
+          onClick={toggleSeeMore}
+          className="btn bg-[#52ab98] text-white font-bold mr-4"
+        >
+          {showMore ? "See Less" : "See all Tools"}
+        </button>
+      </div>
     </div>
   );
 };
