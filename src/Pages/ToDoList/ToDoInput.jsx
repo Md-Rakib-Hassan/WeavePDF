@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 function ToDoInput(props) {
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState("");
 
   const handleEnterPress = (e) => {
     if (e.keyCode === 13) {
       props.addList(inputText);
-      setInputText('');
+      setInputText("");
     }
   };
 
@@ -26,7 +26,7 @@ function ToDoInput(props) {
         className="bg-teal text-white rounded-full p-2 px-4 ml-4 text-2xl"
         onClick={() => {
           props.addList(inputText);
-          setInputText('');
+          setInputText("");
         }}
       >
         +
