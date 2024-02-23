@@ -24,7 +24,7 @@ const Editor = () => {
     }
     return (
       <div className='relative'>
-          <Task uid='md-to-pdf' service_name='md-to-pdf' no_of_files={1} isON={isOn}></Task>
+          <Task uid='md-to-pdf' service_name='md-to-pdf' no_of_files={1} isON={isOn} content={input}></Task>
          <TakeReviews isOn={isOn} uniqueId='md-to-pdf'></TakeReviews>
 
         {input ? <button className='absolute right-2 bg-blue px-2 rounded-md' onClick={generatePDF}>Download Pdf</button>:''}
