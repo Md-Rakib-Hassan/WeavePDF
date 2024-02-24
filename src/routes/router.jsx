@@ -28,8 +28,12 @@ import ImageToPDF from "../Pages/ImageToPDF/ImageToPDF";
 import UserSubscription from "../Pages/UserSubscription/UserSubscription";
 import AddWatermark from "../Pages/AddWatermark/AddWatermark";
 import EditPdf from "../Pages/EditPDF/EditPdf";
+
+import ToDoList from "../Pages/ToDoList/ToDoList";
+
 import SpeechToText from "../Pages/SpeechToText/SpeechToText";
 import Contact from './../Pages/Contact';
+
 
 
 const router = createBrowserRouter([
@@ -97,6 +101,10 @@ const router = createBrowserRouter([
       {
         path: "/wordToPdf",
         element: <WordToPDF></WordToPDF>,
+      },
+      {
+        path: "/toDoList",
+        element: <ToDoList></ToDoList>,
       },
       {
         path: '/imageToPdf',

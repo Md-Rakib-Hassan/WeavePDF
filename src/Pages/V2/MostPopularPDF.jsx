@@ -1,6 +1,6 @@
 import { MdOutlineSettingsVoice } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
-import { LuFileEdit } from "react-icons/lu";
+import { LuFileEdit, LuListTodo } from "react-icons/lu";
 import { MdOutlineSplitscreen } from "react-icons/md";
 import { BsSignMergeRight } from "react-icons/bs";
 import { FaRegFilePdf } from "react-icons/fa";
@@ -169,6 +169,18 @@ const MostPopularPDF = () => {
                 <IoIosArrowForward className="mt-3 text-2xl" />
               </div>
             </Link>
+            <Link to={"/toDoList"}>
+              {" "}
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <LuListTodo className="text-[35px] text-[#ee4030]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">To Do List</h2>
+                  <p className="font-normal pt-1">
+                    Use todo list for your daily task and get it </p>
+                    </div>
+                    </div>
+                    </Link>
           </>)}
       </div>
       <div className="flex justify-center py-9">
