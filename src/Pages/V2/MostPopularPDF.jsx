@@ -10,6 +10,7 @@ import { FcImageFile } from "react-icons/fc";
 import { FcSignature } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { TbNumbers } from "react-icons/tb";
 
 const MostPopularPDF = () => {
   const [showMore, setShowMore] = useState(false);
@@ -164,6 +165,20 @@ const MostPopularPDF = () => {
                   <h2 className="font-bold text-[20px]">HTML to PDF</h2>
                   <p className="font-normal pt-1">
                     Convert your HTML editor file into PDF
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
+            <Link to={"/add-pg-number"}>
+              {" "}
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <TbNumbers className="text-[40px] text-[#ee4030]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">Add Page Number</h2>
+                  <p className="font-normal pt-1">
+                    Add page numbers to the pages of PDF
                   </p>
                 </div>
                 <IoIosArrowForward className="mt-3 text-2xl" />
