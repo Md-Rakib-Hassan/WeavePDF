@@ -30,6 +30,7 @@ import AddWatermark from "../Pages/AddWatermark/AddWatermark";
 import EditPdf from "../Pages/EditPDF/EditPdf";
 import SpeechToText from "../Pages/SpeechToText/SpeechToText";
 import Contact from './../Pages/Contact';
+import AddNumber from "../Pages/AddNumber/AddNumber";
 
 
 const router = createBrowserRouter([
@@ -117,6 +118,10 @@ const router = createBrowserRouter([
       {
         path: '/speech-To-Text',
         element: <SpeechToText></SpeechToText>
+      },
+      {
+        path: '/add-pg-number',
+        element: <AddNumber></AddNumber>
       }
     ],
   },
