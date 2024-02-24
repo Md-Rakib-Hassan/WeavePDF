@@ -29,6 +29,7 @@ const AddNumber = () => {
                 y: bottomY,
                 size: 12
             })
+            const pdfBytes = await pdfDoc.save();
         }
         
         
