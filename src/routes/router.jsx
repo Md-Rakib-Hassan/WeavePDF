@@ -33,6 +33,7 @@ import ToDoList from "../Pages/ToDoList/ToDoList";
 
 import SpeechToText from "../Pages/SpeechToText/SpeechToText";
 import Contact from './../Pages/Contact';
+import AddNumber from "../Pages/AddNumber/AddNumber";
 
 
 
@@ -125,6 +126,10 @@ const router = createBrowserRouter([
       {
         path: '/speech-To-Text',
         element: <SpeechToText></SpeechToText>
+      },
+      {
+        path: '/add-pg-number',
+        element: <AddNumber></AddNumber>
       }
     ],
   },
