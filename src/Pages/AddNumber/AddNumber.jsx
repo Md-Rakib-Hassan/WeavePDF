@@ -1,8 +1,10 @@
+import { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { PDFDocument } from 'pdf-lib'
 
 const AddNumber = () => {
     const axiosPublic = useAxiosPublic();
+    const [url, setUrl] = useState(null);
     const handleUpload = async (e) =>{
         e.preventDefault();
         const form = e.target;
@@ -30,6 +32,8 @@ const AddNumber = () => {
                 size: 12
             })
             const pdfBytes = await pdfDoc.save();
+            const pdfBlob = new Blob([pdfBytes] , { type: 'application/pdf' })
+            setUrl(URL.createObjectURL(pdfBlob))
         }
         
         
