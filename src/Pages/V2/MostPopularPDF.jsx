@@ -1,10 +1,9 @@
 import { MdOutlineSettingsVoice } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
-import { LuFileEdit } from "react-icons/lu";
+import { LuFileEdit, LuListTodo } from "react-icons/lu";
 import { MdOutlineSplitscreen } from "react-icons/md";
 import { BsSignMergeRight } from "react-icons/bs";
 import { FaRegFilePdf } from "react-icons/fa";
-import { LuListTodo } from "react-icons/lu";
 import { BsMarkdown } from "react-icons/bs";
 import { FaHtml5 } from "react-icons/fa";
 import { FcImageFile } from "react-icons/fc";
@@ -65,11 +64,7 @@ const MostPopularPDF = () => {
               {" "}
               <h2 className="font-bold text-[20px]">Edit PDF</h2>
               <p className="font-normal pt-1">
-
-                Edit PDFs with a plethora of amazing tools
-
                 Add signatures, images, highlight and add texts, draw, add watermark and many other! 
-
               </p>
             </div>
             <IoIosArrowForward className="mt-3 text-2xl" />
@@ -126,13 +121,7 @@ const MostPopularPDF = () => {
                 <div className="pl-3">
                   {" "}
                   <h2 className="font-bold text-[20px]">Image to PDF</h2>
-
-                  <p className="font-normal pt-1">
-                    Convert your Image into PDF File
-                  </p>
-
                   <p className="font-normal pt-1">Convert your Image into PDF File</p>
-
                 </div>
                 <IoIosArrowForward className="mt-3 text-2xl" />
               </div>
@@ -155,15 +144,7 @@ const MostPopularPDF = () => {
             <Link to={"/addWaterMark"}>
               {" "}
               <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-
-                <img
-                  className="h-[40px] w-auto"
-                  src="https://i.ibb.co/4fWq7sY/watermark.png"
-                  alt=""
-                />
-
                 <img className="h-[40px] w-auto" src="https://i.ibb.co/4fWq7sY/watermark.png" alt="" />
-
                 <div className="pl-3">
                   {" "}
                   <h2 className="font-bold text-[20px]">Add WaterMark</h2>
@@ -174,17 +155,6 @@ const MostPopularPDF = () => {
                 <IoIosArrowForward className="mt-3 text-2xl" />
               </div>
             </Link>
-
-            <Link to={"/toDoList"}>
-              {" "}
-              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-                <LuListTodo className="text-[35px] text-[#ee4030]" />
-                <div className="pl-3">
-                  {" "}
-                  <h2 className="font-bold text-[20px]">To Do List</h2>
-                  <p className="font-normal pt-1">
-                    Use todo list for your daily task
-
             <Link to={"/htmlToPdf"}>
               {" "}
               <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
@@ -194,18 +164,24 @@ const MostPopularPDF = () => {
                   <h2 className="font-bold text-[20px]">HTML to PDF</h2>
                   <p className="font-normal pt-1">
                     Convert your HTML editor file into PDF
-
                   </p>
                 </div>
                 <IoIosArrowForward className="mt-3 text-2xl" />
               </div>
             </Link>
-
-          </>
-        )}
-
+            <Link to={"/toDoList"}>
+              {" "}
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <LuListTodo className="text-[35px] text-[#ee4030]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">To Do List</h2>
+                  <p className="font-normal pt-1">
+                    Use todo list for your daily task and get it </p>
+                    </div>
+                    </div>
+                    </Link>
           </>)}
-
       </div>
       <div className="flex justify-center py-9">
         <button
