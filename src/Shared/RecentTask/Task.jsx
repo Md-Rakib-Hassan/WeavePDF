@@ -1,4 +1,3 @@
-import React from 'react';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
@@ -17,7 +16,7 @@ const Task = ({no_of_files,uid,service_name,isON,content}) => {
             content
         }
     
-        axiosPublic.post('/tasks',data);
+        if(user)axiosPublic.post('/tasks',data);
 
 
 
