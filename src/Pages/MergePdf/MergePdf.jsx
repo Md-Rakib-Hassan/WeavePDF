@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import TakeReviews from '../../Shared/Reviews/TakeReviews';
 import ShowReviews from '../../Shared/Reviews/ShowReviews';
-import {Cloudinary} from "@cloudinary/url-gen";
+import useCloudinery from '../../hooks/useCloudinery';
 
 const MergePdf = () => {
 
@@ -17,9 +17,9 @@ const MergePdf = () => {
     const [isOn, setIsOn] = useState(false);
     const { user } = useAuth();
     const [url, seturl] = useState(null)
-    const cld = new Cloudinary({cloud: {cloudName: 'dy2bw8lgg'}});
-    const upload_preset = "gitmqi5x"
-    const cloud_name = "dy2bw8lgg"
+    const getFileUrl = useCloudinery();
+    // const upload_preset = "gitmqi5x"
+    // const cloud_name = "dy2bw8lgg"
     const axiosPublic = useAxiosPublic();
     const handlePost = () =>{
         const date = new Date();
@@ -77,13 +77,8 @@ const MergePdf = () => {
         const mergedPdfBlob = new Blob([mergedPdfBytes], { type : 'application/pdf' });
         const mergedFile = new File([mergedPdfBytes], 'merged.pdf', {type: 'application/pdf'});
         setmerged(URL.createObjectURL(mergedPdfBlob))
-        const formdata = new FormData()
-        formdata.append('file', mergedFile)
-        formdata.append('upload_preset', upload_preset)
-        axiosPublic.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,formdata)
-        .then(res=>{
-            // console.log(res.data);
-            seturl(res.data.secure_url)})
+        const fileurl = getFileUrl(mergedFile)
+        console.log(fileurl);
         // if(user){
         //     handlePost();
         // }
