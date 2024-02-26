@@ -13,6 +13,7 @@ const MergePdf = () => {
     const [pdfs, setPdfs] = useState([]);
     const [sortedpdfs, setsortedPdfs] = useState([])
     const [merged, setmerged] = useState(null);
+    const [mergeClicked, setmergeClicked] = useState(false)
     const [isOn, setIsOn] = useState(false);
     const { user } = useAuth();
     const [url, seturl] = useState(null)
@@ -59,6 +60,7 @@ const MergePdf = () => {
     // console.log(sortedpdfs);
 
     const mergeDocument = async() =>{
+        setmergeClicked(true)
         setmerged(null);
         try{const mergedDoc = await PDFDocument.create();
 
@@ -80,7 +82,7 @@ const MergePdf = () => {
         formdata.append('upload_preset', upload_preset)
         axiosPublic.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,formdata)
         .then(res=>{
-            console.log(res.data);
+            // console.log(res.data);
             seturl(res.data.secure_url)})
         // if(user){
         //     handlePost();
@@ -95,12 +97,15 @@ const MergePdf = () => {
 
     return (
         <div className='flex flex-col items-center py-10'>
-            <h1 className='text-3xl font-playfair font-bold'>Merge your PDF Files here</h1><br />
-            <p>Combine PDFs in the order you want with the easiest PDF merger available.</p>
+            {!mergeClicked && <div className='text-center'>
+               <h1 className='text-3xl font-playfair font-bold'>Merge your PDF Files here</h1><br />
+                <p>Combine PDFs in the order you want with the easiest PDF merger available.</p> 
+            </div>}
+            
             <TakeReviews isOn={isOn} uniqueId="merge"></TakeReviews>
             {!merged && pdfs && pdfs.length ? 
             <button onClick={mergeDocument} className='btn bg-[#52ab98] mt-5 font-bold text-2xl text-white'>Merge</button>
-            :<label className='label'>
+            :!mergeClicked && <label className='label'>
                 <input onChange={handleInput} accept='application/pdf' type="file" name="merger[]" id="merge-input" multiple /><br />
                 <span className='font-bold text-xl text-white'>Select PDF files</span>
             </label>}
@@ -125,9 +130,10 @@ const MergePdf = () => {
 
             {
                 merged && <div>
-                    <p className='text-3xl font-bold my-5 text-center'>Merging Complete! : </p>
-                    <button className='btn bg-teal p-5 text-white'><a href={merged} download>Download</a></button>
-                    
+                    <p className='text-5xl font-playfair font-bold my-5 text-center'>Merging Complete! </p>
+                    <div className='flex justify-center'>
+                    <button className='btn bg-aqua_marine my-5 px-20 text-white'><a href={merged} download>Download</a></button>
+                    </div>
                 </div>
             }
 
