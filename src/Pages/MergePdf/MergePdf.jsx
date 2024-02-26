@@ -78,10 +78,10 @@ const MergePdf = () => {
         const mergedFile = new File([mergedPdfBytes], 'merged.pdf', {type: 'application/pdf'});
         setmerged(URL.createObjectURL(mergedPdfBlob))
         const fileurl = getFileUrl(mergedFile)
-        console.log(fileurl);
-        // if(user){
-        //     handlePost();
-        // }
+        seturl(fileurl)
+        if(user){
+            handlePost();
+        }
         }
         catch(err){
             console.log(err);
