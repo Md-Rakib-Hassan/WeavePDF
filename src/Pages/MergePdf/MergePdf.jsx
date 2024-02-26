@@ -16,19 +16,18 @@ const MergePdf = () => {
     const [mergeClicked, setmergeClicked] = useState(false)
     const [isOn, setIsOn] = useState(false);
     const { user } = useAuth();
-    const [url, seturl] = useState(null)
+
     const getFileUrl = useCloudinery();
-    // const upload_preset = "gitmqi5x"
-    // const cloud_name = "dy2bw8lgg"
     const axiosPublic = useAxiosPublic();
-    const handlePost = () =>{
+    const handlePost = (fileurl) =>{
         const date = new Date();
         const user_email = user.email
         const no_of_files = pdfs.length
         const service_name = "Merge PDF"
+        const file = fileurl
         const status = true
 
-        const service = {  date, user_email, no_of_files, service_name, status}
+        const service = {  date, user_email, no_of_files, service_name, status, file}
         axiosPublic.post('/upload-service',service)
         setIsOn(true)
         
@@ -77,10 +76,9 @@ const MergePdf = () => {
         const mergedPdfBlob = new Blob([mergedPdfBytes], { type : 'application/pdf' });
         const mergedFile = new File([mergedPdfBytes], 'merged.pdf', {type: 'application/pdf'});
         setmerged(URL.createObjectURL(mergedPdfBlob))
-        const fileurl = getFileUrl(mergedFile)
-        seturl(fileurl)
         if(user){
-            handlePost();
+            const fileurl = getFileUrl(mergedFile)
+            handlePost(fileurl);
         }
         }
         catch(err){
