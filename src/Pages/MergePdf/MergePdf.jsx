@@ -6,6 +6,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import TakeReviews from '../../Shared/Reviews/TakeReviews';
 import ShowReviews from '../../Shared/Reviews/ShowReviews';
+import {Cloudinary} from "@cloudinary/url-gen";
 
 const MergePdf = () => {
 
@@ -14,6 +15,10 @@ const MergePdf = () => {
     const [merged, setmerged] = useState(null);
     const [isOn, setIsOn] = useState(false);
     const { user } = useAuth();
+    const [url, seturl] = useState(null)
+    const cld = new Cloudinary({cloud: {cloudName: 'dy2bw8lgg'}});
+    const upload_preset = "gitmqi5x"
+    const cloud_name = "dy2bw8lgg"
     const axiosPublic = useAxiosPublic();
     const handlePost = () =>{
         const date = new Date();
@@ -32,6 +37,7 @@ const MergePdf = () => {
         setPdfs([]);
         setsortedPdfs([]);
         setmerged(null);
+        seturl(null)
         const mergeInput = document.getElementById('merge-input');
         const files = mergeInput.files;
         const filesArray = [];
@@ -69,9 +75,16 @@ const MergePdf = () => {
         const mergedPdfBlob = new Blob([mergedPdfBytes], { type : 'application/pdf' });
         const mergedFile = new File([mergedPdfBytes], 'merged.pdf', {type: 'application/pdf'});
         setmerged(URL.createObjectURL(mergedPdfBlob))
-        if(user){
-            handlePost();
-        }
+        const formdata = new FormData()
+        formdata.append('file', mergedFile)
+        formdata.append('upload_preset', upload_preset)
+        axiosPublic.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,formdata)
+        .then(res=>{
+            console.log(res.data);
+            seturl(res.data.secure_url)})
+        // if(user){
+        //     handlePost();
+        // }
         }
         catch(err){
             console.log(err);
@@ -112,8 +125,9 @@ const MergePdf = () => {
 
             {
                 merged && <div>
-                    <p className='text-2xl font-bold my-5'>Merged PDF : </p>
-                    <iframe title="Merged PDF" src={merged} width={600} height={700}></iframe>
+                    <p className='text-3xl font-bold my-5 text-center'>Merging Complete! : </p>
+                    <button className='btn bg-teal p-5 text-white'><a href={merged} download>Download</a></button>
+                    
                 </div>
             }
 
