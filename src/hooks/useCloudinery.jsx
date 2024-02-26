@@ -8,7 +8,7 @@ const getFileUrl = async(file) =>{
     formdata.append('file', file)
     formdata.append('upload_preset', upload_preset)
     const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,formdata)
-    console.log(res.data?.secure_url);
+    // console.log(res.data?.secure_url);
     return res.data?.secure_url
 }
 
