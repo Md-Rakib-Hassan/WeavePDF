@@ -1,11 +1,14 @@
 import { MdDelete } from "react-icons/md";
+import { MdDownload } from "react-icons/md";
 import useService from "../../hooks/useService";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { saveAs } from "file-saver";
 
 const Service = ({service, index}) => {
     const [,refetch] = useService();
     const axiosPublic = useAxiosPublic()
+
     const deleteRecord = (id) =>{
         Swal.fire({
             title: "Are you sure?",
@@ -41,6 +44,7 @@ const Service = ({service, index}) => {
             <td>{service.no_of_files}</td>
             <td>✅</td>          
             <td><button onClick={()=>{deleteRecord(service._id)}}><MdDelete className=' text-teal'></MdDelete></button></td>
+            {service.file && <td> <a href={service.file} download><MdDownload className=' text-teal'></MdDownload></a></td>}
         </tr>
     );
 };
