@@ -3,7 +3,6 @@ import { MdDownload } from "react-icons/md";
 import useService from "../../hooks/useService";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
-import { saveAs } from "file-saver";
 
 const Service = ({service, index}) => {
     const [,refetch] = useService();

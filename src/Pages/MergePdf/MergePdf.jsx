@@ -27,7 +27,6 @@ const MergePdf = () => {
         const status = true
 
         const service = {  date, user_email, no_of_files, service_name, status, file}
-        console.log(service);
         axiosPublic.post('/upload-service',service)
         setIsOn(true)
         
@@ -121,7 +120,7 @@ const MergePdf = () => {
 
             {
                 merged && <div>
-                    <p className='text-5xl font-playfair font-bold my-5 text-center'>Merging Complete! </p>
+                    <p className='text-4xl font-playfair font-bold my-5 text-center'>Merging Complete! </p>
                     <div className='flex justify-center'>
                     <button className='btn bg-aqua_marine my-5 px-20 text-white'><a href={merged} download>Download</a></button>
                     </div>
