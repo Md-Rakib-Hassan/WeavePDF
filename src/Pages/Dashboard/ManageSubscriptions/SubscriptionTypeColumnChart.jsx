@@ -24,15 +24,17 @@ const SubscriptionTypeColumnChart = () => {
 
     return (
         <>
-            <div>
-                <h1 className="text-xl text-teal font-bold">Montly and Yearly Subscriptions percentage in a month</h1>
+            <div className="max-w-screen-lg mx-auto overflow-auto my-4 md:my-8 p-5">
+                <div>
+                    <h1 className="text-xl text-teal font-bold">Montly and Yearly Subscriptions percentage in a month</h1>
+                </div>
+                <Chart
+                    chartType="ColumnChart"
+                    width="100%"
+                    height="400px"
+                    data={data}
+                />
             </div>
-            <Chart
-                chartType="ColumnChart"
-                width="100%"
-                height="400px"
-                data={data}
-            />
         </>
     );
 };

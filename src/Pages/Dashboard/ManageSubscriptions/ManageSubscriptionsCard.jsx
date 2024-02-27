@@ -10,7 +10,7 @@ const ManageSubscriptionsCard = () => {
 
     return (
         <>
-            <div className="card bg-base-100 shadow-xl p-5 flex-grow max-w-xs md:max-w-2xl mb-5">
+            <div className="card bg-base-100 shadow-xl p-5 flex-grow lg:max-w-2xl my-5">
                 <div>
                     <h3 className='text-2xl font-bold'>Total Montly Users Subscriptions</h3>
                 </div>
@@ -22,7 +22,7 @@ const ManageSubscriptionsCard = () => {
                     <p className='text-xl font-semibold'>Montly Subscriptions</p>
                 </div>
             </div>
-            <div className="card bg-base-100 shadow-xl p-5 flex-grow max-w-xs md:max-w-2xl">
+            <div className="card bg-base-100 shadow-xl p-5 flex-grow lg:max-w-2xl">
                 <div>
                     <h3 className='text-2xl font-bold'>Total Yearly Users Subscriptions</h3>
                 </div>

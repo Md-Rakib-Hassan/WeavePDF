@@ -28,16 +28,18 @@ const SubscriptionTypeDonutChart = () => {
 
     return (
         <>
-            <div>
-                <h1 className="text-xl text-teal font-bold">Percentage of Montly and Yearly Subscriptions</h1>
+            <div className="max-w-screen-lg mx-auto overflow-auto my-4 md:my-8 p-5">
+                <div>
+                    <h1 className="text-xl text-teal font-bold">Percentage of Montly and Yearly Subscriptions</h1>
+                </div>
+                <Chart
+                    chartType="PieChart"
+                    width="100%"
+                    height="400px"
+                    data={data}
+                    options={options}
+                />
             </div>
-            <Chart
-                chartType="PieChart"
-                width="100%"
-                height="400px"
-                data={data}
-                options={options}
-            />
         </>
     );
 };

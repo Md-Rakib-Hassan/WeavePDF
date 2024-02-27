@@ -63,9 +63,9 @@ const ManageSubscriptions = () => {
 
     return (
         <>
-            <div className="">
+            <div className="container mx-auto overflow-hidden m-0">
                 <div className="flex flex-col lg:flex-row lg:items-center lg:gap-10 items-center">
-                    <div className='lg:w-5/6 drop-shadow-2xl'>
+                    <div className=' lg:w-5/6 drop-shadow-2xl'>
                         <DataTable
                             columns={columns}
                             data={data}
