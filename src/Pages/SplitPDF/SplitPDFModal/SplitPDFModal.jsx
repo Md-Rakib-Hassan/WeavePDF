@@ -155,7 +155,7 @@ const SplitPDFModal = () => {
       const zipBlob = await zip.generateAsync({ type: "blob" });
       const zipFile = new File([zipBlob], "split_pdfs.zip", { type: "application/zip" });
 
-      //  I am wrapping the files in zip and alos triggered it 
+      // here,  I am wrapping the files in zip and alos triggered it 
       const downloadLink = document.createElement("a");
       downloadLink.href = URL.createObjectURL(zipFile);
       downloadLink.download = "split_pdfs.zip";

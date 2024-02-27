@@ -11,17 +11,17 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const MostPopularPDF = () => {
-    const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
-    const toggleSeeMore = () => {
-      setShowMore(!showMore);
-    };
-    
+  const toggleSeeMore = () => {
+    setShowMore(!showMore);
+  };
+
   return (
     <div className="max-w-5xl mx-auto py-10 p-2">
       <div className="text-center">
-        <h1 className="text-[36px] font-bold pb-3">Most Popular Tools</h1>
-        <p className="text-[18px] font-normal pb-9">
+        <h1 className="text-[36px] font-bold pb-2">Most Popular Tools</h1>
+        <p className="text-[18px] font-normal mb-10">
           Unique tools to convert, compress, and edit PDFs for free. Try it out
           today!
         </p>
@@ -29,12 +29,12 @@ const MostPopularPDF = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <Link to="/merge-pdf">
           {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300 shadow-sm shadow-teal h-48">
             <BsSignMergeRight className="text-[50px] text-[#ee4030]" />
             <div className="pl-3">
               {" "}
               <h2 className="font-bold text-[20px]">Merge PDF</h2>
-              <p className="font-normal pt-1">
+              <p className="font-normal text-sm pt-2 text-[#3b3b3f]">
                 Combine multiple PDFs into one undefine document
               </p>
             </div>
@@ -43,12 +43,12 @@ const MostPopularPDF = () => {
         </Link>
         <Link to="/split-pdf">
           {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300 shadow-sm shadow-teal h-48">
             <MdOutlineSplitscreen className="text-[40px] text-[#30bc1e]" />
             <div className="pl-3">
               {" "}
               <h2 className="font-bold text-[20px]">Split PDF</h2>
-              <p className="font-normal pt-1">
+              <p className="font-normal text-sm pt-2 text-[#3b3b3f]">
                 Split your PDF file into multiple pages
               </p>
             </div>
@@ -57,13 +57,14 @@ const MostPopularPDF = () => {
         </Link>
         <Link to={"/edit-pdf"}>
           {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300 shadow-sm shadow-teal h-48">
             <LuFileEdit className="text-[50px] text-[#24b2ff]" />
             <div className="pl-3">
               {" "}
               <h2 className="font-bold text-[20px]">Edit PDF</h2>
-              <p className="font-normal pt-1">
-                Add signatures, images, highlight and add texts, draw, add watermark and many other! 
+              <p className="font-normal text-sm pt-2 text-[#3b3b3f]">
+                Add signatures, images, highlight and add texts, draw, add
+                watermark and many other!
               </p>
             </div>
             <IoIosArrowForward className="mt-3 text-2xl" />
@@ -71,12 +72,12 @@ const MostPopularPDF = () => {
         </Link>
         <Link to={"/wordToPdf"}>
           {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300 shadow-sm shadow-teal h-48">
             <FaRegFilePdf className="text-[30px] text-[#ee4030]" />
             <div className="pl-3">
               {" "}
               <h2 className="font-bold text-[20px]">Word to PDF</h2>
-              <p className="font-normal pt-1">
+              <p className="font-normal text-sm pt-2 text-[#3b3b3f]">
                 Convert doc file to editable PDF Documents
               </p>
             </div>
@@ -85,12 +86,12 @@ const MostPopularPDF = () => {
         </Link>
         <Link to={"/md-to-pdf-editor"}>
           {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300  shadow-sm shadow-teal h-48">
             <BsMarkdown className="text-[50px] text-[#9d4ed6]" />
             <div className="pl-3">
               {" "}
               <h2 className="font-bold text-[20px]">Markdown to PDF</h2>
-              <p className="font-normal pt-1">
+              <p className="font-normal text-sm pt-2 text-[#3b3b3f]">
                 Write to markdown & converting to PDF
               </p>
             </div>
@@ -99,12 +100,12 @@ const MostPopularPDF = () => {
         </Link>
         <Link to={"/htmlToPdf"}>
           {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300 shadow-sm shadow-teal h-48">
             <FaHtml5 className="text-[30px] text-[#ee4030]" />
             <div className="pl-3">
               {" "}
               <h2 className="font-bold text-[20px]">HTML to PDF</h2>
-              <p className="font-normal pt-1">
+              <p className="font-normal text-sm pt-2 text-[#3b3b3f]">
                 Convert your HTML editor file into PDF
               </p>
             </div>
@@ -113,57 +114,64 @@ const MostPopularPDF = () => {
         </Link>
         {showMore && (
           <>
-        <Link to={"/imageToPdf"}>
-          {" "}
-          <div className="bg-base-300 hover:scale-110 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-            <FcImageFile className="text-[45px]" />
-            <div className="pl-3">
+            <Link to={"/imageToPdf"}>
               {" "}
-              <h2 className="font-bold text-[20px]">Image to PDF</h2>
-              <p className="font-normal pt-1">Convert your Image into PDF File</p>
-            </div>
-            <IoIosArrowForward className="mt-3 text-2xl" />
-          </div>
-        </Link>
-        <Link to={"/draw-signature"}>
-          {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-            <FcSignature className="text-[60px] text-[#ee4030]" />
-            <div className="pl-3">
+              <div className="bg-base-300 hover:scale-110 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300 shadow-sm shadow-teal h-48">
+                <FcImageFile className="text-[45px]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">Image to PDF</h2>
+                  <p className="font-normal text-sm pt-2 text-[#3b3b3f]">
+                    Convert your Image into PDF File
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
+            <Link to={"/draw-signature"}>
               {" "}
-              <h2 className="font-bold text-[20px]">Draw Signature</h2>
-              <p className="font-normal pt-1">
-                Get your online signature just do a draw
-              </p>
-            </div>
-            <IoIosArrowForward className="mt-3 text-2xl" />
-          </div>
-        </Link>
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300 shadow-sm shadow-teal h-48">
+                <FcSignature className="text-[60px] text-[#ee4030]" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">Draw Signature</h2>
+                  <p className="font-normal text-sm pt-2 text-[#3b3b3f]">
+                    Get your online signature just do a draw
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
 
-        <Link to={"/addWaterMark"}>
-          {" "}
-          <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
-            <img className="h-[40px] w-auto" src="https://i.ibb.co/4fWq7sY/watermark.png" alt="" />
-            <div className="pl-3">
+            <Link to={"/addWaterMark"}>
               {" "}
-              <h2 className="font-bold text-[20px]">Add WaterMark</h2>
-              <p className="font-normal pt-1">
-                Add watermark to your PDF files.
-              </p>
-            </div>
-            <IoIosArrowForward className="mt-3 text-2xl" />
-          </div>
-        </Link>
-        </>)}
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300 shadow-sm shadow-teal h-48">
+                <img
+                  className="h-[40px] w-auto"
+                  src="https://i.ibb.co/4fWq7sY/watermark.png"
+                  alt=""
+                />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">Add WaterMark</h2>
+                  <p className="font-normal text-sm pt-2 text-[#3b3b3f]">
+                    Add watermark to your PDF files.
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
+          </>
+        )}
       </div>
-<div className="flex justify-center py-9">
-<button
-        onClick={toggleSeeMore}
-        className="btn bg-[#52ab98] text-white font-bold mr-4"
-      >
-        {showMore ? "See Less" : "See all Tools"}
-      </button>
-</div>
+      <div className="flex justify-center py-9">
+        <button
+          onClick={toggleSeeMore}
+          className="btn bg-[#52ab98] text-white font-bold mr-4"
+        >
+          {showMore ? "See Less" : "See all Tools"}
+        </button>
+      </div>
     </div>
   );
 };

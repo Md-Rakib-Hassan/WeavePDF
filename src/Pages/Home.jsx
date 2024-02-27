@@ -12,33 +12,30 @@ import TryWeavePDF from "./V2/TryWeavePDF";
 import SimpleTask from "./V2/SimpleTask";
 import GetMobile from "./V2/GetMobile";
 
-
 const Home = () => {
-    return (
-        <>
-                <FileDropper></FileDropper>
-            <div className="max-w-7xl mx-auto">
-                <Banner/>
-                <MostPopularPDF/>
-                <SimpleTask/>
-                <GetMobile/>
-                {/* <Features></Features> */}
-                <Brands></Brands>
-                <PlansPricing/>
-                <WhyChoose/>
-                <TryWeavePDF/>
-                <FAQ></FAQ>
-
-            </div>
-            <Newsletter></Newsletter>
-            <MessengerCustomerChat
+  return (
+    <>
+      <FileDropper></FileDropper>
+      <div className="max-w-7xl mx-auto">
+        <Banner />
+        <MostPopularPDF />
+        <SimpleTask />
+        <GetMobile />
+        {/* <Features></Features> */}
+        <Brands></Brands>
+        <PlansPricing />
+        <WhyChoose />
+        <TryWeavePDF />
+        <FAQ></FAQ>
+      </div>
+      <Newsletter></Newsletter>
+      <MessengerCustomerChat
         pageId="102878114526702"
         appId="889999869341760"
         // htmlRef="<REF_STRING>"
       />
-        </>
-
-    );
+    </>
+  );
 };
 
 export default Home;
