@@ -1,6 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { saveAs } from "file-saver";
 import { Page, Image, pdf, Document, StyleSheet } from '@react-pdf/renderer';
+import TakeReviews from '../../Shared/Reviews/TakeReviews';
+import ShowReviews from "../../Shared/Reviews/ShowReviews";
+
 
 // Create styles
 const styles = StyleSheet.create({
@@ -12,7 +15,9 @@ const styles = StyleSheet.create({
 
 const ImageToPDF = () => {
 
+  
     const fileInputRef = useRef(null);
+    const [isOn, setIsOn] = useState(false);
 
 
     const convertToPDF = async () => {
@@ -55,6 +60,7 @@ const ImageToPDF = () => {
             asPdf.updateContainer(doc);
             const pdfBlob = await asPdf.toBlob();
             saveAs(pdfBlob, 'convertImgToPDF.pdf');
+            setIsOn(true);
 
         } catch (error) {
             console.log("Error", error);
@@ -63,26 +69,39 @@ const ImageToPDF = () => {
 
     return (
         <>
-            <div className="container mx-auto my-28 p-5">
-                <div className="flex flex-col justify-center items-center p-5 shadow-2xl my-10">
-                    <h1 className="my-5 text-5xl font-bold">Image To PDF</h1>
-                    <h2 className="my-5 text-3xl font-semibold">Convert images to PDF in seconds. Easily adjust orientation and margins.</h2>
-                    <div className="my-10">
+            <div className="container mx-auto overflow-hidden my-20">
+                <TakeReviews isOn={isOn} uniqueId='img-to-pdf'></TakeReviews>
+                <div className="flex justify-center items-center">
+                    <div className="flex flex-col justify-center items-center p-5 shadow-2xl lg:w-3/4 xl:w-1/2">
+                        <h1 className="my-5 text-3xl lg:text-5xl font-bold text-center">Image To PDF</h1>
+                        <h2 className="my-5 text-xl lg:text-3xl font-semibold text-center">Convert images to PDF in seconds. Easily adjust orientation and margins.</h2>
                         <input
                             type="file"
                             ref={fileInputRef}
                             multiple
-                            className="text-3xl font-semibold"
+                            className="text-lg lg:text-xl font-semibold my-5"
                         />
                         <button
                             onClick={convertToPDF}
-                            className="px-5 py-3 bg-blue text-black text-3xl font-semibold rounded-md transition-transform transform hover:scale-110 focus:outline-none"
+                            className="w-3/5 px-5 py-3 mt-5 mb-10 bg-blue text-black text-lg lg:text-xl  font-semibold rounded-md transition-transform transform hover:scale-110 focus:outline-none"
                         >
                             Convert To PDF
                         </button>
+                        {/* <div className="my-10 w-full">
+                            <div className="flex justify-center items-center">
+
+                            </div>
+                        </div>
+                        <div className="flex justify-center items-center">
+
+                        </div> */}
                     </div>
                 </div>
             </div>
+            <ShowReviews uniqueId='md-to-pdf'
+                title='Users Feedback'
+                subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'
+            ></ShowReviews>
         </>
     );
 };

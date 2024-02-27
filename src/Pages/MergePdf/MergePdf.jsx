@@ -80,8 +80,7 @@ const MergePdf = () => {
         }
         catch(err){
             console.log(err);
-        }
-        
+        }        
     }
     
 
