@@ -20,8 +20,18 @@ const SplitPDFModal = () => {
   }, [state]);
 
   // ==================== react hook form ------------------------------
-  const { register: registerTab1, handleSubmit: handleSubmitTab1, setError: setErrorTab1, formState: { errors: errorsTab1 } } = useForm();
-  const { register: registerTab2, handleSubmit: handleSubmitTab2,  formState: { errors: errorsTab2 } } = useForm();
+  const {
+    register: registerTab1,
+    handleSubmit: handleSubmitTab1,
+    setError: setErrorTab1,
+    formState: { errors: errorsTab1 },
+  } = useForm();
+  const {
+    register: registerTab2,
+    handleSubmit: handleSubmitTab2,
+    setError: setErrorTab2,
+    formState: { errors: errorsTab2 },
+  } = useForm();
 
   // ============================== extraction functions ------------------------
 
@@ -61,9 +71,34 @@ const SplitPDFModal = () => {
     return Array.from({ length }, (_, i) => start + i - 1);
   };
 
-  const extractPdfPage = async (arrayBuff, data) => {
+  const extractPdfPage = async (pdfSrcDoc, fromPage, toPage) => {
     try {
-      const pdfSrcDoc = await PDFDocument.load(arrayBuff);
+      const pdfNewDoc = await PDFDocument.create();
+
+      const pages = await pdfNewDoc?.copyPages(
+        pdfSrcDoc,
+        range(fromPage, toPage)
+      );
+
+      if (pages) {
+        pages.forEach((page) => pdfNewDoc?.addPage(page));
+        const newPdf = await pdfNewDoc?.save();
+        return newPdf;
+      } else {
+        console.warn("Failed to copy pages");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error during PDF extraction:", error);
+      return null;
+    }
+  };
+
+  const onSubmit = async (data) => {
+    if (state?.length > 0) {
+      const pdfArrayBuffer = await readFileAsync(state[0]);
+
+      const pdfSrcDoc = await PDFDocument.load(pdfArrayBuffer);
 
       if (!pdfSrcDoc) {
         console.warn("Invalid PDF source document");
@@ -89,31 +124,7 @@ const SplitPDFModal = () => {
         return;
       }
 
-      const pdfNewDoc = await PDFDocument.create();
-
-      const pages = await pdfNewDoc?.copyPages(
-        pdfSrcDoc,
-        range(fromPage, toPage)
-      );
-
-      if (pages) {
-        pages.forEach((page) => pdfNewDoc?.addPage(page));
-        const newPdf = await pdfNewDoc?.save();
-        return newPdf;
-      } else {
-        console.warn("Failed to copy pages");
-        return null;
-      }
-    } catch (error) {
-      console.error("Error during PDF extraction:", error);
-      return null;
-    }
-  };
-
-  const onSubmit = async (data) => {
-    if (state?.length > 0) {
-      const pdfArrayBuffer = await readFileAsync(state[0]);
-      const newPdfDoc = await extractPdfPage(pdfArrayBuffer, data);
+      const newPdfDoc = await extractPdfPage(pdfSrcDoc, fromPage, toPage);
       if (newPdfDoc) {
         renderPdf(newPdfDoc);
       }
@@ -122,10 +133,11 @@ const SplitPDFModal = () => {
 
   // ====================== Split pdf per page ============================
 
-  const splitPdf = async (pdfSrcDoc, pagesPerFile,pdfName) => {
+  const splitPdf = async (pdfSrcDoc, pagesPerFile, pdfName) => {
     try {
       const pdfFiles = [];
       const numPagesSrc = pdfSrcDoc.getPages().length;
+      console.log("-== My area: ", numPagesSrc);
       const numFiles = Math.ceil(numPagesSrc / pagesPerFile);
       const zip = new JSZip();
 
@@ -134,10 +146,13 @@ const SplitPDFModal = () => {
         const endPage = Math.min((i + 1) * pagesPerFile, numPagesSrc);
 
         const pdfNewDoc = await PDFDocument.create();
-        const pages = await pdfNewDoc.copyPages(pdfSrcDoc, range(startPage, endPage));
+        const pages = await pdfNewDoc.copyPages(
+          pdfSrcDoc,
+          range(startPage, endPage)
+        );
 
         if (pages) {
-          console.log('---',pdfSrcDoc);
+          console.log("---", pdfSrcDoc);
           pages.forEach((page) => pdfNewDoc.addPage(page));
           const newPdf = await pdfNewDoc.save();
           // console.log('---------------',newPdf);
@@ -153,9 +168,11 @@ const SplitPDFModal = () => {
       setSplitPdfFiles(pdfFiles);
 
       const zipBlob = await zip.generateAsync({ type: "blob" });
-      const zipFile = new File([zipBlob], "split_pdfs.zip", { type: "application/zip" });
+      const zipFile = new File([zipBlob], "split_pdfs.zip", {
+        type: "application/zip",
+      });
 
-      // here,  I am wrapping the files in zip and alos triggered it 
+      // here,  I am wrapping the files in zip and alos triggered it
       const downloadLink = document.createElement("a");
       downloadLink.href = URL.createObjectURL(zipFile);
       downloadLink.download = "split_pdfs.zip";
@@ -172,45 +189,51 @@ const SplitPDFModal = () => {
   };
 
   const onSubmitSplit = async (data) => {
-    console.log('hitted', data);
+    // console.log("hitted", data);
     // console.log('===============',state[0].name);
     const pdfArrayBuffer = await readFileAsync(state[0]);
     const pdfSrcDoc = await PDFDocument.load(pdfArrayBuffer);
-    const pdfFiles = await splitPdf(pdfSrcDoc, parseInt(data?.pagesPerFile),state[0].name);
+    const pagesInPdf = pdfSrcDoc.getPages().length;
+
+    if (
+      isNaN(pagesInPdf) ||
+      isNaN(parseInt(data?.pagesPerFile)) ||
+      parseInt(data?.pagesPerFile) > pagesInPdf
+    ) {
+      setErrorTab2("pagesPerFile", {
+        type: "manual",
+        message: "Invalid page range",
+      });
+      return;
+    }
+
+    const pdfFiles = await splitPdf(
+      pdfSrcDoc,
+      parseInt(data?.pagesPerFile),
+      state[0].name
+    );
 
     if (pdfFiles && pdfFiles.length > 0) {
       console.log("Extracted PDF files:", pdfFiles);
     }
-
-
   };
 
   return (
-    <div className="flex flex-col p-10 gap-16">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-        <section className="w-fit mx-auto">
+    <div className="flex flex-col p-10 gap-16 ">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-20">
+        <section className="w-fit mx-auto lg:col-span-2 ">
           <iframe
-            className="w-fit h-96 lg:w-[700px] lg:h-[495px] rounded mx-auto"
+            className="w-fit h-96 lg:w-[700px] lg:h-[500px] rounded mx-auto shadow-sm shadow-teal "
             src={initialFile}
           ></iframe>
         </section>
 
         {/* ================== tab area ================= */}
 
-        <section className="w-full">
-          <div role="tablist" className="tabs tabs-lifted">
+        <section className="w-full bg-base-300 border border-teal shadow-sm shadow-teal  rounded-sm">
+          <div>
             {/* tab -1 content ===========================================  */}
-            <input
-              type="radio"
-              name="my_tabs_1"
-              role="tab"
-              className={`tab  w-fit text-sm lg:text-2xl font-medium border-2 text-aqua_marine py-2 h-fit border-aqua_marine e  rounded-md `}
-              aria-label="Extract Pages" checked required
-            />
-            <div
-              role="tabpanel"
-              className="tab-content bg-base-100 border-2 border-aqua_marine rounded-box p-6"
-            >
+            <div className="  p-6">
               <section>
                 <form
                   onSubmit={handleSubmitTab1(onSubmit)}
@@ -218,7 +241,7 @@ const SplitPDFModal = () => {
                 >
                   <div className="grid grid-cols-2 w-fit mx-auto gap-4 lg:gap-10">
                     <div className="flex flex-col gap-1 ">
-                      <label htmlFor="" className="pb-0.5 font-medium">
+                      <label htmlFor="" className="pb-0.5 font-normal">
                         Form(Page No.)
                       </label>
                       <input
@@ -238,7 +261,7 @@ const SplitPDFModal = () => {
                       )}
                     </div>
                     <div className="flex flex-col gap-1">
-                      <label htmlFor="" className="pb-0.5 font-medium">
+                      <label htmlFor="" className="pb-0.5 font-normal">
                         To(Page No.)
                       </label>
                       <input
@@ -259,79 +282,77 @@ const SplitPDFModal = () => {
                     </div>
                   </div>
                   <button
-                    className="text-grey text-xl font-medium w-fit mx-auto rounded bg-aqua_marine px-8 py-5"
+                    className="text-white  font-medium w-fit mx-auto rounded bg-aqua_marine px-6 py-3"
                     type="submit"
                   >
-                    Split this file
+                    Extract
                   </button>
                 </form>
               </section>
             </div>
-
+            <div className="divider bg-teal h-fit"></div> 
             {/* tab -2 content ===========================================  */}
-            <input
-              type="radio"
-              name="my_tabs_1"
-              role="tab"
-              className="tab text-sm lg:text-2xl font-medium border-2 text-aqua_marine  py-2 h-fit border-aqua_marine  rounded-md"
-              aria-label="Split by Per Page"
-            />
-            <div
-              role="tabpanel"
-              className="tab-content bg-base-100 border-2 border-aqua_marine rounded-box p-6"
-            >
+            <div className="  p-6">
               <section>
-              <form
-                onSubmit={handleSubmitTab2(onSubmitSplit)}
-                className="flex flex-col justify-center gap-10"
-              >
-                <div className="">
-                  <label htmlFor="" className="pb-0.5 font-medium">
-                    Pages Per File
-                  </label>
-                  <input
-                    {...registerTab2("pagesPerFile", { required: true })}
-                    type="number"
-                    className={`p-3 rounded-lg text-black text-lg font-medium form-input hover:outline-none focus:outline-none ${
-                      errorsTab2.pagesPerFile ? "border-2 border-error_color" : ""
-                    }`}
-                    placeholder="2" min={1} required
-                  />
-                  {errorsTab2.pagesPerFile && (
-                    <span className="text-error_color">
-                      {errorsTab2.pagesPerFile.message
-                        ? errorsTab2.pagesPerFile.message
-                        : "This field is required"}
-                    </span>
-                  )}
-                </div>
-                <button
-                    className="text-grey text-xl font-medium w-fit mx-auto rounded bg-aqua_marine px-8 py-5"
+                <form
+                  onSubmit={handleSubmitTab2(onSubmitSplit)}
+                  className="flex flex-col justify-center gap-10"
+                >
+                  <div className="">
+                    <label htmlFor="" className="pb-0.5 font-medium">
+                      Pages Per File
+                    </label>
+                    <input
+                      {...registerTab2("pagesPerFile", { required: true })}
+                      type="number"
+                      className={`p-3 rounded-lg text-black text-lg font-medium form-input hover:outline-none focus:outline-none ${
+                        errorsTab2.pagesPerFile
+                          ? "border-2 border-error_color"
+                          : ""
+                      }`}
+                      placeholder="2"
+                      min={1}
+                      required
+                    />
+                    {errorsTab2.pagesPerFile && (
+                      <span className="text-error_color">
+                        {errorsTab2.pagesPerFile.message
+                          ? errorsTab2.pagesPerFile.message
+                          : "This field is required"}
+                      </span>
+                    )}
+                  </div>
+                  <button
+                    className="text-white text-base font-medium w-fit mx-auto rounded bg-aqua_marine px-5 py-3"
                     type="submit"
                   >
-                    Split this file
+                    Split
                   </button>
-              </form>
+                </form>
 
-              {splitPdfFiles.length > 0 && (
-                <div className="mt-6">
-                  <h2 className="text-xl font-medium mb-2">Split PDF Files:</h2>
-                  <ul>
-                    {splitPdfFiles.map((file, index) => (
-                      <li key={index}>
-                        <a
-                          href={URL.createObjectURL(new Blob([file.data], { type: "application/pdf" }))}
-                          download={file.name}
-                          className="text-blue-600 hover:underline"
-                        >
-                          {file.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </section>
+                {splitPdfFiles.length > 0 && (
+                  <div className="mt-6">
+                    <h2 className="text-xl font-medium mb-2">
+                      Split PDF Files:
+                    </h2>
+                    <ul>
+                      {splitPdfFiles.map((file, index) => (
+                        <li key={index}>
+                          <a
+                            href={URL.createObjectURL(
+                              new Blob([file.data], { type: "application/pdf" })
+                            )}
+                            download={file.name}
+                            className="text-blue-600 hover:underline"
+                          >
+                            {file.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </section>
             </div>
           </div>
         </section>
