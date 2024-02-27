@@ -10,14 +10,16 @@ import { BiPurchaseTag } from "react-icons/bi";
 import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
 const Dashboard = () => {
+
   const [isAdmin] = useAdmin();
   const { user } = useAuth();
 
   return (
     <div className={`${isAdmin ? 'flex' : 'lg:flex'}`}>
-      {/* dashboard side bar */}
+
+      {/*admin dashboard side bar */}
       <div className={`${isAdmin ? 'w-[72px] pt-10  min-h-screen bg-teal text-white text-xl' : 'lg:w-56 min-h-screen bg-teal text-white'}`}>
-        <ul className="flex flex-col justify-center  items-center gap-8">
+        <ul className="flex flex-col justify-center items-center gap-8">
           {isAdmin ? (
             <>
               <li className="w-fit">
@@ -81,7 +83,6 @@ const Dashboard = () => {
                 </NavLink>
               </li>
 
-
               {/* shared nav links */}
               <div className="divider divider-neutral"></div>
               <li>
@@ -116,13 +117,8 @@ const Dashboard = () => {
               </li>
             </>
           )
-
-
-
-
-
-
-            : (
+            :
+          (
               // User dashboard==================================
               <>
                 <ul className="text-center menu space-y-5">
