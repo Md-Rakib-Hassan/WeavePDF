@@ -25,13 +25,16 @@ const TakeReviews = ({isOn, uniqueId }) => {
             review}
         axiosPublic.post('/user-reviews',reviewData)
             form.reset();
+            document.getElementById('mmm').click();
             setShouldOn(false);
             
     }
-
+    // className={`${isOn&&shouldOn&&user ?'':'hidden'}`}
     return (
-        <div className={`${isOn&&shouldOn&&user ?'':'hidden'}`}>
-            <button onClick={isOn ? document.getElementById('modal')?.showModal() :()=>{}}></button>
+        
+        <div >
+            
+            <button onClick={isOn&&user ? document.getElementById('modal')?.showModal() :()=>{}}></button>
             <dialog id="modal" className="modal">
                 <div className="modal-box ">
                     <form method="dialog">
@@ -52,6 +55,9 @@ const TakeReviews = ({isOn, uniqueId }) => {
                     <textarea required name="review" id="" className='w-full border border-grey p-2 rounded-lg' rows="5" placeholder='Write your review'></textarea>
                     <div className='flex justify-center'>
                     <input type='submit'value='Submit' className='btn bg-teal text-white rounded-md '/>
+                    <form method="dialog">
+                        <button id='mmm' className="btn bg-teal text-white rounded-md">Close</button>
+                    </form>
                     </div>
                     </form>
                    

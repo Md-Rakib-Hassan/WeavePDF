@@ -22,7 +22,7 @@ const AdminEmail = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                // https://weave-pdf-backend-three.vercel.app/:production
+                // http://localhost:5000/:production
                 fetch(`http://localhost:5000/contact/${_id}`, {
                     method: 'DELETE'
                 })

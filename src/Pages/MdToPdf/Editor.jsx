@@ -25,6 +25,7 @@ const Editor = () => {
 
   }, [axiosPublic, user]);
 
+  if(previous_work?.length>8)setPrevious_work(previous_work?.slice(0,8));
   console.log(previous_work);
 
   const generatePDF = () => {
