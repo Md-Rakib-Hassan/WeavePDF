@@ -4,13 +4,18 @@ import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import "./SplitPDFModal.css";
 import JSZip from "jszip";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const SplitPDFModal = () => {
+  const { user } = useAuth();
   const [initialFile, setInitialFile] = useState(null);
   // const [pdfFileData, setPdfFileData] = useState(null);
   const [splitPdfFiles, setSplitPdfFiles] = useState([]);
+  // const [isOn, setIsOn] = useState(false);
   const location = useLocation();
   const { state } = location;
+  const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
     if (state && state?.length > 0) {
@@ -32,6 +37,18 @@ const SplitPDFModal = () => {
     setError: setErrorTab2,
     formState: { errors: errorsTab2 },
   } = useForm();
+
+  const handlePost = () => {
+    const date = new Date();
+    const user_email = user.email;
+    const no_of_files = 1;
+    const service_name = "Split PDF";
+    const status = true;
+
+    const service = { date, user_email, no_of_files, service_name, status };
+    axiosPublic.post("/upload-service", service);
+    // setIsOn(true);
+  };
 
   // ============================== extraction functions ------------------------
 
@@ -60,6 +77,7 @@ const SplitPDFModal = () => {
     document.body.appendChild(downloadLink);
 
     downloadLink.click();
+    handlePost();
 
     document.body.removeChild(downloadLink);
   };
@@ -179,6 +197,7 @@ const SplitPDFModal = () => {
       downloadLink.style.display = "none";
       document.body.appendChild(downloadLink);
       downloadLink.click();
+      handlePost();
       document.body.removeChild(downloadLink);
 
       return pdfFiles;
@@ -290,7 +309,7 @@ const SplitPDFModal = () => {
                 </form>
               </section>
             </div>
-            <div className="divider bg-teal h-fit"></div> 
+            <div className="divider bg-teal h-fit"></div>
             {/* tab -2 content ===========================================  */}
             <div className="  p-6">
               <section>
