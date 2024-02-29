@@ -10,13 +10,14 @@ import ShowReviews from '../../Shared/Reviews/ShowReviews';
 import Task from '../../Shared/RecentTask/Task';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useCloudinery from '../../hooks/useCloudinery';
 const Editor = () => {
   const [isOn, setIsOn] = useState(false);
   const [input, setInput] = useState();
   const [previous_work, setPrevious_work] = useState([]);
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-
+  const getFileUrl = useCloudinery();
   useEffect(() => {
     if (user) {
       axiosPublic.get(`/tasks/${user.email}`)
@@ -28,11 +29,28 @@ const Editor = () => {
   if(previous_work?.length>8)setPrevious_work(previous_work?.slice(0,8));
   console.log(previous_work);
 
+  const handlePost = (fileurl) =>{
+    const date = new Date();
+    const user_email = user.email
+    const no_of_files = 1;
+    const service_name = "md-to-pdf"
+    const file = fileurl
+    const status = true
+
+    const service = {  date, user_email, no_of_files, service_name, status, file}
+    axiosPublic.post('/upload-service',service)
+}
+
   const generatePDF = () => {
     const doc = new jsPDF("p", "pt", "a4");
     doc.html(document.querySelector("#prose"), {
       callback: function (pdf) {
         pdf.save("md-to-pdf.pdf");
+
+        if (user) {
+          getFileUrl(pdf).then(res => handlePost(res))
+      }
+        
       }
 
     })

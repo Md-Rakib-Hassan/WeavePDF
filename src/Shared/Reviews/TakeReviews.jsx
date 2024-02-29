@@ -5,7 +5,7 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 const TakeReviews = ({isOn, uniqueId }) => {
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
-    // const [shouldOn,setShouldOn] =useState(true);
+    const [shouldOn,setShouldOn] =useState(true);
 
 
     const handleSubmit=(e)=>{
@@ -28,7 +28,7 @@ const TakeReviews = ({isOn, uniqueId }) => {
         axiosPublic.post('/user-reviews',reviewData)
             form.reset();
             
-            // setShouldOn(false);
+            setShouldOn(false);
             
     }
     // className={`${isOn&&shouldOn&&user ?'':'hidden'}`}
@@ -36,7 +36,7 @@ const TakeReviews = ({isOn, uniqueId }) => {
         
         <div >
             
-            <button onClick={isOn&&user ? document.getElementById('modal')?.showModal() :()=>{}}></button>
+            <button onClick={isOn&&user&&shouldOn ? document.getElementById('modal')?.showModal() :()=>{}}></button>
             <dialog id="modal" className="modal">
                 <div className="modal-box ">
                     <form method="dialog">
