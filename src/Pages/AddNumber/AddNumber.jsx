@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PDFDocument,rgb } from 'pdf-lib'
-
+import { FaCrown } from "react-icons/fa";
 const AddNumber = () => {
     const [url, setUrl] = useState(null);
     const [pdf, setPdf]= useState(null);
@@ -86,24 +86,27 @@ const AddNumber = () => {
             <button className='btn bg-[#52ab98] mt-5 font-bold text-2xl text-white'>
                 <input type="submit" value="Add Number" /><br />
             </button><br /></div>
-            :<label className='label w-48'>
+            :<div className="flex justify-center"><label className='label w-48'>
                 <input onChange={handlePdf} type="file" accept="application/pdf" name="file" id="merge-input" required />
                 <span className='font-bold text-xl text-white'>Select PDF files</span>
-            </label>
+            </label></div>
         }
             <br />
                     <label className="mt-5" htmlFor="position">Position: </label>
-                    <select className="p-2" name="position" id="" required>
+                    <select className="select select-primary max-w-xs " name="position" id="" required>
+                        <option disabled selected>Choose position</option>
                         <option value="left">Left</option>
                         <option value="right">Right</option>
                         <option value="middle">Middle</option>
                     </select>
                     <label className="mx-5" htmlFor="position">Color: </label>
-                    <select className="p-2" name="color" id="" required>
-                        <option value="black">Black</option>
-                        <option value="blue">Blue</option>
-                        <option value="red">Red</option>
-                        <option value="green">Green</option>
+
+                    <select className="select select-primary max-w-xs" name="color" id="" required>
+                    <option disabled selected>Choose font colour</option>
+                    <option value="black">Black</option>
+                    <option value="blue" >Blue</option><FaCrown />
+                    <option value="red"  >Red<FaCrown /></option>
+                    <option value="green">Green<FaCrown /></option>
                     </select><br />
                     </form>
             </div>
