@@ -11,35 +11,53 @@ import Task from '../../Shared/RecentTask/Task';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useCloudinery from '../../hooks/useCloudinery';
+import usePremium from '../../hooks/usePremium';
+import {useNavigate } from 'react-router-dom';
 const Editor = () => {
   const [isOn, setIsOn] = useState(false);
   const [input, setInput] = useState();
   const [previous_work, setPrevious_work] = useState([]);
+  const [limited_previous_work, setlimited_Previous_work] = useState([]);
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const getFileUrl = useCloudinery();
+  const isPremium = usePremium();
+  const navigate = useNavigate();
   useEffect(() => {
     if (user) {
       axiosPublic.get(`/tasks/${user.email}`)
         .then(res => setPrevious_work(res.data));
+
+      if (previous_work?.length > 8 && limited_previous_work.length == 0) setlimited_Previous_work(previous_work?.slice(0, 8));
+      else if (previous_work?.length <= 8 && limited_previous_work.length == 0) setlimited_Previous_work(previous_work);
     }
 
-  }, [axiosPublic, user]);
+  }, []);
 
-  if(previous_work?.length>8)setPrevious_work(previous_work?.slice(0,8));
-  console.log(previous_work);
+  useEffect(() => {
 
-  const handlePost = (fileurl) =>{
+      if (previous_work?.length > 8 && limited_previous_work.length == 0) setlimited_Previous_work(previous_work?.slice(0, 8));
+      else if (previous_work?.length <= 8 && limited_previous_work.length == 0) setlimited_Previous_work(previous_work);
+    
+
+  }, [previous_work]);
+
+
+
+
+
+  console.log(isPremium);
+  const handlePost = (fileurl) => {
     const date = new Date();
-    const user_email = user.email
+    const user_email = user?.email
     const no_of_files = 1;
     const service_name = "md-to-pdf"
     const file = fileurl
     const status = true
 
-    const service = {  date, user_email, no_of_files, service_name, status, file}
-    axiosPublic.post('/upload-service',service)
-}
+    const service = { date, user_email, no_of_files, service_name, status, file }
+    axiosPublic.post('/upload-service', service)
+  }
 
   const generatePDF = () => {
     const doc = new jsPDF("p", "pt", "a4");
@@ -49,8 +67,8 @@ const Editor = () => {
 
         if (user) {
           getFileUrl(pdf).then(res => handlePost(res))
-      }
-        
+        }
+
       }
 
     })
@@ -60,15 +78,20 @@ const Editor = () => {
   return (
     <div className='relative'>
       <Task uid='md-to-pdf' service_name='md-to-pdf' no_of_files={1} isON={isOn} content={input}></Task>
-      <TakeReviews isOn={isOn} uniqueId='md-to-pdf'></TakeReviews>
+      <TakeReviews isOn={isOn} setIsOn={setIsOn} uniqueId='md-to-pdf'></TakeReviews>
 
       {input ? <button className='absolute right-2 bg-blue px-2 rounded-md' onClick={generatePDF}>Download Pdf</button> : ''}
-      {previous_work ? <div className="dropdown dropdown-right">
+      {limited_previous_work?.length>0 ? <div className="dropdown dropdown-right">
         <div tabIndex={0} role="button" className="left-2 bg-blue px-2 rounded-md m-2">Previous Work</div>
         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
           {
-            previous_work.map(work=><li key={work._id}><a onClick={()=>setInput(work.content)}>{work.date}</a></li>)
+            limited_previous_work?.map(work => <li key={work._id}><a onClick={() => setInput(work.content)}>{work.date}</a></li>)
           }
+          {
+            previous_work?.length > 8 ? <li className='font-medium'><a onClick={isPremium ?()=> navigate('/history') :()=> navigate('/user-subscription')}>View more  &gt;&gt; </a></li> : ''
+          }
+
+
         </ul>
       </div> : ''}
       <div className='flex lg:flex-row flex-col' >

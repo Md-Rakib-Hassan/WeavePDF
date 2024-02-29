@@ -1,8 +1,8 @@
-import  { useState } from 'react';
+import  { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
-const TakeReviews = ({isOn, uniqueId }) => {
+const TakeReviews = ({isOn, uniqueId,setIsOn }) => {
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
     const [shouldOn,setShouldOn] =useState(true);
@@ -31,6 +31,10 @@ const TakeReviews = ({isOn, uniqueId }) => {
             setShouldOn(false);
             
     }
+
+    useEffect(()=>{
+        setIsOn(false);
+    });
     // className={`${isOn&&shouldOn&&user ?'':'hidden'}`}
     return (
         
