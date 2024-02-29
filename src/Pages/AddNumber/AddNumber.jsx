@@ -1,14 +1,26 @@
 import { useState } from "react";
 import { PDFDocument,rgb } from 'pdf-lib'
 import { FaCrown } from "react-icons/fa";
+import usePremium from "../../hooks/usePremium";
+import { useNavigate } from "react-router-dom";
 const AddNumber = () => {
     const [url, setUrl] = useState(null);
     const [pdf, setPdf]= useState(null);
-
+    const [isPremium] = usePremium();
+    const navigate = useNavigate()
     const handlePdf = e =>{
         e.preventDefault();
         const file = document.getElementById('merge-input').files[0];
         setPdf(file)
+    }
+
+    const validatePremium = (e) =>{
+        const color = e.target.value;
+        if(color == 'red' || color == 'green'){
+            if(!isPremium){
+                navigate('/user-subscription')
+            }
+        }
     }
 
     const handleUpload = async (e) =>{
@@ -21,7 +33,7 @@ const AddNumber = () => {
         const existingpdfBytes = await filedata.arrayBuffer();
         const pdfDoc = await PDFDocument.load(existingpdfBytes);
         const totalPages = pdfDoc.getPageCount();
-
+       
         for(let i=0; i<totalPages ; i++){
             const page = pdfDoc.getPages()[i];
             const text = `Page ${i+1} of ${totalPages}`;
@@ -101,11 +113,14 @@ const AddNumber = () => {
                     </select>
                     <label className="mx-5" htmlFor="position">Color: </label>
 
-                    <select className="select select-primary max-w-xs" name="color" id="" required>
+                    <select onChange={validatePremium} className="select select-primary max-w-xs" name="color" id="" required>
                     <option disabled selected>Choose font colour</option>
                     <option value="black">Black</option>
                     <option className="prim" value="blue" >Blue</option><FaCrown />
+                    {isPremium?<option value="red"  >Red<FaCrown /></option>
+                    :
                     <option value="red"  >Red<FaCrown /></option>
+                    }
                     <option value="green">Green<FaCrown /></option>
                     </select><br />
                     </form>

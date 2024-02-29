@@ -8,6 +8,7 @@ const usePremium = () => {
     const { data: isPremium } = useQuery({
         queryKey: ['premiumuser'],
         queryFn: async () =>{
+            if(!user) return false;
             const res = await axiosSecure.get(`/users?email=${user?.email}`)
             return res.data[0]?.isPremium
         }
