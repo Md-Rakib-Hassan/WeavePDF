@@ -116,12 +116,12 @@ const AddNumber = () => {
                     <select onChange={validatePremium} className="select select-primary max-w-xs" name="color" id="" required>
                     <option disabled selected>Choose font colour</option>
                     <option value="black">Black</option>
-                    <option className="prim" value="blue" >Blue</option><FaCrown />
-                    {isPremium?<option value="red"  >Red<FaCrown /></option>
+                    <option className="prim" value="blue" >Blue</option>
+                    {isPremium?<option value="red"  >Red</option>
                     :
-                    <option value="red"  >Red<FaCrown /></option>
+                    <option value="red"  >Red 👑</option>
                     }
-                    <option value="green">Green<FaCrown /></option>
+                    <option value="green">Green 👑</option>
                     </select><br />
                     </form>
             </div>
