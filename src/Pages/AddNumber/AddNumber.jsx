@@ -104,7 +104,7 @@ const AddNumber = () => {
                     <select className="select select-primary max-w-xs" name="color" id="" required>
                     <option disabled selected>Choose font colour</option>
                     <option value="black">Black</option>
-                    <option value="blue" >Blue</option><FaCrown />
+                    <option className="prim" value="blue" >Blue</option><FaCrown />
                     <option value="red"  >Red<FaCrown /></option>
                     <option value="green">Green<FaCrown /></option>
                     </select><br />
