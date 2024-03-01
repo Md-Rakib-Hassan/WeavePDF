@@ -34,6 +34,7 @@ import ToDoList from "../Pages/ToDoList/ToDoList";
 import SpeechToText from "../Pages/SpeechToText/SpeechToText";
 import Contact from './../Pages/Contact';
 import AddNumber from "../Pages/AddNumber/AddNumber";
+import ManageSubscriptions from "../Pages/Dashboard/ManageSubscriptions/ManageSubscriptions";
 
 
 
@@ -50,15 +51,10 @@ const router = createBrowserRouter([
         path: '/addWaterMark',
         element: <AddWatermark></AddWatermark>
       },
-
       {
         path: "/subscriptions",
         element: <Subscriptions></Subscriptions>,
       },
-      // {
-      //   path: "/contact",
-      //   element: <Contact></Contact>,
-      // },
       {
         path: "/merge-pdf",
         element: <MergePdf></MergePdf>,
@@ -172,6 +168,11 @@ const router = createBrowserRouter([
         path: '/dashboard/adminEmail',
         loader: () => fetch('http://localhost:5000/contact'),
         element: <AdminRoute><AdminEmail></AdminEmail></AdminRoute>
+      },
+      {
+        path: '/dashboard/manageSubscriptions',
+        loader: () => fetch('http://localhost:5000/users'),
+        element: <AdminRoute><ManageSubscriptions></ManageSubscriptions></AdminRoute>
       },
     ],
   },
