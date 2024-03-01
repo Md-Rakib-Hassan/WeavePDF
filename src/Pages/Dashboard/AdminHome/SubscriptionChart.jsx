@@ -17,7 +17,7 @@ const SubscriptionChart = () => {
 
     return (
         <>
-            <div>
+            {/* <div>
                 <div>
                     <h1 className="text-xl text-teal font-bold">Subscription and users percentage</h1>
                 </div>
@@ -27,7 +27,22 @@ const SubscriptionChart = () => {
                     height="500px"
                     data={data}
                 />
+            </div> */}
+
+            <div className="max-w-screen-lg mx-auto overflow-auto my-4 md:my-8 p-5">
+                <div className="text-center">
+                    <h1 className="text-xl md:text-2xl text-teal font-bold">Subscription and Users Percentage</h1>
+                </div>
+                <div className="w-full">
+                    <Chart
+                        chartType="ColumnChart"
+                        width="100%"
+                        height="500px"
+                        data={data}
+                    />
+                </div>
             </div>
+
         </>
     );
 };

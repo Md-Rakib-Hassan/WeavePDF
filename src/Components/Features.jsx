@@ -9,6 +9,7 @@ import { FaFileImage } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const Features = () => {
+
     return (
         <div className='my-20'>
             <h1 className='font-playfair text-xl md:text-3xl font-bold text-center'>All your PDFs Tool in One Spot</h1>
@@ -51,9 +52,10 @@ const Features = () => {
                         <FaPaintbrush className="text-6xl"></FaPaintbrush>
                         <h1 className="font-bold text-xl">Draw Signature</h1>
                     </div></Link>
-                </div></div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Features;

@@ -5,9 +5,6 @@ import Swal from 'sweetalert2';
 import { useState } from 'react';
 const AdminEmail = () => {
 
-    // const contacts = useLoaderData();
-    // console.log(contacts)
-
     const [contacts, setContacts] = useState(useLoaderData());
     console.log(contacts)
 
@@ -22,7 +19,8 @@ const AdminEmail = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                // https://weave-pdf-backend-three.vercel.app/:production
+                // http://localhost:5000/:production
+
                 fetch(`http://localhost:5000/contact/${_id}`, {
                     method: 'DELETE'
                 })
@@ -104,7 +102,7 @@ const AdminEmail = () => {
     return (
         <div>
             <div>
-                <div className='bg-base-100 text-xl drop-shadow-2xl'>
+                <div className='container mx-auto overflow-hidden bg-base-100 text-xl drop-shadow-2xl'>
                     <DataTable
                         columns={columns}
                         data={data}

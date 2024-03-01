@@ -12,7 +12,6 @@ const ShowReviews = ({ uniqueId, title, subTitle }) => {
 
     const axiosPublic = useAxiosPublic();
     const [reviews, setReviews] = useState([]);
-    console.log(reviews.length);
 
     useEffect(() => {
         axiosPublic.get(`/user-reviews/${uniqueId}`)

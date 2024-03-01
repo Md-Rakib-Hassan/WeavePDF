@@ -6,23 +6,27 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import TakeReviews from '../../Shared/Reviews/TakeReviews';
 import ShowReviews from '../../Shared/Reviews/ShowReviews';
+import useCloudinery from '../../hooks/useCloudinery';
 
 const MergePdf = () => {
 
     const [pdfs, setPdfs] = useState([]);
     const [sortedpdfs, setsortedPdfs] = useState([])
     const [merged, setmerged] = useState(null);
+    const [mergeClicked, setmergeClicked] = useState(false)
     const [isOn, setIsOn] = useState(false);
     const { user } = useAuth();
+    const getFileUrl = useCloudinery();
     const axiosPublic = useAxiosPublic();
-    const handlePost = () =>{
+    const handlePost = (fileurl) =>{
         const date = new Date();
         const user_email = user.email
         const no_of_files = pdfs.length
         const service_name = "Merge PDF"
+        const file = fileurl
         const status = true
 
-        const service = {  date, user_email, no_of_files, service_name, status}
+        const service = {  date, user_email, no_of_files, service_name, status, file}
         axiosPublic.post('/upload-service',service)
         setIsOn(true)
         
@@ -53,6 +57,7 @@ const MergePdf = () => {
     // console.log(sortedpdfs);
 
     const mergeDocument = async() =>{
+        setmergeClicked(true)
         setmerged(null);
         try{const mergedDoc = await PDFDocument.create();
 
@@ -70,24 +75,26 @@ const MergePdf = () => {
         const mergedFile = new File([mergedPdfBytes], 'merged.pdf', {type: 'application/pdf'});
         setmerged(URL.createObjectURL(mergedPdfBlob))
         if(user){
-            handlePost();
+            getFileUrl(mergedFile).then(res=>handlePost(res))
         }
         }
         catch(err){
             console.log(err);
-        }
-        
+        }        
     }
     
 
     return (
         <div className='flex flex-col items-center py-10'>
-            <h1 className='text-3xl font-playfair font-bold'>Merge your PDF Files here</h1><br />
-            <p>Combine PDFs in the order you want with the easiest PDF merger available.</p>
+            {!mergeClicked && <div className='text-center'>
+               <h1 className='text-3xl font-playfair font-bold'>Merge your PDF Files here</h1><br />
+                <p>Combine PDFs in the order you want with the easiest PDF merger available.</p> 
+            </div>}
+            
             <TakeReviews isOn={isOn} uniqueId="merge"></TakeReviews>
             {!merged && pdfs && pdfs.length ? 
             <button onClick={mergeDocument} className='btn bg-[#52ab98] mt-5 font-bold text-2xl text-white'>Merge</button>
-            :<label className='label'>
+            :!mergeClicked && <label className='label'>
                 <input onChange={handleInput} accept='application/pdf' type="file" name="merger[]" id="merge-input" multiple /><br />
                 <span className='font-bold text-xl text-white'>Select PDF files</span>
             </label>}
@@ -112,8 +119,10 @@ const MergePdf = () => {
 
             {
                 merged && <div>
-                    <p className='text-2xl font-bold my-5'>Merged PDF : </p>
-                    <iframe title="Merged PDF" src={merged} width={600} height={700}></iframe>
+                    <p className='text-4xl font-playfair font-bold my-5 text-center'>Merging Complete! </p>
+                    <div className='flex justify-center'>
+                    <button className='btn bg-aqua_marine my-5 px-20 text-white'><a href={merged} download>Download</a></button>
+                    </div>
                 </div>
             }
 

@@ -22,7 +22,7 @@ const Registration = () => {
 
     createUser(data.email, data.password).then(() => {
 
-      updateUserProfile(data.name, data.photoURL)
+      updateUserProfile(data?.name, data?.photoURL)
         .then(() => {
           const userInfo = { user_Name: data.name, user_Email: data.email, user_Profile_Picture:data.photoURL };
           console.log('-----------',userInfo);
@@ -34,7 +34,7 @@ const Registration = () => {
               reset();
               Swal.fire({
                 title: "Registration Completed",
-                text: "thanks For registering",
+                text: "Thanks For registering",
                 icon: "success"
               });
               navigate('/')

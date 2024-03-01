@@ -12,8 +12,8 @@ import TryWeavePDF from "./V2/TryWeavePDF";
 import SimpleTask from "./V2/SimpleTask";
 import GetMobile from "./V2/GetMobile";
 
-
 const Home = () => {
+
     return (
         <>
             <FileDropper></FileDropper>
