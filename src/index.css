@@ -9,7 +9,9 @@
     cursor: pointer;
     border-radius: 10%;
 }
-
+.prim::after{
+	content: url(/src/images/crown.png);
+}
 #merge-input{
     display: none;
     z-index: -1;
