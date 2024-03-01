@@ -3,6 +3,7 @@ import useAxiosSecure from "./useAxiosSecure";
 import useAuth from "./useAuth";
 
 const usePremium = () => {
+
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
     const { data: isPremium } = useQuery({
