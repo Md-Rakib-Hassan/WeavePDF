@@ -35,7 +35,9 @@ import ToDoList from "../Pages/ToDoList/ToDoList";
 import SpeechToText from "../Pages/SpeechToText/SpeechToText";
 import Contact from './../Pages/Contact';
 import AddNumber from "../Pages/AddNumber/AddNumber";
+import History from "../Pages/MdToPdf/History";
 import ManageSubscriptions from "../Pages/Dashboard/ManageSubscriptions/ManageSubscriptions";
+
 
 
 
@@ -131,6 +133,10 @@ const router = createBrowserRouter([
       {
         path: '/add-pg-number',
         element: <AddNumber></AddNumber>
+      },
+      {
+        path:'/history',
+        element:<History></History>
       }
 
     ],

@@ -1,11 +1,13 @@
-import  { useState } from 'react';
+import  { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
-const TakeReviews = ({isOn, uniqueId }) => {
+const TakeReviews = ({isOn, uniqueId,setIsOn }) => {
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
     const [shouldOn,setShouldOn] =useState(true);
+
+
     const handleSubmit=(e)=>{
         e.preventDefault();
         const form = e.target;
@@ -14,7 +16,7 @@ const TakeReviews = ({isOn, uniqueId }) => {
         const user_profile=user?.photoURL;
         const review = form.review.value;
         const rating=form.rating9.value;
-        
+
 
         const reviewData={
             uniqueId,
@@ -25,13 +27,20 @@ const TakeReviews = ({isOn, uniqueId }) => {
             review}
         axiosPublic.post('/user-reviews',reviewData)
             form.reset();
+            
             setShouldOn(false);
             
     }
 
+    useEffect(()=>{
+        setIsOn(false);
+    });
+    // className={`${isOn&&shouldOn&&user ?'':'hidden'}`}
     return (
-        <div className={`${isOn&&shouldOn&&user ?'':'hidden'}`}>
-            <button onClick={isOn ? document.getElementById('modal')?.showModal() :()=>{}}></button>
+        
+        <div >
+            
+            <button onClick={isOn&&user&&shouldOn ? document.getElementById('modal')?.showModal() :()=>{}}></button>
             <dialog id="modal" className="modal">
                 <div className="modal-box ">
                     <form method="dialog">
@@ -51,7 +60,10 @@ const TakeReviews = ({isOn, uniqueId }) => {
                     </div> 
                     <textarea required name="review" id="" className='w-full border border-grey p-2 rounded-lg' rows="5" placeholder='Write your review'></textarea>
                     <div className='flex justify-center'>
-                    <input type='submit'value='Submit' className='btn bg-teal text-white rounded-md '/>
+                    <input  type='submit'value='Submit' className='btn bg-teal text-white rounded-md '/>
+                    <form method="dialog">
+                        <button className="btn bg-teal text-white rounded-md">Close</button>
+                    </form>
                     </div>
                     </form>
                    
