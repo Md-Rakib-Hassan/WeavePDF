@@ -12,7 +12,7 @@ const usePremium = () => {
             return res.data[0]?.isPremium
         }
     })
-    return isPremium
+    return [isPremium]
 };
 
 export default usePremium;

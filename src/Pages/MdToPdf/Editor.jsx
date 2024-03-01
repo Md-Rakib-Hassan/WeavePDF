@@ -22,7 +22,7 @@ const Editor = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const getFileUrl = useCloudinery();
-  const isPremium = usePremium();
+  const [isPremium] = usePremium();
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
@@ -42,7 +42,6 @@ const Editor = () => {
     
 
   }, [previous_work]);
-
 
 
 
