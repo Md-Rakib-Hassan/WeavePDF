@@ -130,7 +130,7 @@ const AddNumber = () => {
             </label></div>
         }
             <br />
-            <TakeReviews isOn={isOn} uniqueId="merge"></TakeReviews>
+            <TakeReviews isOn={isOn} uniqueId="number"></TakeReviews>
 
             <div className="md:flex items-center justify-center">
                 <div>
@@ -164,7 +164,7 @@ const AddNumber = () => {
             <div className="flex justify-center">
             <iframe src={url} title="Page Number Added" width={1000} height={500} ></iframe>
             </div>
-            <ShowReviews uniqueId='merge'
+            <ShowReviews uniqueId='number'
         title='Users Feedback'
         subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'
         ></ShowReviews>
