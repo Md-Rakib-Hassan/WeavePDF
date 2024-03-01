@@ -2,9 +2,12 @@ import WebViewer from '@pdftron/pdfjs-express';
 import { useEffect, useRef, useState } from 'react';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAuth from '../../hooks/useAuth';
+import TakeReviews from '../../Shared/Reviews/TakeReviews';
+import ShowReviews from '../../Shared/Reviews/ShowReviews';
 
 const EditPdf = () => {
     const [doce, setDoce] = useState()
+    const [isOn, setIsOn] = useState(false);
     const viewer = useRef(null);
     const axiosPublic = useAxiosPublic();
     const {user} = useAuth();
@@ -23,6 +26,9 @@ const EditPdf = () => {
           console.log('document loaded');
         });
         });
+        setTimeout(() => {
+          setIsOn(true)
+        }, "60000");
     }
     
   }, [doce]);
@@ -61,8 +67,13 @@ const EditPdf = () => {
             :
           <div>
           <div className="webviewer h-[600px]" ref={viewer}></div>
+          <TakeReviews isOn={isOn} uniqueId="edit"></TakeReviews>
           </div>
           } 
+          <ShowReviews uniqueId='edit'
+        title='Users Feedback'
+        subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'
+        ></ShowReviews>
     </div>
     );
 };

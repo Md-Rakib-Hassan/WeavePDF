@@ -15,6 +15,7 @@ import usePremium from '../../hooks/usePremium';
 import {useNavigate } from 'react-router-dom';
 import { Incon } from './InputContext';
 const Editor = () => {
+  
   const [isOn, setIsOn] = useState(false);
   const {setInput,input}=useContext(Incon);
   const [previous_work, setPrevious_work] = useState([]);

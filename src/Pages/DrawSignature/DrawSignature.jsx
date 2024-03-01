@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import SignatureCanvas from 'react-signature-canvas'
 import { saveAs } from 'file-saver';
+import ShowReviews from '../../Shared/Reviews/ShowReviews';
+import TakeReviews from '../../Shared/Reviews/TakeReviews';
 
 const DrawSignature = () => {
+
     const [sign, setSign] = useState()
     const [url, setUrl] = useState()
+    const [isOn, setIsOn] = useState(false);
+
     const handleClear = () => {
         sign.clear()
     }
@@ -15,11 +20,13 @@ const DrawSignature = () => {
         const canvas = sign.getTrimmedCanvas();
         canvas.toBlob((blob) => {
             saveAs(blob, 'signature.png');
+            setIsOn(true);
         });
     };
     return (
         <>
-            <div className="container mx-auto p-4">
+            <div className="container mx-auto overflow-hidden p-4">
+                <TakeReviews isOn={isOn} uniqueId='img-to-pdf'></TakeReviews>
                 <div className="flex flex-col justify-center items-center text-black font-bold my-16">
                     <h1 className="text-3xl md-text-6xl">Draw Your Signature Here</h1>
                     <div className="border-black border-2 w-7/12 h-60 my-10 cursor-pointer">
@@ -38,6 +45,10 @@ const DrawSignature = () => {
                     </div>
                 </div>
             </div>
+            <ShowReviews uniqueId='md-to-pdf'
+                title='Users Feedback'
+                subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'
+            ></ShowReviews>
         </>
     );
 };

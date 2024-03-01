@@ -28,6 +28,7 @@ import ImageToPDF from "../Pages/ImageToPDF/ImageToPDF";
 import UserSubscription from "../Pages/UserSubscription/UserSubscription";
 import AddWatermark from "../Pages/AddWatermark/AddWatermark";
 import EditPdf from "../Pages/EditPDF/EditPdf";
+import HtmlToPdfNew from "../Pages/HtmlToPdfNew/HtmlToPdfNew";
 
 import ToDoList from "../Pages/ToDoList/ToDoList";
 
@@ -35,6 +36,8 @@ import SpeechToText from "../Pages/SpeechToText/SpeechToText";
 import Contact from './../Pages/Contact';
 import AddNumber from "../Pages/AddNumber/AddNumber";
 import History from "../Pages/MdToPdf/History";
+import ManageSubscriptions from "../Pages/Dashboard/ManageSubscriptions/ManageSubscriptions";
+
 
 
 
@@ -51,15 +54,10 @@ const router = createBrowserRouter([
         path: '/addWaterMark',
         element: <AddWatermark></AddWatermark>
       },
-
       {
         path: "/subscriptions",
         element: <Subscriptions></Subscriptions>,
       },
-      // {
-      //   path: "/contact",
-      //   element: <Contact></Contact>,
-      // },
       {
         path: "/merge-pdf",
         element: <MergePdf></MergePdf>,
@@ -87,6 +85,10 @@ const router = createBrowserRouter([
       {
         path: "/htmlToPdf",
         element: <HtmlToPDF></HtmlToPDF>,
+      },
+      {
+        path: "/htmlToPdfNew",
+        element: <HtmlToPdfNew></HtmlToPdfNew>,
       },
       {
         path: "/split-pdf",
@@ -136,47 +138,70 @@ const router = createBrowserRouter([
         path:'/history',
         element:<History></History>
       }
+
     ],
   },
   {
-    path: '/dashboard',
-    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       // These routes for Common Users
       {
-        path: '/dashboard/user-profile',
-        element: <PrivateRoute><Profile></Profile></PrivateRoute>
+        path: "/dashboard/user-profile",
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/dashboard/transection',
-        element: <MyTransection></MyTransection>
+        path: "/dashboard/transection",
+        element: <MyTransection></MyTransection>,
       },
       {
-        path: '/dashboard/addFeedback',
-        element: <AddFeedback></AddFeedback>
+        path: "/dashboard/addFeedback",
+        element: <AddFeedback></AddFeedback>,
       },
       {
-        path: '/dashboard/document-history',
+        path: "/dashboard/document-history",
         element: <RecentDocumentHistory></RecentDocumentHistory>,
-        loader: () => fetch('http://localhost:5000/user-services')
+        loader: () => fetch("http://localhost:5000/user-services"),
       },
-
-
-
 
       // These routes only for Admin
       {
-        path: '/dashboard/allUsers',
-        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+        path: "/dashboard/allUsers",
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
       },
       {
-        path: '/dashboard/adminHome',
-        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+        path: "/dashboard/adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
       {
-        path: '/dashboard/adminEmail',
-        loader: () => fetch('http://localhost:5000/contact'),
-        element: <AdminRoute><AdminEmail></AdminEmail></AdminRoute>
+        path: "/dashboard/adminEmail",
+        loader: () => fetch("http://localhost:5000/contact"),
+        element: (
+          <AdminRoute>
+            <AdminEmail></AdminEmail>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: '/dashboard/manageSubscriptions',
+        loader: () => fetch('http://localhost:5000/users'),
+        element: <AdminRoute><ManageSubscriptions></ManageSubscriptions></AdminRoute>
       },
     ],
   },
