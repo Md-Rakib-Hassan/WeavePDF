@@ -10,9 +10,9 @@ const AddWatermark = () => {
   const [watermarkText, setWatermarkText] = useState("");
   const [watermarkSize, setWatermarkSize] = useState(50);
   const [watermarkColor, setWatermarkColor] = useState({
-    r: 0.8,
-    g: 0.5,
-    b: 0.5,
+    r: 0,
+    g: 0,
+    b: 0,
   });
   const [rotationAngle, setRotationAngle] = useState(0);
   const [modifiedPdfUrl, setModifiedPdfUrl] = useState("");
@@ -57,39 +57,52 @@ const AddWatermark = () => {
   };
 
   const addWatermark = async () => {
-    console.log(file);
     if (!file) {
       alert("Please upload a PDF file.");
       return;
     }
-
+  
     const reader = new FileReader();
-
+  
     reader.onload = async (event) => {
       const pdfBytes = new Uint8Array(event.target.result);
       const pdfDoc = await PDFDocument.load(pdfBytes);
       const pages = pdfDoc.getPages();
-
+  
       pages.forEach((page) => {
         const { width, height } = page.getSize();
-
+  
         const fontSizeInPoints = watermarkSize;
         const textWidth = watermarkText.length * (fontSizeInPoints / 2);
         const textHeight = fontSizeInPoints;
-
-        const xPos = width / 2 - textWidth / 2;
-        const yPos = height / 2 - textHeight / 2;
-
+  
+        // Calculate the position of the watermark after rotation
+        const centerX = width / 2;
+        const centerY = height / 2;
+        const rotationRad = rotationAngle * (Math.PI / 180);
+  
+        // Calculate the dimensions of the rotated watermark
+        const rotatedWidth = Math.abs(Math.cos(rotationRad) * textWidth) + Math.abs(Math.sin(rotationRad) * textHeight);
+        const rotatedHeight = Math.abs(Math.sin(rotationRad) * textWidth) + Math.abs(Math.cos(rotationRad) * textHeight);
+  
+        // Ensure the watermark remains within the page bounds after rotation
+        const maxRotatedWidth = width;
+        const maxRotatedHeight = height;
+  
+        // Calculate the final position of the watermark to keep it centered
+        const finalX = Math.min(Math.max(centerX - rotatedWidth / 2, 0), maxRotatedWidth - rotatedWidth);
+        const finalY = Math.min(Math.max(centerY - rotatedHeight / 2, 0), maxRotatedHeight - rotatedHeight);
+  
         page.drawText(watermarkText, {
-          x: xPos,
-          y: yPos,
+          x: finalX,
+          y: finalY,
           size: watermarkSize,
           color: rgb(watermarkColor.r, watermarkColor.g, watermarkColor.b),
           opacity: 0.5,
           rotate: degrees(rotationAngle),
         });
       });
-
+  
       const modifiedPdfBytes = await pdfDoc.save();
       const modifiedPdfUrl = URL.createObjectURL(
         new Blob([modifiedPdfBytes], { type: "application/pdf" })
@@ -97,9 +110,14 @@ const AddWatermark = () => {
       setModifiedPdfUrl(modifiedPdfUrl);
       handlePost();
     };
-
+  
     reader.readAsArrayBuffer(file);
   };
+  
+  
+  
+  
+  
 
   return (
     <div className="py-16 ">

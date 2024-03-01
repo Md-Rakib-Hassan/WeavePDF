@@ -1,14 +1,17 @@
 import { PDFDocument } from "pdf-lib";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./SplitPDFModal.css";
 import JSZip from "jszip";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import usePremium from "../../../hooks/usePremium";
+import { MdOutlineWorkspacePremium } from "react-icons/md";
 
 const SplitPDFModal = () => {
   const { user } = useAuth();
+
   const [initialFile, setInitialFile] = useState(null);
   // const [pdfFileData, setPdfFileData] = useState(null);
   const [splitPdfFiles, setSplitPdfFiles] = useState([]);
@@ -16,6 +19,9 @@ const SplitPDFModal = () => {
   const location = useLocation();
   const { state } = location;
   const axiosPublic = useAxiosPublic();
+  const [isPremium] = usePremium();
+  console.log(isPremium);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (state && state?.length > 0) {
@@ -210,6 +216,10 @@ const SplitPDFModal = () => {
   const onSubmitSplit = async (data) => {
     // console.log("hitted", data);
     // console.log('===============',state[0].name);
+    if (isPremium != true) {
+      navigate("/subscriptions");
+      return;
+    }
     const pdfArrayBuffer = await readFileAsync(state[0]);
     const pdfSrcDoc = await PDFDocument.load(pdfArrayBuffer);
     const pagesInPdf = pdfSrcDoc.getPages().length;
@@ -311,7 +321,10 @@ const SplitPDFModal = () => {
             </div>
             <div className="divider bg-teal h-fit"></div>
             {/* tab -2 content ===========================================  */}
-            <div className="  p-6">
+            <div className="p-6 pt-2">
+              <div className="flex justify-end ">
+                <MdOutlineWorkspacePremium className="text-[#EF6C00] font-bold text-2xl "></MdOutlineWorkspacePremium>
+              </div>
               <section>
                 <form
                   onSubmit={handleSubmitTab2(onSubmitSplit)}

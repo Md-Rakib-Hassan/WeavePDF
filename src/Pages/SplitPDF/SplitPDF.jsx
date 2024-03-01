@@ -5,7 +5,6 @@ const SplitPDF = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const navigate = useNavigate();
 
-
   const onFileSelected = async (e) => {
     const fileList = e.target.files;
     setSelectedFile(fileList);
@@ -31,7 +30,8 @@ const SplitPDF = () => {
             PDF Splitter
           </h1>
           <p className="mt-4 mb-8 hidden lg:inline-flex text-[#47474f] text-xl max-w-4xl mx-auto">
-          Easily split and organize your PDF files. Select the pages you need and create new, smaller PDFs with just a few clicks.
+            Easily split and organize your PDF files. Select the pages you need
+            and create new, smaller PDFs with just a few clicks.
           </p>
           <section
             onDrop={handleDrop}
@@ -57,7 +57,9 @@ const SplitPDF = () => {
             {selectedFile && (
               <button
                 onClick={() =>
-                  navigate("/splitting-page", { state: selectedFile })
+                  navigate("/splitting-page", {
+                    state: selectedFile
+                  })
                 }
                 className="text-grey text-xl font-medium w-fit mx-auto rounded bg-aqua_marine px-10 py-4 mt-8"
               >
