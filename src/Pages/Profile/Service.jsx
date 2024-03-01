@@ -1,4 +1,5 @@
 import { MdDelete } from "react-icons/md";
+import { MdDownload } from "react-icons/md";
 import useService from "../../hooks/useService";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
@@ -6,6 +7,7 @@ import Swal from "sweetalert2";
 const Service = ({service, index}) => {
     const [,refetch] = useService();
     const axiosPublic = useAxiosPublic()
+
     const deleteRecord = (id) =>{
         Swal.fire({
             title: "Are you sure?",
@@ -35,12 +37,13 @@ const Service = ({service, index}) => {
     }
     return (
         <tr>
-            <th>{index+1}</th>
+            <th>{index + 1}</th>
             <td>{service.date}</td>
             <td>{service.service_name}</td>
             <td>{service.no_of_files}</td>
             <td>✅</td>          
             <td><button onClick={()=>{deleteRecord(service._id)}}><MdDelete className=' text-teal'></MdDelete></button></td>
+            {service.file && <td> <a href={service.file} download><MdDownload className=' text-teal'></MdDownload></a></td>}
         </tr>
     );
 };

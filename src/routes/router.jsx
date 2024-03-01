@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../layout/Root";
 import Home from "../Pages/Home";
 import Subscriptions from "../pages/Subscriptions";
-import Contact from "./../pages/Contact";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 
@@ -31,6 +30,15 @@ import AddWatermark from "../Pages/AddWatermark/AddWatermark";
 import EditPdf from "../Pages/EditPDF/EditPdf";
 import HtmlToPdfNew from "../Pages/HtmlToPdfNew/HtmlToPdfNew";
 
+import ToDoList from "../Pages/ToDoList/ToDoList";
+
+import SpeechToText from "../Pages/SpeechToText/SpeechToText";
+import Contact from './../Pages/Contact';
+import AddNumber from "../Pages/AddNumber/AddNumber";
+import ManageSubscriptions from "../Pages/Dashboard/ManageSubscriptions/ManageSubscriptions";
+
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,17 +49,12 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/addWaterMark",
-        element: <AddWatermark></AddWatermark>,
+        path: '/addWaterMark',
+        element: <AddWatermark></AddWatermark>
       },
-
       {
         path: "/subscriptions",
         element: <Subscriptions></Subscriptions>,
-      },
-      {
-        path: "/contact",
-        element: <Contact></Contact>,
       },
       {
         path: "/merge-pdf",
@@ -102,25 +105,34 @@ const router = createBrowserRouter([
         element: <WordToPDF></WordToPDF>,
       },
       {
-        path: "/imageToPdf",
-        element: <ImageToPDF></ImageToPDF>,
+        path: "/toDoList",
+        element: <ToDoList></ToDoList>,
+      },
+      {
+        path: '/imageToPdf',
+        element: <ImageToPDF></ImageToPDF>
       },
       {
         path: "/md-to-pdf-editor",
         element: <Editor></Editor>,
       },
       {
-        path: "/user-subscription",
-        element: (
-          <PrivateRoute>
-            <UserSubscription></UserSubscription>
-          </PrivateRoute>
-        ),
+        path: '/user-subscription',
+        element: <PrivateRoute><UserSubscription></UserSubscription></PrivateRoute>
       },
       {
-        path: "/edit-pdf",
-        element: <EditPdf></EditPdf>,
+        path: '/edit-pdf',
+        element: <EditPdf></EditPdf>
       },
+      {
+        path: '/speech-To-Text',
+        element: <SpeechToText></SpeechToText>
+      },
+      {
+        path: '/add-pg-number',
+        element: <AddNumber></AddNumber>
+      }
+
     ],
   },
   {
@@ -179,6 +191,11 @@ const router = createBrowserRouter([
             <AdminEmail></AdminEmail>
           </AdminRoute>
         ),
+      },
+      {
+        path: '/dashboard/manageSubscriptions',
+        loader: () => fetch('http://localhost:5000/users'),
+        element: <AdminRoute><ManageSubscriptions></ManageSubscriptions></AdminRoute>
       },
     ],
   },

@@ -4,12 +4,14 @@ import Service from './Service';
 import { Link } from 'react-router-dom';
 import useService from '../../hooks/useService';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import usePremium from '../../hooks/usePremium';
 
 
 const Profile = () => {
     const [timezone, setTimezone] = useState(null);
     const { user } = useAuth();
     const { displayName,email, photoURL } = user;
+    const [isPremium] = usePremium()
     const [userdata, setuserData] = useState([]);
     const [services] = useService();
     const axiosPublic = useAxiosPublic();
@@ -38,7 +40,7 @@ const Profile = () => {
                 <div>
                 <div className='flex justify-between items-center max-w-5xl my-10'>
                     <h1 className='text-xl font-semibold'>My Account</h1>
-                    { userdata.isPremium? 
+                    { isPremium? 
                     <span className='p-3 outline outline-1 bg-gradient-to-r from-teal to-aqua_marine text-white'>Premium User</span>
                     :
                     <Link to={'/user-subscription'}><button className="btn bg-aqua_marine text-white">Upgrade to Premium</button></Link>
