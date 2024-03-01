@@ -56,7 +56,7 @@ const Navbar = () => {
               <Link className="btn" to="/login">Login</Link>
 
             )}
-            <button className="btn hidden md:flex">Free Trial</button>
+            <Link to={'/user-subscription'} className="btn hidden md:flex">Get Premium</Link>
           </div>
           <div className="drawer drawer-end">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />

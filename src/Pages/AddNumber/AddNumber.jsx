@@ -1,17 +1,39 @@
 import { useState } from "react";
 import { PDFDocument,rgb } from 'pdf-lib'
-import { FaCrown } from "react-icons/fa";
 import usePremium from "../../hooks/usePremium";
 import { useNavigate } from "react-router-dom";
+import ShowReviews from "../../Shared/Reviews/ShowReviews";
+import TakeReviews from "../../Shared/Reviews/TakeReviews";
+import useCloudinery from "../../hooks/useCloudinery";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 const AddNumber = () => {
     const [url, setUrl] = useState(null);
+    const [isOn, setIsOn] = useState(false);
     const [pdf, setPdf]= useState(null);
+    const { user } = useAuth()
     const [isPremium] = usePremium();
+    const axiosPublic = useAxiosPublic();
+    const getFileUrl = useCloudinery();
     const navigate = useNavigate()
     const handlePdf = e =>{
         e.preventDefault();
         const file = document.getElementById('merge-input').files[0];
         setPdf(file)
+    }
+
+    const handlePost = (fileurl) =>{
+        const date = new Date();
+        const user_email = user.email
+        const no_of_files = 1
+        const service_name = "Number page"
+        const file = fileurl
+        const status = true
+
+        const service = {  date, user_email, no_of_files, service_name, status, file}
+        axiosPublic.post('/upload-service',service)
+        setIsOn(true)
+        
     }
 
     const validatePremium = (e) =>{
@@ -80,8 +102,12 @@ const AddNumber = () => {
             }
             const pdfBytes = await pdfDoc.save();
             const pdfBlob = new Blob([pdfBytes] , { type: 'application/pdf' })
+            const pdfFile = new File([pdfBytes], 'numbered.pdf', {type: 'application/pdf'});
             setUrl(URL.createObjectURL(pdfBlob))
             setPdf(false)
+            if(user){
+                getFileUrl(pdfFile).then(res=>handlePost(res))
+            }
         }
         
         
@@ -104,31 +130,44 @@ const AddNumber = () => {
             </label></div>
         }
             <br />
+            <TakeReviews isOn={isOn} uniqueId="merge"></TakeReviews>
+
+            <div className="md:flex items-center justify-center">
+                <div>
                     <label className="mt-5" htmlFor="position">Position: </label>
                     <select className="select select-primary max-w-xs " name="position" id="" required>
                         <option disabled selected>Choose position</option>
                         <option value="left">Left</option>
                         <option value="right">Right</option>
                         <option value="middle">Middle</option>
-                    </select>
-                    <label className="mx-5" htmlFor="position">Color: </label>
+                    </select></div>
 
+                    <div>
+                    <label className="md:ml-5 mt-5" htmlFor="position">Color: </label>
                     <select onChange={validatePremium} className="select select-primary max-w-xs" name="color" id="" required>
                     <option disabled selected>Choose font colour</option>
                     <option value="black">Black</option>
                     <option className="prim" value="blue" >Blue</option>
-                    {isPremium?<option value="red"  >Red</option>
+                    {isPremium?<option value="red">Red</option>
                     :
                     <option value="red"  >Red 👑</option>
                     }
+                    {isPremium?<option value="green">Green</option>
+                    :
                     <option value="green">Green 👑</option>
-                    </select><br />
+                    }
+                    </select></div><br />
+                    </div>
                     </form>
             </div>
             <br />
             <div className="flex justify-center">
             <iframe src={url} title="Page Number Added" width={1000} height={500} ></iframe>
             </div>
+            <ShowReviews uniqueId='merge'
+        title='Users Feedback'
+        subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'
+        ></ShowReviews>
         </div>
     );
 };
