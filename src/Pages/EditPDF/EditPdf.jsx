@@ -67,7 +67,7 @@ const EditPdf = () => {
             :
           <div>
           <div className="webviewer h-[600px]" ref={viewer}></div>
-          <TakeReviews isOn={isOn} uniqueId="edit"></TakeReviews>
+          <TakeReviews isOn={isOn} setIsOn={setIsOn} uniqueId="edit"></TakeReviews>
           </div>
           } 
           <ShowReviews uniqueId='edit'

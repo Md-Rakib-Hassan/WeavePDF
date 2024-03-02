@@ -70,7 +70,7 @@ const ImageToPDF = () => {
     return (
         <>
             <div className="container mx-auto overflow-hidden my-20">
-                <TakeReviews isOn={isOn} uniqueId='img-to-pdf'></TakeReviews>
+                <TakeReviews isOn={isOn} setIsOn={setIsOn} uniqueId='img-to-pdf'></TakeReviews>
                 <div className="flex justify-center items-center">
                     <div className="flex flex-col justify-center items-center p-5 shadow-2xl lg:w-3/4 xl:w-1/2">
                         <h1 className="my-5 text-3xl lg:text-5xl font-bold text-center">Image To PDF</h1>

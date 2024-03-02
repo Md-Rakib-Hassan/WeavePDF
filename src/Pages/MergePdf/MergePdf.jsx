@@ -91,7 +91,7 @@ const MergePdf = () => {
                 <p>Combine PDFs in the order you want with the easiest PDF merger available.</p> 
             </div>}
             
-            <TakeReviews isOn={isOn} uniqueId="merge"></TakeReviews>
+            <TakeReviews isOn={isOn} setIsOn={setIsOn} uniqueId="merge"></TakeReviews>
             {!merged && pdfs && pdfs.length ? 
             <button onClick={mergeDocument} className='btn bg-[#52ab98] mt-5 font-bold text-2xl text-white'>Merge</button>
             :!mergeClicked && <label className='label'>

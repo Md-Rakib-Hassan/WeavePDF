@@ -26,7 +26,7 @@ const DrawSignature = () => {
     return (
         <>
             <div className="container mx-auto overflow-hidden p-4">
-                <TakeReviews isOn={isOn} uniqueId='img-to-pdf'></TakeReviews>
+                <TakeReviews isOn={isOn} setIsOn={setIsOn} uniqueId='img-to-pdf'></TakeReviews>
                 <div className="flex flex-col justify-center items-center text-black font-bold my-16">
                     <h1 className="text-3xl md-text-6xl">Draw Your Signature Here</h1>
                     <div className="border-black border-2 w-7/12 h-60 my-10 cursor-pointer">
