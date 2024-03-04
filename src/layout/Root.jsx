@@ -10,10 +10,9 @@ const Root = () => {
     location.pathname.includes("user-subscription");
 
   return (
-    <div className="">
+    <div>
       {noShoulder || <Navbar></Navbar>}
       <Outlet></Outlet>
-
       {noShoulder || <Footer></Footer>}
     </div>
   );

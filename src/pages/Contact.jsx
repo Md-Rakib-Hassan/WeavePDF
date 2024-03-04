@@ -1,4 +1,4 @@
-import question from '../images/image2.jpg'
+import question from '../images/image2-removebg.png'
 import apple from '../images/apple.jpg'
 import andorid from '../images/Vector.jpg'
 import whatsapp from '../images/Vector (1).jpg'
@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 
 
 const Contact = () => {
+
     const axiosPublic = useAxiosPublic();
     const { register, handleSubmit } = useForm()
     const onSubmit = (data) => {
@@ -27,6 +28,7 @@ const Contact = () => {
             timer: 1600
         });
     }
+    
     return (
         <>
             <div className="container mx-auto my-10">
@@ -109,14 +111,14 @@ const Contact = () => {
                                     placeholder="Your Massage"
                                 />
                             </div>
-                            <div className="mb-5">
+                            {/* <div className="mb-5">
                                 <label className="block mb-2 text-sm font-medium text-gray-900">Any file you want to add(optional)</label>
                                 <input
                                     type="file"
                                     className="shadow-sm bg-aqua_marine border border-gray-300 text-black text-sm  rounded-lg w-36 p-2.5"
                                     placeholder="Your Massage"
                                 />
-                            </div>
+                            </div> */}
                             <button
                                 type="submit"
                                 className="text-white bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"

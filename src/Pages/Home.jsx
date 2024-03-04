@@ -28,7 +28,6 @@ const Home = () => {
                 <WhyChoose />
                 <TryWeavePDF />
                 <FAQ></FAQ>
-
             </div>
             <Newsletter></Newsletter>
             <MessengerCustomerChat
