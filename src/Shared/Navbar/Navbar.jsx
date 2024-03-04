@@ -8,7 +8,7 @@ const Navbar = () => {
 
   const menu = (
     <>
-      <li>
+      {/* <li>
         <Link to="">Tools</Link>
       </li>
       <li>
@@ -16,7 +16,7 @@ const Navbar = () => {
       </li>
       <li>
         <Link to="">Convert</Link>
-      </li>
+      </li> */}
       <li>
         <Link to="/subscriptions">Subscriptions</Link>
       </li>
