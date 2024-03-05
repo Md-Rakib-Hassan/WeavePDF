@@ -57,6 +57,7 @@ const CheckoutForm = () => {
         }
         setSubscription(activePackage)
     }
+    
     const handleSubmit = async(event) =>{
         event.preventDefault();
 
@@ -164,7 +165,7 @@ const CheckoutForm = () => {
             <div className='flex justify-center my-10'>
             {clientSecret? subscription ? <button className='btn text-center bg-teal text-white' type="submit" disabled={!stripe}>
                 Get Premium
-            </button> : <button className='btn-disabled bg-grey'>Get Premium</button>
+            </button> : <button onClick={()=>{window.alert('please select a subscription')}} className='bg-grey'>Get Premium</button>
             :
             <Lottie animationData={spinner} className='w-52 h-52'></Lottie>
             }
