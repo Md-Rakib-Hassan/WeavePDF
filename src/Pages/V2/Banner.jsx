@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Banner = () => {
   return (
     <div className="max-w-7xl mx-auto p-2">
@@ -9,7 +11,7 @@ const Banner = () => {
             with documents.
           </p>
           <div className="py-6 flex flex-col md:flex-row gap-4">
-            <button className="btn bg-[#52ab98] text-white font-bold">Start Free Trial</button>
+            <Link to={'/subscriptions'}><button className="btn bg-[#52ab98] text-white font-bold">Subscriptions</button></Link>
             <a href="#tools"><button className="btn border-[#00c093] text-black font-bold">Explore All Tools</button></a>
           </div>
         </div>
