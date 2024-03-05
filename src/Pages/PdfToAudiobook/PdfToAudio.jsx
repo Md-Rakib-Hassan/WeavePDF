@@ -13,6 +13,11 @@ const PdfToAudio = () => {
         setPdf(file)
     }
 
+    const textToSpeak=()=>{
+        const value=new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(value);
+    }
+
     const handleUpload = (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -47,6 +52,12 @@ const PdfToAudio = () => {
 
                     </form>
                 </div>
+
+                {
+                    text ? <button onClick={textToSpeak}>Speek</button>
+                    :''
+                }
+
 
                 
 
