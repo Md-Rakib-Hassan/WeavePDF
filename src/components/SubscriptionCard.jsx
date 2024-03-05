@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const SubscriptionCard = ({ price, contents, type, btn_text, Monthly }) => {
   const final_price = Monthly
     ? parseInt(price)
@@ -19,9 +21,9 @@ const SubscriptionCard = ({ price, contents, type, btn_text, Monthly }) => {
 
         <div className="space-y-4 mt-4 p-3">{contents}</div>
       </div>
-      <button className="bg-blue text-white font-medium py-2 hover:bg-gray-950">
-        {btn_text ? btn_text : "Select"}
-      </button>
+      <Link to={'/user-subscription'}><button className="bg-blue text-white w-full font-medium py-2 hover:bg-gray-950">
+        {btn_text ? btn_text : "Take Subscription"}
+      </button></Link>
     </div>
   );
 };

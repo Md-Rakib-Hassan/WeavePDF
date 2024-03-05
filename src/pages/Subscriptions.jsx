@@ -27,7 +27,7 @@ const Subscriptions = () => {
             <div>
                 
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 l:grid-cols-3 mt-16 gap-10 '>
+            <div className='flex justify-center mt-16'>
                 <SubscriptionCard Monthly={Monthly} price={50} type={'Personal'} contents={
                     <><div className='flex items-center text-xl gap-2'>
                         <IoDocumentsOutline className='text-3xl' />
@@ -46,7 +46,7 @@ const Subscriptions = () => {
 
                         <div className='flex items-center text-xl gap-2'>
                             <MdDraw className='text-3xl' />
-                            <p>Draw Signature</p>
+                            <p>Customize colors in Adding page numbers</p>
                         </div></>
 
                 }/>
