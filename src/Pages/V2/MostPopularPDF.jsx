@@ -20,7 +20,7 @@ const MostPopularPDF = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-10 p-2">
+    <div id="tools" className="max-w-5xl mx-auto py-10 p-2">
       <div className="text-center">
         <h1 className="text-[36px] font-bold pb-3">Most Popular Tools</h1>
         <p className="text-[18px] font-normal pb-9">
