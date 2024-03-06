@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-
+import { FaPlay, FaPause, FaStop } from "react-icons/fa";
+import { IoReloadSharp } from "react-icons/io5";
 
 const PdfToAudio = () => {
     const axiosPublic = useAxiosPublic();
     const [pdf, setPdf] = useState(null);
     const [text, setText] = useState(null);
+    const [isPaused, setIsPaused] = useState(true);
+    const [utterance, setUtterance] = useState(null);
+    const [voice, setVoice] = useState(null);
+    const [firstTime, setFirstTime] = useState(true);
 
     const handlePdf = e => {
         e.preventDefault();
@@ -17,18 +22,12 @@ const PdfToAudio = () => {
     const handleUpload = (e) => {
         e.preventDefault();
         const formData = new FormData();
-
         formData.append("pdfFile", pdf);
         console.log(pdf);
         axiosPublic.post('/extract-text', formData)
             .then(response => setText(response.data));
-        console.log(text);
 
     }
-
-    const [isPaused, setIsPaused] = useState(false);
-    const [utterance, setUtterance] = useState(null);
-    const [voice, setVoice] = useState(null);
 
     useEffect(() => {
         const synth = window.speechSynthesis;
@@ -47,11 +46,12 @@ const PdfToAudio = () => {
     const handlePlay = () => {
         const synth = window.speechSynthesis;
 
-        if (isPaused) {
+        if (isPaused && !firstTime) {
             synth.resume();
         } else {
             utterance.voice = voice;
             synth.speak(utterance);
+            setFirstTime(false);
         }
 
         setIsPaused(false);
@@ -70,17 +70,18 @@ const PdfToAudio = () => {
 
         synth.cancel();
 
-        setIsPaused(false);
+        setIsPaused(true);
+        setFirstTime(true);
     };
 
     const handleVoiceChange = (event) => {
         const voices = window.speechSynthesis.getVoices();
         setVoice(voices.find((v) => v.name === event.target.value));
-      };
+    };
 
 
     return (
-        <div>
+        <div className="my-12">
 
             <div>
                 <br /><br />
@@ -101,39 +102,37 @@ const PdfToAudio = () => {
 
                     </form>
                 </div>
+                <div className="flex justify-center items-center">
+                    {
+                        <div className={`${text ? '' : 'hidden'} `}>
 
-                {
-                     <div className={`${text?'':'hidden'}`}>
+                            <label className="block font-medium">
+                                Change Voice:
+                                <select value={voice?.name} onChange={handleVoiceChange}>
+                                    {window.speechSynthesis.getVoices().map((voice) => (
+                                        <option key={voice.name} value={voice.name}>
+                                            {voice.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </label>
 
-                    <label>
-                        Voice:
-                        <select value={voice?.name} onChange={handleVoiceChange}>
-                            {window.speechSynthesis.getVoices().map((voice) => (
-                                <option key={voice.name} value={voice.name}>
-                                    {voice.name}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-                    <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
-                    <button onClick={handlePause}>Pause</button>
-                    <button onClick={handleStop}>Stop</button>
-                    <button onClick={()=>{setText(null); return setPdf(null)}}>Retry</button>
-    
-                    </div>
-                }
-                
-
-                {/* {
-                    text ? <button onClick={textToSpeak}>Speek</button>
-                    :''
-                } */}
+                            <div className="flex gap-4 mt-5 justify-center">
+                                {
+                                    isPaused ? <abbr title={`${firstTime ? 'Play' : 'Resume'}`}><button className="btn bg-light_blue" onClick={handlePlay}> <FaPlay /></button></abbr> : <abbr title="Pause"><button className="btn bg-light_blue" onClick={handlePause}><FaPause /></button></abbr>
+                                }
 
 
+                                <abbr title="Stop"><button className="btn bg-light_blue" onClick={handleStop}><FaStop /></button></abbr>
+                                <abbr title="Retry"> <button className="btn bg-light_blue font-extrabold text-xl" onClick={() => { setText(null); return setPdf(null) }}><IoReloadSharp /></button></abbr>
+
+                            </div>
 
 
+                        </div>
+                    }
 
-
+                </div>
 
             </div>
 
