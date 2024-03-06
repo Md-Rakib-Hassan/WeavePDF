@@ -1,18 +1,18 @@
-.container{
+.premium-container{
     position: relative;
     height: 100vh;
     width: 100%;
-    
-    margin-bottom: 20px;
+    padding: 20px;
+    margin-bottom: 50px;
 }
-.row{
+.premium-row{
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.editor {
+.premium-editor {
     position: relative;
     height: 100%;
     width: 50%;
@@ -21,16 +21,15 @@
     justify-content: center;
     color: black;
 }
-.preview{
+.premium-preview{
     position: relative;
     height: 100%;
     width: 50%;
     padding: 20px;
-    border-left: 1px solid black;
     color: black;
     overflow-y: scroll;
 }
-.editor-input{
+.premium-editor-input{
     height: 100%;
     width: 100%;
 }

@@ -1,41 +1,51 @@
-import { useState } from "react";
-import ReactQuill from "react-quill";
+import { useState } from 'react';
+import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './TextEditorPremium.css'
+import jsPDF from 'jspdf';
 
 
 const PremiumEditor = () => {
     const [value, setValue] = useState('');
+    const [, setIsOn] = useState(false);
+
+    const generatePDF = () => {
+        const doc = new jsPDF("p", "pt", "a4");
+        doc.html(document.querySelector("#previewDownloadTwo"), {
+            callback: function (pdf) {
+                pdf.save("document.pdf");
+            }
+        })
+        setIsOn(true);
+
+    }
 
     const modules = {
         toolbar: [
-            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-            [{ font: [] }],
-            [{ size: [] }],
+            [{ 'header': [1, 2, false] }],
             ['bold', 'italic', 'underline', 'strike', 'blockquote'],
             [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-            ['link', 'image', 'video'],
-            ['clean']
+            ['image', 'video'],
         ],
-    }
+    };
     return (
         <div>
-            <div className="container">
-                <div className="row">
-                    <div className="editor">
+            <div className="premium-container">
+                <div className="premium-row">
+                    <div className="premium-editor">
                         <ReactQuill
                             theme="snow"
                             value={value}
                             onChange={setValue}
-                            className='editor-input'
+                            className='premium-editor-input'
                             modules={modules}
                         />
                     </div>
 
 
-                    <div className="preview" >
-                        <button>Download</button>
-                        <div dangerouslySetInnerHTML={{ __html: value }} />
+                    <div className="premium-preview" >
+                        <button onClick={generatePDF} className='button-class mb-7' >Download As PDF</button>
+                        <div id='previewDownloadTwo' className='p-2' dangerouslySetInnerHTML={{ __html: value }} />
                     </div>
                 </div>
             </div>
