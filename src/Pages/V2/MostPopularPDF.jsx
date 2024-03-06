@@ -65,7 +65,7 @@ const MostPopularPDF = () => {
               {" "}
               <h2 className="font-bold text-[20px]">Edit PDF</h2>
               <p className="font-normal pt-1">
-                Add signatures, images, highlight and add texts, draw, add watermark and many other! 
+                Add signatures, images, highlight, draw and many other! 
               </p>
             </div>
             <IoIosArrowForward className="mt-3 text-2xl" />
