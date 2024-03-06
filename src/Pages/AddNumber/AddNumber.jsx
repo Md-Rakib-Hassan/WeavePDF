@@ -130,7 +130,7 @@ const AddNumber = () => {
             </label></div>
         }
             <br />
-            {/* <TakeReviews isOn={isOn} uniqueId="number"></TakeReviews> */}
+            <TakeReviews isOn={isOn} setIsOn={setIsOn} uniqueId="number"></TakeReviews>
 
             <div className="md:flex items-center justify-center">
                 <div>
