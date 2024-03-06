@@ -23,7 +23,6 @@ const PdfToAudio = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("pdfFile", pdf);
-        console.log(pdf);
         axiosPublic.post('/extract-text', formData)
             .then(response => setText(response.data));
 
