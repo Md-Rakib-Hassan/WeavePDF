@@ -102,19 +102,27 @@ const PdfToAudio = () => {
                     </form>
                 </div>
 
-                <label>
-                    Voice:
-                    <select value={voice?.name} onChange={handleVoiceChange}>
-                        {window.speechSynthesis.getVoices().map((voice) => (
-                            <option key={voice.name} value={voice.name}>
-                                {voice.name}
-                            </option>
-                        ))}
-                    </select>
-                </label>
-                <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
-                <button onClick={handlePause}>Pause</button>
-                <button onClick={handleStop}>Stop</button>
+                {
+                     <div className={`${text?'':'hidden'}`}>
+
+                    <label>
+                        Voice:
+                        <select value={voice?.name} onChange={handleVoiceChange}>
+                            {window.speechSynthesis.getVoices().map((voice) => (
+                                <option key={voice.name} value={voice.name}>
+                                    {voice.name}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
+                    <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
+                    <button onClick={handlePause}>Pause</button>
+                    <button onClick={handleStop}>Stop</button>
+                    <button onClick={()=>{setText(null); return setPdf(null)}}>Retry</button>
+    
+                    </div>
+                }
+                
 
                 {/* {
                     text ? <button onClick={textToSpeak}>Speek</button>
