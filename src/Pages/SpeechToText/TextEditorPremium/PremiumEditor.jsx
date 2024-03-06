@@ -24,6 +24,7 @@ const PremiumEditor = () => {
         toolbar: [
             [{ 'header': [1, 2, false] }],
             ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            ['color', 'background'],
             [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
             ['image', 'video'],
         ],
@@ -43,9 +44,12 @@ const PremiumEditor = () => {
                     </div>
 
 
-                    <div className="premium-preview" >
+                    <div className="preview" >
                         <button onClick={generatePDF} className='button-class mb-7' >Download As PDF</button>
-                        <div id='previewDownloadTwo' className='p-2' dangerouslySetInnerHTML={{ __html: value }} />
+
+                        <div id='previewDownloadTwo'>
+                            <div className='p-2' dangerouslySetInnerHTML={{ __html: value }} />
+                        </div>
                     </div>
                 </div>
             </div>
