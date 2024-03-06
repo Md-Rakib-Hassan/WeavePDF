@@ -27,8 +27,8 @@ const PremiumEditor = () => {
             ['color', 'background'],
             [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
             ['image', 'video'],
-        ],
-    };
+        ]
+    }
     return (
         <div>
             <div className="premium-container">
@@ -44,7 +44,7 @@ const PremiumEditor = () => {
                     </div>
 
 
-                    <div className="preview" >
+                    <div className="premium-preview" >
                         <button onClick={generatePDF} className='button-class mb-7' >Download As PDF</button>
 
                         <div id='previewDownloadTwo'>

@@ -50,7 +50,7 @@ const SpeechToText = () => {
 
             </div>
             {
-                isPremium ? <TextEditor></TextEditor> : <PremiumEditor></PremiumEditor>
+                isPremium ? <PremiumEditor></PremiumEditor> : <TextEditor></TextEditor>
             }
         </div>
     );
