@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa";
 import { IoReloadSharp } from "react-icons/io5";
+import ShowReviews from "../../Shared/Reviews/ShowReviews";
+import TakeReviews from "../../Shared/Reviews/TakeReviews";
 
 const PdfToAudio = () => {
     const axiosPublic = useAxiosPublic();
@@ -11,6 +13,7 @@ const PdfToAudio = () => {
     const [utterance, setUtterance] = useState(null);
     const [voice, setVoice] = useState(null);
     const [firstTime, setFirstTime] = useState(true);
+    const [isOn, setIsOn] = useState(false);
 
     const handlePdf = e => {
         e.preventDefault();
@@ -71,6 +74,7 @@ const PdfToAudio = () => {
 
         setIsPaused(true);
         setFirstTime(true);
+        setIsOn(true);
     };
 
     const handleVoiceChange = (event) => {
@@ -81,7 +85,7 @@ const PdfToAudio = () => {
 
     return (
         <div className="my-12">
-
+            <TakeReviews isOn={isOn} setIsOn={setIsOn} uniqueId='pdf-to-audiobook'></TakeReviews>
             <div>
                 <br /><br />
                 <h1 className='text-3xl font-playfair text-center font-bold'>Listen to Your PDFs Anytime, Anywhere</h1><br />
@@ -123,7 +127,7 @@ const PdfToAudio = () => {
 
 
                                 <abbr title="Stop"><button className="btn bg-light_blue" onClick={handleStop}><FaStop /></button></abbr>
-                                <abbr title="Retry"> <button className="btn bg-light_blue font-extrabold text-xl" onClick={() => { setText(null); return setPdf(null) }}><IoReloadSharp /></button></abbr>
+                                <abbr title="Retry"> <button className="btn bg-light_blue font-extrabold text-xl" onClick={() => { setText(null);setIsOn(true); return setPdf(null) }}><IoReloadSharp /></button></abbr>
 
                             </div>
 
@@ -134,6 +138,10 @@ const PdfToAudio = () => {
                 </div>
 
             </div>
+            <ShowReviews uniqueId='pdf-to-audiobook'
+                title='Users Feedback'
+                subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'
+            ></ShowReviews>
 
         </div>
     );

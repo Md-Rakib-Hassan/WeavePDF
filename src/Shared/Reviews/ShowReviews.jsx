@@ -46,7 +46,6 @@ const ShowReviews = ({ uniqueId, title, subTitle }) => {
                         1024: {
                             slidesPerView: 4,
                             spaceBetween: 20,
-
                         }
 
                     }

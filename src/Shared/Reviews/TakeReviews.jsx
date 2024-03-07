@@ -6,6 +6,7 @@ const TakeReviews = ({isOn, uniqueId,setIsOn }) => {
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
     const [shouldOn,setShouldOn] =useState(true);
+    const [charlength,setCharlength]=useState(0);
 
 
     const handleSubmit=(e)=>{
@@ -31,6 +32,7 @@ const TakeReviews = ({isOn, uniqueId,setIsOn }) => {
             setShouldOn(false);
             
     }
+    console.log(charlength);
 
     useEffect(()=>{
         setIsOn(false);
@@ -58,7 +60,12 @@ const TakeReviews = ({isOn, uniqueId,setIsOn }) => {
                             <input type="radio" name="rating9" value={5} defaultChecked className="mask mask-star-2 bg-teal" />
                         </div>
                     </div> 
-                    <textarea required name="review" id="" className='w-full border border-grey p-2 rounded-lg' rows="5" placeholder='Write your review'></textarea>
+                    <div className='relative'>
+                    <textarea required name="review" id="review" className='w-full border border-grey p-2 rounded-lg' rows="5" placeholder='Write your review' maxLength={224} onChange={()=>setCharlength(document.getElementById('review').value.length)}></textarea>
+                    
+                    <p className='text-teal absolute right-4 bottom-2'>{charlength}/224</p>
+                    </div>
+                    
                     <div className='flex justify-center'>
                     <input  type='submit'value='Submit' className='btn bg-teal text-white rounded-md '/>
                     <form method="dialog">
