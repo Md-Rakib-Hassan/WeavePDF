@@ -18,7 +18,7 @@ const Dashboard = () => {
     <div className={`${isAdmin ? 'flex' : 'lg:flex'}`}>
 
       {/*admin dashboard side bar */}
-      <div className={`${isAdmin ? 'w-[72px] pt-10  min-h-screen bg-teal text-white text-xl' : 'lg:w-56 min-h-screen bg-teal text-white'}`}>
+      <div className={`${isAdmin ? 'z-50 w-[72px] pt-10  min-h-screen bg-teal text-white text-xl' : 'lg:w-56 min-h-screen bg-teal text-white'}`}>
         <ul className="flex flex-col justify-center items-center gap-8">
           {isAdmin ? (
             <>
