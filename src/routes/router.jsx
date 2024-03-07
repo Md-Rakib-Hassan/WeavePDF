@@ -37,6 +37,7 @@ import AddNumber from "../Pages/AddNumber/AddNumber";
 import History from "../Pages/MdToPdf/History";
 import ManageSubscriptions from "../Pages/Dashboard/ManageSubscriptions/ManageSubscriptions";
 import PdfToAudio from "../Pages/PdfToAudiobook/PdfToAudio";
+import Error from "../Pages/Error";
 
 
 
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement:<Error></Error>,
     children: [
       {
         path: "/",
