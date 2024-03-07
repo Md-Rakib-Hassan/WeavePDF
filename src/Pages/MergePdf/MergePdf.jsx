@@ -85,6 +85,7 @@ const MergePdf = () => {
     
 
     return (
+        <div>
         <div className='flex flex-col items-center py-10'>
             {!mergeClicked && <div className='text-center'>
                <h1 className='text-3xl font-playfair font-bold'>Merge your PDF Files here</h1><br />
@@ -126,7 +127,7 @@ const MergePdf = () => {
                     </div>
                 // </div>
             }
-
+        </div>
         <ShowReviews uniqueId='merge'
         title='Users Feedback'
         subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'
