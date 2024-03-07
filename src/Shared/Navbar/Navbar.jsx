@@ -81,7 +81,7 @@ const Navbar = () => {
                 </svg>
               </label>
             </div>
-            <div className="drawer-side overflow-hidden">
+            <div className="drawer-side overflow-hidden z-50">
               <label
                 htmlFor="my-drawer-4"
                 aria-label="close sidebar"
