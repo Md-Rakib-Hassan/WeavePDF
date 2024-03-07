@@ -42,11 +42,9 @@ const Contact = () => {
                         </div>
                         <div>
                             <p className="text-gray-700">
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here.
+                            If you have any questions or need further clarification, don't hesitate to reach out to us. Our team is here to help and ready to assist you with any inquiries you may have. Feel free to contact us via email, phone, or through our online chat support. We're committed to providing you with the best possible assistance and ensuring your experience with us is seamless.
                             </p>
-                            <p className="text-gray-700 mt-4">
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here.
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
@@ -58,24 +56,24 @@ const Contact = () => {
                         </div>
                         <div className="max-w-sm p-6 my-5 bg-blue border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
                             <img src={apple} alt="" className="w-7 h-7 text-gray-500 mb-3" />
-                            <a href="#">
+                            <a href="https://www.apple.com/">
                                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">On an Apple mobile device</h5>
                             </a>
-                            <p className="mb-3 font-normal text-gray-500 ">Start the conversation</p>
+                            {/* <p className="mb-3 font-normal text-gray-500 ">Start the conversation</p> */}
                         </div>
                         <div className="max-w-sm p-6 my-5 bg-blue border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
                             <img src={andorid} alt="" className="w-7 h-7 text-gray-500 mb-3" />
-                            <a href="#">
+                            <a href="https://www.android.com/">
                                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">On an Android mobile device</h5>
                             </a>
-                            <p className="mb-3 font-normal text-gray-500 ">Start the conversation</p>
+                            {/* <p className="mb-3 font-normal text-gray-500 ">Start the conversation</p> */}
                         </div>
                         <div className="max-w-sm p-6 my-5 bg-blue border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
                             <img src={whatsapp} alt="" className="w-7 h-7 text-gray-500 mb-3" />
-                            <a href="#">
+                            <a href="https://www.whatsapp.com/">
                                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">Using WhatsApp</h5>
                             </a>
-                            <p className="mb-3 font-normal text-gray-500 ">Start the conversation</p>
+                            {/* <p className="mb-3 font-normal text-gray-500 ">Start the conversation</p> */}
                         </div>
                     </div>
 
