@@ -118,7 +118,7 @@ const Dashboard = () => {
             </>
           )
             :
-          (
+            (
               // User dashboard==================================
               <>
                 <ul className="text-center menu space-y-5">
@@ -140,15 +140,15 @@ const Dashboard = () => {
                   <li>
                     <NavLink className={`buttonProject3`} to='/dashboard/user-profile'>User Profile</NavLink>
                   </li>
-                  <li>
-                    <NavLink className={`buttonProject3`} to='/dashboard/transection'>My Transection</NavLink>
-                  </li>
+                  {/* {isPremium && <li>
+                    <NavLink className={`buttonProject3`} to='/dashboard/transection'>Subscription Details</NavLink>
+                  </li>} */}
                   <li>
                     <NavLink className={`buttonProject3`} to='/dashboard/document-history'>Recent Document History</NavLink>
                   </li>
-                  <li>
+                  {/* <li>
                     <NavLink className={`buttonProject3`} to='/dashboard/addFeedback'>Add Your Feedback</NavLink>
-                  </li>
+                  </li> */}
                   <li>
                     <NavLink className={`buttonProject3`} to='/contact'>Contact With Us</NavLink>
                   </li>

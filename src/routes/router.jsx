@@ -15,8 +15,7 @@ import SplitPDFModal from "../Pages/SplitPDF/SplitPDFModal/SplitPDFModal";
 import Profile from "../Pages/Profile/Profile";
 import WordToPDF from "../Pages/WordToPDF/WordToPDF";
 import Editor from "../Pages/MdToPdf/Editor";
-import MyTransection from "../Pages/Transection/MyTransection";
-import AddFeedback from "../Pages/AddFeedBack/AddFeedback";
+// import MyTransection from "../Pages/Transection/MyTransection";
 import RecentDocumentHistory from "../Pages/RecentDocumentHistory/RecentDocumentHistory";
 import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
@@ -37,6 +36,8 @@ import Contact from './../Pages/Contact';
 import AddNumber from "../Pages/AddNumber/AddNumber";
 import History from "../Pages/MdToPdf/History";
 import ManageSubscriptions from "../Pages/Dashboard/ManageSubscriptions/ManageSubscriptions";
+import PdfToAudio from "../Pages/PdfToAudiobook/PdfToAudio";
+import Error from "../Pages/Error";
 
 
 
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement:<Error></Error>,
     children: [
       {
         path: "/",
@@ -137,6 +139,10 @@ const router = createBrowserRouter([
       {
         path:'/history',
         element:<History></History>
+      },
+      {
+        path:'/pdf-to-audiobook',
+        element:<PdfToAudio></PdfToAudio>
       }
 
     ],
@@ -157,14 +163,6 @@ const router = createBrowserRouter([
             <Profile></Profile>
           </PrivateRoute>
         ),
-      },
-      {
-        path: "/dashboard/transection",
-        element: <MyTransection></MyTransection>,
-      },
-      {
-        path: "/dashboard/addFeedback",
-        element: <AddFeedback></AddFeedback>,
       },
       {
         path: "/dashboard/document-history",

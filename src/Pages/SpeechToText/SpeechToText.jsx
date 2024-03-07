@@ -8,9 +8,12 @@ import { MdOutlineSettingsVoice } from "react-icons/md";
 import { SlActionRedo } from "react-icons/sl";
 import "./SpeechToText.css"
 import TextEditor from './TextEditor/TextEditor';
+import usePremium from '../../hooks/usePremium';
+import PremiumEditor from './TextEditorPremium/PremiumEditor';
 
 const SpeechToText = () => {
     const [textToCopy, setTextToCopy] = useState();
+    const [isPremium] = usePremium();
     const [isCopied, setCopied] = useClipboard(textToCopy, {
         successDuration: 1000
     });
@@ -46,8 +49,9 @@ const SpeechToText = () => {
                 </div>
 
             </div>
-
-            <TextEditor></TextEditor>
+            {
+                isPremium ? <PremiumEditor></PremiumEditor> : <TextEditor></TextEditor>
+            }
         </div>
     );
 }

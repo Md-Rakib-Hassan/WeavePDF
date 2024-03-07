@@ -85,6 +85,7 @@ const MergePdf = () => {
     
 
     return (
+        <div>
         <div className='flex flex-col items-center py-10'>
             {!mergeClicked && <div className='text-center'>
                <h1 className='text-3xl font-playfair font-bold'>Merge your PDF Files here</h1><br />
@@ -119,13 +120,14 @@ const MergePdf = () => {
 
             {
                 merged && <div>
-                    <p className='text-4xl font-playfair font-bold my-5 text-center'>Merging Complete! </p>
-                    <div className='flex justify-center'>
-                    <button className='btn bg-aqua_marine my-5 px-20 text-white'><a href={merged} download>Download</a></button>
+                    <p className='text-4xl font-playfair font-bold text-center'>Merging Complete! </p><br />
+                    {/* <div className='flex justify-center'> */}
+                    {/* <button className='btn bg-aqua_marine my-5 px-20 text-white'><a href={merged} download>Download</a></button> */} 
+                    <iframe title="Merged PDF" src={merged} width={800} height={700}></iframe>
                     </div>
-                </div>
+                // </div>
             }
-
+        </div>
         <ShowReviews uniqueId='merge'
         title='Users Feedback'
         subTitle='Our clients have shared their experiences, and their words speak volumes about our dedication to creating unforgettable work. Explore what our clients have to say about their remarkable event experiences with us.'

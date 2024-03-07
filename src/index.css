@@ -16,6 +16,9 @@
     display: none;
     z-index: -1;
 }
+#inpFile{
+	display: none;
+}
 
 
 .buttonProject3{

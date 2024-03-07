@@ -10,7 +10,7 @@ const Review = ({ info }) => {
     }
 
     return (
-        <div className='text-center  shadow-lg card  glass space-y-2 px-3 py-10'>
+        <div className='text-center lg:h-[340px] md:h-[420px] h-[380px]  shadow-lg card  glass space-y-2 px-3 py-10'>
 
             <img className='rounded-full h-24 w-auto mx-auto' src={info.user_profile} alt="" />
             <h1 className='font-bold text-xl'>{info.user_name}</h1>
