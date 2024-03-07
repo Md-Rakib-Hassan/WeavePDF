@@ -11,12 +11,14 @@ import WhyChoose from "./V2/WhyChoose";
 import TryWeavePDF from "./V2/TryWeavePDF";
 import SimpleTask from "./V2/SimpleTask";
 import GetMobile from "./V2/GetMobile";
+import Landing from "../Components/Landing";
 
 const Home = () => {
 
     return (
         <>
-            <FileDropper></FileDropper>
+            {/* <FileDropper></FileDropper> */}
+            <Landing></Landing>
             <div className="max-w-7xl mx-auto">
                 <Banner />
                 <MostPopularPDF />
