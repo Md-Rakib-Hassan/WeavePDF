@@ -119,11 +119,12 @@ const MergePdf = () => {
 
             {
                 merged && <div>
-                    <p className='text-4xl font-playfair font-bold my-5 text-center'>Merging Complete! </p>
-                    <div className='flex justify-center'>
-                    <button className='btn bg-aqua_marine my-5 px-20 text-white'><a href={merged} download>Download</a></button>
+                    <p className='text-4xl font-playfair font-bold text-center'>Merging Complete! </p><br />
+                    {/* <div className='flex justify-center'> */}
+                    {/* <button className='btn bg-aqua_marine my-5 px-20 text-white'><a href={merged} download>Download</a></button> */} 
+                    <iframe title="Merged PDF" src={merged} width={800} height={700}></iframe>
                     </div>
-                </div>
+                // </div>
             }
 
         <ShowReviews uniqueId='merge'

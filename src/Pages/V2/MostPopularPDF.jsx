@@ -20,7 +20,7 @@ const MostPopularPDF = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-10 p-2">
+    <div id="tools" className="max-w-5xl mx-auto py-10 p-2">
       <div className="text-center">
         <h1 className="text-[36px] font-bold pb-3">Most Popular Tools</h1>
         <p className="text-[18px] font-normal pb-9">
@@ -197,6 +197,21 @@ const MostPopularPDF = () => {
                     </div>
                     </div>
                     </Link>
+
+                    <Link to={"/pdf-to-audiobook"}>
+              {" "}
+              <div className="bg-base-300 hover:scale-105 ease-in-out flex pb-16 pt-6 px-4 justify-center rounded-md border border-neutral-300">
+                <img className="h-[40px] w-auto" src="https://i.ibb.co/WVnDTPM/audiobook-1.png" alt="" />
+                <div className="pl-3">
+                  {" "}
+                  <h2 className="font-bold text-[20px]">PDF To Audiobook</h2>
+                  <p className="font-normal pt-1">
+                  Listen to Your PDFs Anytime, Anywhere
+                  </p>
+                </div>
+                <IoIosArrowForward className="mt-3 text-2xl" />
+              </div>
+            </Link>
           </>)}
       </div>
       <div className="flex justify-center py-9">

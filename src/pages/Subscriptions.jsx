@@ -27,7 +27,7 @@ const Subscriptions = () => {
             <div>
                 
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 l:grid-cols-3 mt-16 gap-10 '>
+            <div className='flex justify-center mt-16'>
                 <SubscriptionCard Monthly={Monthly} price={50} type={'Personal'} contents={
                     <><div className='flex items-center text-xl gap-2'>
                         <IoDocumentsOutline className='text-3xl' />
@@ -46,52 +46,7 @@ const Subscriptions = () => {
 
                         <div className='flex items-center text-xl gap-2'>
                             <MdDraw className='text-3xl' />
-                            <p>Draw Signature</p>
-                        </div></>
-
-                }/>
-
-                <SubscriptionCard Monthly={Monthly} price={70} type={'Business'} contents={
-                    <><div className='flex items-center text-xl gap-2'>
-                        <IoDocumentsOutline className='text-3xl' />
-                        <p>Unlimited documents</p>
-                    </div>
-
-                        <div className='flex items-center text-xl gap-2'>
-                            <FaUsersRays className='text-3xl' />
-                            <p>Multiple Sender</p>
-                        </div>
-
-                        <div className='flex items-center text-xl gap-2'>
-                            <RiCharacterRecognitionLine className='text-3xl' />
-                            <p>optical character recognition</p>
-                        </div>
-
-                        <div className='flex items-center text-xl gap-2'>
-                            <MdDraw className='text-3xl' />
-                            <p>Draw Signature</p>
-                        </div></>
-
-                }/>
-                <SubscriptionCard Monthly={Monthly} btn_text={'Contact Us'} price={90} type={'Customize'} contents={
-                    <><div className='flex items-center text-xl gap-2'>
-                        <IoDocumentsOutline className='text-3xl' />
-                        <p>Unlimited documents</p>
-                    </div>
-
-                        <div className='flex items-center text-xl gap-2'>
-                            <FaUsersRays className='text-3xl' />
-                            <p>Multiple Sender</p>
-                        </div>
-
-                        <div className='flex items-center text-xl gap-2'>
-                            <RiCharacterRecognitionLine className='text-3xl' />
-                            <p>optical character recognition</p>
-                        </div>
-
-                        <div className='flex items-center text-xl gap-2'>
-                            <MdDraw className='text-3xl' />
-                            <p>Draw Signature</p>
+                            <p>Customize colors in Adding page numbers</p>
                         </div></>
 
                 }/>

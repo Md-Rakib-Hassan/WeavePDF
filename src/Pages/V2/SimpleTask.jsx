@@ -72,7 +72,7 @@ const SimpleTask = () => {
             Things getting chaotic? Merge and split files, or remove excess
             pages has it all..
           </p>
-          <Link to={"/draw-signature"}>
+          <Link to={"/edit-pdf"}>
             {" "}
             <div className="flex items-center gap-2 text-[#283fd1] font-semibold">
               {" "}
