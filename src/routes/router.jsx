@@ -37,6 +37,7 @@ import Contact from './../Pages/Contact';
 import AddNumber from "../Pages/AddNumber/AddNumber";
 import History from "../Pages/MdToPdf/History";
 import ManageSubscriptions from "../Pages/Dashboard/ManageSubscriptions/ManageSubscriptions";
+import PdfToAudio from "../Pages/PdfToAudiobook/PdfToAudio";
 
 
 
@@ -137,6 +138,10 @@ const router = createBrowserRouter([
       {
         path:'/history',
         element:<History></History>
+      },
+      {
+        path:'/pdf-to-audiobook',
+        element:<PdfToAudio></PdfToAudio>
       }
 
     ],
