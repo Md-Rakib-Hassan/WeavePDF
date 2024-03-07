@@ -16,7 +16,6 @@ import Profile from "../Pages/Profile/Profile";
 import WordToPDF from "../Pages/WordToPDF/WordToPDF";
 import Editor from "../Pages/MdToPdf/Editor";
 import MyTransection from "../Pages/Transection/MyTransection";
-import AddFeedback from "../Pages/AddFeedBack/AddFeedback";
 import RecentDocumentHistory from "../Pages/RecentDocumentHistory/RecentDocumentHistory";
 import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
@@ -166,10 +165,6 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/transection",
         element: <MyTransection></MyTransection>,
-      },
-      {
-        path: "/dashboard/addFeedback",
-        element: <AddFeedback></AddFeedback>,
       },
       {
         path: "/dashboard/document-history",
