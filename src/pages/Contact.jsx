@@ -56,24 +56,24 @@ const Contact = () => {
                         </div>
                         <div className="max-w-sm p-6 my-5 bg-blue border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
                             <img src={apple} alt="" className="w-7 h-7 text-gray-500 mb-3" />
-                            <a href="https://www.apple.com/">
+                            <div>
                                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">On an Apple mobile device</h5>
-                            </a>
-                            {/* <p className="mb-3 font-normal text-gray-500 ">Start the conversation</p> */}
+                            </div>
+                            <p className="mb-3 font-normal text-gray-500 ">+880 16483638927</p>
                         </div>
                         <div className="max-w-sm p-6 my-5 bg-blue border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
                             <img src={andorid} alt="" className="w-7 h-7 text-gray-500 mb-3" />
-                            <a href="https://www.android.com/">
+                            <div>
                                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">On an Android mobile device</h5>
-                            </a>
-                            {/* <p className="mb-3 font-normal text-gray-500 ">Start the conversation</p> */}
+                            </div>
+                            <p className="mb-3 font-normal text-gray-500 ">+880 1648456387</p>
                         </div>
                         <div className="max-w-sm p-6 my-5 bg-blue border border-gray-200 rounded-lg shadow flex items-center justify-center flex-col">
                             <img src={whatsapp} alt="" className="w-7 h-7 text-gray-500 mb-3" />
-                            <a href="https://www.whatsapp.com/">
+                            <div>
                                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">Using WhatsApp</h5>
-                            </a>
-                            {/* <p className="mb-3 font-normal text-gray-500 ">Start the conversation</p> */}
+                            </div>
+                            <p className="mb-3 font-normal text-gray-500 ">+880 1648363875</p>
                         </div>
                     </div>
 
