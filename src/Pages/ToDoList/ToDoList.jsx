@@ -34,7 +34,7 @@ function ToDoList() {
   };
 
   return (
- <div className="h-[56vh]">
+ <div className="h-full">
      <div className="max-w-2xl mx-auto my-20 p-8 bg-white rounded-md shadow-md">
       <h1 className="text-3xl font-bold mb-4 text-center">Create Your ToDo List</h1>
       <p className="text-gray-600 mb-8 text-center">
